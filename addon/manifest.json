@@ -1,0 +1,43 @@
+{
+  // Required
+  "manifest_version": 2,
+  "version": "0.1.1",
+  "name": "__MSG_extensionName__",
+  "description": "__MSG_extensionDescription__",
+  
+  "homepage_url": "https://github.com/bros0215/eyes-alarm",
+  "author": "__MSG_authorName__",
+
+  // settings
+  "default_locale": "en",
+  "icons": {
+    "96": "icons/set-timer-button.png"
+  },
+  "permissions": [
+    "alarms",
+    "notifications",
+    "storage"
+  ],
+  "applications": {
+    "gecko": {
+      "strict_min_version": "48.0"
+    }
+  },
+
+  // applications
+  "browser_action": {
+    "default_icon": "icons/set-timer-button.png",
+    "default_title": "__MSG_extensionName__",
+    "default_popup": "popup.html"
+  },
+  "options_ui": {
+    "page": "options.html"
+  },
+  "background": {
+    "persistent": true,
+    "scripts": [
+      "browser-polyfill.js",
+      "background_scripts.js"
+    ]
+  }
+}

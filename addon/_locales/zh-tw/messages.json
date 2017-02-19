@@ -1,0 +1,41 @@
+{
+  "extensionName": {
+    "message": "護眼神器",
+    "description": "Name of the extension."
+  },
+
+  "extensionDescription": {
+    "message": "適時提醒你該讓眼睛休息了",
+    "description": "Description of the extension."
+  },
+
+  "authorName": {
+    "message": "劉醇俊",
+    "description": "author's name"
+  },
+
+  "notificationTitle": {
+    "message": "休息一下",
+    "description": "Title of the time-to-break notification."
+  },
+
+  "notificationContent": {
+    "message": "站起來走一走、喝點東西吧",
+    "description": "Tells the user what can they do"
+  },
+
+  "optionsWorktimeLabel": {
+    "message": "用眼時間",
+    "description": "time for reading (using eyes)"
+  },
+
+  "optionsBreaktimeLabel": {
+    "message": "休息時間",
+    "description": "time for break"
+  },
+
+  "optionsApplyLabel": {
+    "message": "套用設定",
+    "description": "apply new settings"
+  }
+}

@@ -1,0 +1,32 @@
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  align-content: flex-start;
+}
+.vertical {
+  flex-direction: column;
+}
+.horizontal {
+  flex-direction: row;
+}
+.center {
+  align-items: center;
+  justify-content: center;
+}
+.item {
+  flex-grow: 1;
+}
+* {
+  font-family: 'Microsoft JhengHei';
+}
+form .item {
+  margin-bottom: 5px;
+}
+form .item label {
+  margin-right: 5px;
+}
+form button {
+  border-radius: 3px;
+}

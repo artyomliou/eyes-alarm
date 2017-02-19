@@ -1,0 +1,38 @@
+@import "colors.less";
+@import "container.less";
+@import "animations.less";
+
+.rotateAnimation(@time) {
+    animation: rotate @time 0.1s cubic-bezier(0.785, 0.135, 0.15, 0.86) 1;
+}
+
+button::-moz-focus-inner {
+    border: 0;
+}
+
+button:extend(.center) {
+
+    border: 1px solid transparent;
+    background-color: transparent;
+    padding-top: 5px;
+    padding-bottom: 5px;
+
+    img {
+        align-self: center;
+    }
+
+    &:hover>img {
+        .rotateAnimation(0.8s)
+    }
+
+    &.slower:hover>img {
+        .rotateAnimation(1.2s)
+    }
+
+    &:active {
+        .hoverTransition(100ms, @color-sub-light);
+        .button-icon {
+            fill: ghostwhite;
+        }
+    }
+}

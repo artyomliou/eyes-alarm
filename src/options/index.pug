@@ -1,0 +1,15 @@
+html
+    head
+        meta(charset="utf-8")
+    body
+        form.container.vertical
+            .item
+                label(id="work_time_label")
+                input(id="work_time" type="number" min="1" max="60" default="50")
+            .item
+                label(id="break_time_label")
+                input(id="break_time" type="number" min="1" max="60" default="10")
+            .item
+                label(id="apply_label")
+                button(type="submit") Apply
+        script(src="browser-polyfill.js")

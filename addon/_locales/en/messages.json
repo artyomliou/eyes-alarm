@@ -1,0 +1,41 @@
+{
+  "extensionName": {
+    "message": "Eyes Alarm",
+    "description": "Name of the extension."
+  },
+
+  "extensionDescription": {
+    "message": "Notice you it's time to take a break",
+    "description": "Description of the extension."
+  },
+
+  "authorName": {
+    "message": "Yves Liou",
+    "description": "author's name"
+  },
+
+  "notificationTitle": {
+    "message": "Time to break",
+    "description": "Title of the time-to-break notification."
+  },
+
+  "notificationContent": {
+    "message": "How about a cup of tea?",
+    "description": "Tells the user what can they do"
+  },
+
+  "optionsWorktimeLabel": {
+    "message": "Reading time",
+    "description": "time for reading (using eyes)"
+  },
+
+  "optionsBreaktimeLabel": {
+    "message": "Break time",
+    "description": "time for break"
+  },
+
+  "optionsApplyLabel": {
+    "message": "Apply",
+    "description": "apply new settings"
+  }
+}

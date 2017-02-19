@@ -1,0 +1,83 @@
+.unselectable {
+  user-select: none;
+}
+.square-25px {
+  width: 25px;
+  height: 25px;
+}
+.clock {
+  text-align: center;
+  color: #2EB872;
+  white-space: nowrap;
+}
+.clock .time {
+  font-size: 4em;
+}
+.warning {
+  color: #FA4659;
+}
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  align-content: flex-start;
+}
+.vertical {
+  flex-direction: column;
+}
+.horizontal {
+  flex-direction: row;
+}
+.center,
+button {
+  align-items: center;
+  justify-content: center;
+}
+.item {
+  flex-grow: 1;
+}
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+  }
+}
+button::-moz-focus-inner {
+  border: 0;
+}
+button {
+  border: 1px solid transparent;
+  background-color: transparent;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+button img {
+  align-self: center;
+}
+button:hover > img {
+  animation: rotate 0.8s 0.1s cubic-bezier(0.785, 0.135, 0.15, 0.86) 1;
+}
+button.slower:hover > img {
+  animation: rotate 1.2s 0.1s cubic-bezier(0.785, 0.135, 0.15, 0.86) 1;
+}
+button:active {
+  transition-property: background-color, border-color;
+  transition-duration: 100ms;
+  background-color: #A3DE83;
+  border-color: #A3DE83;
+}
+button:active .button-icon {
+  fill: ghostwhite;
+}
+* {
+  font-family: 'Anonymous Pro', monospace;
+}
+body {
+  padding: 10px 10px 0px 10px;
+}
+body .container:first-child {
+  margin-bottom: 10px;
+}
