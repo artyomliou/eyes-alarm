@@ -2,14 +2,22 @@ html
     head
         meta(charset="utf-8")
     body
-        form.container.vertical
-            .item
-                label(id="work_time_label")
-                input(id="work_time" type="number" min="1" max="60" default="50")
-            .item
-                label(id="break_time_label")
-                input(id="break_time" type="number" min="1" max="60" default="10")
-            .item
-                label(id="apply_label")
-                button(type="submit") Apply
+        table
+            tr
+                td
+                    label(id="alarmWork_label")
+                td
+                    input(id="alarmWork" type="number" min="1" max="60")
+            tr
+                td
+                    label(id="alarmBreak_label")
+                td
+                    input(id="alarmBreak" type="number" min="1" max="60")
+            tr
+                td
+                    label(id="apply_label")
+                td
+                    button(id="apply" type="submit")
+                    p(id="apply_msg" class="success text-0-8 hidden")
+                    p(id="error_msg" class="warning")
         script(src="browser-polyfill.js")

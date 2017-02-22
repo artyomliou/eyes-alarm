@@ -6,26 +6,38 @@ Web extension used to notice it's time to rest your eyes.
 ## cycle
 
 every 50 min passed, rest for 10 mins
-custom available in extension's setting 
+custom available
 
 ## for
 
-now, at least Firefox 48
+Firefox user, at least ver. 51
+
+## translation
+
+- English `Yves Liou`
+- Chinese(Trad.) `Yves Liou`
+- Japanese `Jie Ting Wu`
+
+## devlopment tool
+- Less
+- Pug
+- Webpack
+- Babel & Babili
+- [WebExtension Polyfill](https://github.com/mozilla/webextension-polyfill)
+- [FlatIcon](http://www.flaticon.com/)
+- [Online SVG editor](https://github.com/SVG-Edit/svgedit)
 
 ## ref.
 
 - [衛福部](http://tinyurl.com/jxhgxt6)
+- [MDN](https://developer.mozilla.org/zh-TW/)
+- [MPL 2.0](https://www.openfoundry.org/tw/legal-column-list/8681-the-brief-comparison-of-mpl-11-and-mpl-20)
 - [Remove Firefox's dotted outline on BUTTONS?](http://stackoverflow.com/questions/71074/how-to-remove-firefoxs-dotted-outline-on-buttons-as-well-as-links)
-- [CSS svg fill](https://css-tricks.com/almanac/properties/f/fill/)
-- [CSS Cubic bezier](http://www.oxxostudio.tw/articles/201406/css-cubic-bezier.html)
-- [CSS Animation](https://developer.mozilla.org/zh-TW/docs/Web/CSS/CSS_Animations/Using_CSS_animations)
-- [CSS Transform](https://developer.mozilla.org/zh-TW/docs/Web/CSS/transform)
-- [Detect popup](http://stackoverflow.com/questions/8920953/how-determine-if-the-popup-page-is-open-or-not)
 
-## license
+## license related
 
 - [Google Fonts] (https://fonts.google.com/specimen/Anonymous+Pro)
 - [ColorHunt] (http://colorhunt.co/c/40128)
-- [set-timer-button](http://www.flaticon.com/free-icon/set-timer-button_61017) Icon made by Google from www.flaticon.com 
-- [Refresh](http://www.flaticon.com/free-icon/refresh_118799) Icon made by Lucy G from www.flaticon.com 
-- [Settings](http://www.flaticon.com/free-icon/settings_126472) Icon made by Gregor Cresnar from www.flaticon.com 
+- [icon`set-timer-button`](http://www.flaticon.com/free-icon/set-timer-button_61017) Icon made by Google from www.flaticon.com 
+- [icon`Refresh`](http://www.flaticon.com/free-icon/refresh_118799) Icon made by Lucy G from www.flaticon.com 
+- [icon`Settings`](http://www.flaticon.com/free-icon/settings_126472) Icon made by Gregor Cresnar from www.flaticon.com

@@ -1,86 +1,94 @@
-const {TAG, eventTAG} = require("../extension_tag")
+const {TAG} = require("../tags")
 const {alarmWork, alarmBreak, alarmCounter} = require("../configs/alarms")
-const notificationParams = {
-    type: 'basic',
-    iconUrl: browser.extension.getURL("icons/set-timer-button-red.png"),
-    title: browser.i18n.getMessage("notificationTitle"),
-    message: browser.i18n.getMessage("notificationContent")
-}
-
+const {handleError} = require('../utility')
+var {clockLimit, time} = require("./time")
+var icon = require("./icon")
+var clock = require("./clock")
+var alarms = require("./alarms")
+var idle = require("./idle")
+var setting = require("./setting")
+var notice = require("./notice")
 
 /**
  *  callbacks
  */
-var {clockLimit, time} = require("./time")
-var icon = require("./icon")
-var counter = require("./counter")
-var alarms = require("./alarms")
+function setUI(reversed, id) {
+    clock.reverse(reversed)
+    clock.time.reset()
+    clock.ui.sync()
+    icon.set(id)
+}
 
-/**
- *  event dispatcher
- */
-function alarmEventsDispatch(alarm) {
-    switch (alarm.name) {
-        case alarmWork.id:
-            console.log(TAG + eventTAG + 'start break')
-            counter.set(null, true)
-            counter.restart()
-            alarms.set(alarmBreak.id)
-            icon.set(alarmBreak.id)
-            browser.notifications.create(alarmBreak.id, notificationParams)
-            break;
+function startWork() {
+    alarms.start(alarmWork.id)
+    setUI(false, alarmWork.id)
+}
 
-        case alarmBreak.id:
-            console.log(TAG + eventTAG + 'start work')
-            counter.set(null, false)
-            counter.restart()
-            alarms.set(alarmWork.id)
-            icon.set(alarmWork.id)
-            break;
-
-        case alarmCounter.id:
-            counter.update(alarmCounter.interval)
-            counter.carry()
-            counter.sync()
-            break;
-    }
+function startBreak() {
+    alarms.start(alarmBreak.id)
+    setUI(true, alarmBreak.id)
+    notice.create()
 }
 
 /**
  *  business logic
  */
 // start work-alarm
-alarms.set(alarmWork.id)
-
-// start time counter
-counter.start()
-
-// start response any request
-browser.runtime.onMessage.addListener((request, sender, sendResponse) => {
-    var msg = {
-        time,
-        reversed: counter.reversed
+setting.load({
+    callback: () => {
+        startWork()
+        idle.detect.start()
     }
+})
+
+// start dispatch alarm event
+browser.alarms.onAlarm.addListener(alarm => {
+    switch (alarm.name) {
+        case alarmWork.id:
+            startBreak()
+            break;
+
+        case alarmBreak.id:
+            startWork()
+            break;
+
+        case alarmCounter.id:
+            clock.time.count(alarmCounter.interval)
+            clock.ui.sync()
+            break;
+    }
+})
+
+// start dispatch request
+browser.runtime.onMessage.addListener((request, sender, sendResponse) => {
+    /**
+     * the sendResponse is undefined on Chrome
+     * maybe the polyfill provided by moz includes bug?
+     * so i use sendMessage
+     * instead of directly call sendResponse
+     */
     switch (request.type) {
         case 'requestTime':
-            sendResponse(msg)
             break;
         case 'resetCounter':
-            alarms.reload()
-            counter.restart()
-            sendResponse(msg)
+            alarms.stop()
+            clock.stop()
+            startWork()
             break;
+    }
+    if (browser.extension.getViews({ type: "popup" }).length) {
+        browser.runtime.sendMessage({
+            time,
+            reversed: clock.reversed
+        }).catch(handleError)
     }
     return true;
 })
 
-// start response alarm events
-browser.alarms.onAlarm.addListener(alarmEventsDispatch)
-
 // reset alarms when setting changes
 browser.storage.onChanged.addListener((changes, area) => {
     if (area === 'local') {
-        console.log(TAG + 'storage changed')
+        console.log(TAG + '[storage] changed')
         alarms.reload()
     }
 })

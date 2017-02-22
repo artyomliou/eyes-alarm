@@ -2,12 +2,14 @@ const {alarmWork, alarmBreak} = require("../configs/alarms")
 
 var icon = {
     TAG: '[Icon] ',
-    set: (name) => {
-        if (name === alarmWork.id) {
-            browser.browserAction.setIcon({ path: "icons/set-timer-button.png" })
-        } else if (name === alarmBreak.id) {
-            browser.browserAction.setIcon({ path: "icons/set-timer-button-red.png" })
-        }
+    paths: {
+        [alarmWork.id]: "icons/set-timer-button.png",
+        [alarmBreak.id]: "icons/set-timer-button-red.png"
+    },
+    set: (id) => {
+        browser.browserAction.setIcon({
+            path: icon.paths[id]
+        })
     }
 }
 

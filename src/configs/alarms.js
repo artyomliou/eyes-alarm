@@ -1,29 +1,30 @@
-const {
-    workTimeKey,
-    breakTimeKey,
-    keys,
-    defaultValues} = require("../configs/times")
-
 const alarmWork = {
     id: 'alarmWork',
-    interval: defaultValues[workTimeKey]
+    interval: 50
 }
 const alarmBreak = {
     id: 'alarmBreak',
-    interval: defaultValues[breakTimeKey]
+    interval: 10
 }
 const alarmCounter = {
     id: 'alarmCounter',
     interval: 1
 }
+
+/*
 const alarmClockUpdate = {
     id: 'alarmClockUpdate',
     interval: 1
 }
+*/
+const alarmKeys = [
+    alarmWork.id,
+    alarmBreak.id
+]
 
 module.exports = {
     alarmWork,
     alarmBreak,
     alarmCounter,
-    alarmClockUpdate
+    alarmKeys
 }

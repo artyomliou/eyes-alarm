@@ -1,22 +1,27 @@
-.container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: flex-start;
-  align-content: flex-start;
+td label {
+  float: right;
 }
-.vertical {
-  flex-direction: column;
+td label::after {
+  clear: right;
 }
-.horizontal {
-  flex-direction: row;
+.unselectable {
+  user-select: none;
 }
-.center {
-  align-items: center;
-  justify-content: center;
+.square-25px {
+  width: 25px;
+  height: 25px;
 }
-.item {
-  flex-grow: 1;
+.text-0-8 {
+  font-size: 0.8rem;
+}
+.success {
+  color: #2EB872;
+}
+.warning {
+  color: #FA4659;
+}
+.hidden {
+  display: none;
 }
 * {
   font-family: 'Microsoft JhengHei';

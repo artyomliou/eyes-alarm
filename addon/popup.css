@@ -5,6 +5,18 @@
   width: 25px;
   height: 25px;
 }
+.text-0-8 {
+  font-size: 0.8rem;
+}
+.success {
+  color: #2EB872;
+}
+.warning {
+  color: #FA4659;
+}
+.hidden {
+  display: none;
+}
 .clock {
   text-align: center;
   color: #2EB872;

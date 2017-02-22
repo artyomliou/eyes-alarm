@@ -1,23 +1,22 @@
 require("../styles/popup_entry.less")
-const {TAG, eventTAG} = require("../extension_tag")
+const {TAG, eventTAG} = require("../tags")
 var clock = require("./clock")
 
 /**
  *  window event
  */
 window.onload = () => {
-    clock.locate()
+    browser.runtime.onMessage.addListener(clock.ui.update)
     clock.request()
-    browser.runtime.onMessage.addListener(clock.update)
+
+    document.querySelector('#refresh_button').addEventListener('click', clock.reset)
+
+    document.querySelector('#options_button').addEventListener('click', e => {
+        e.preventDefault()
+        browser.runtime.openOptionsPage()
+    })
 }
 
 window.onunload = () => {
-    browser.runtime.onMessage.removeListener(clock.update)
+    browser.runtime.onMessage.removeListener(clock.ui.update)
 }
-
-document.querySelector('#refresh_button').addEventListener('click', clock.reset)
-
-document.querySelector('#options_button').addEventListener('click', e => {
-    e.preventDefault()
-    browser.runtime.openOptionsPage()
-})

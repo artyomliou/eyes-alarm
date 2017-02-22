@@ -33,9 +33,14 @@
     "message": "Break time",
     "description": "time for break"
   },
-
-  "optionsApplyLabel": {
+  
+  "optionsApplyButton": {
     "message": "Apply",
-    "description": "apply new settings"
+    "description": "button to apply new settings"
+  },
+
+  "optionsApplySuccessMessage": {
+    "message": "Succeeded, the alarm have restarted",
+    "description": "successfully applied new settings, also the alarm had been reset"
   }
 }

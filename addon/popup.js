@@ -63,17 +63,22 @@
 /******/ 	__webpack_require__.p = "/";
 
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 13);
+/******/ 	return __webpack_require__(__webpack_require__.s = 17);
 /******/ })
 /************************************************************************/
-/******/ ([
-/* 0 */
+/******/ ({
+
+/***/ 0:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var TAG = '[' + browser.i18n.getMessage("extensionName") + '] ';
+var _require = __webpack_require__(2),
+    getLocalString = _require.getLocalString;
+
+var extensionName = getLocalString("extensionName");
+var TAG = '[' + extensionName + '] ';
 var eventTAG = '[event] ';
 module.exports = {
     TAG: TAG,
@@ -81,7 +86,92 @@ module.exports = {
 };
 
 /***/ }),
-/* 1 */
+
+/***/ 11:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _require = __webpack_require__(2),
+    handleError = _require.handleError,
+    formatTime = _require.formatTime;
+
+var clock = {
+    dom: null,
+    reversed: false,
+    request: function request() {
+        browser.runtime.sendMessage({ type: 'requestTime' }).then(clock.ui.update, handleError);
+    },
+    reset: function reset() {
+        browser.runtime.sendMessage({ type: 'resetCounter' }).then(clock.ui.update, handleError);
+    },
+
+    ui: {
+        locate: function locate() {
+            if (!clock.dom) {
+                clock.dom = document.querySelector(".item.time");
+            }
+        },
+        update: function update(msg) {
+            clock.ui.locate();
+            clock.dom.innerHTML = formatTime(msg.time);
+
+            if (clock.reversed !== msg.reversed) {
+                clock.dom.classList.toggle('warning', clock.reversed = msg.reversed);
+            }
+            return true;
+        }
+    }
+};
+
+module.exports = clock;
+
+/***/ }),
+
+/***/ 13:
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ 17:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+__webpack_require__(13);
+
+var _require = __webpack_require__(0),
+    TAG = _require.TAG,
+    eventTAG = _require.eventTAG;
+
+var clock = __webpack_require__(11);
+
+/**
+ *  window event
+ */
+window.onload = function () {
+    browser.runtime.onMessage.addListener(clock.ui.update);
+    clock.request();
+
+    document.querySelector('#refresh_button').addEventListener('click', clock.reset);
+
+    document.querySelector('#options_button').addEventListener('click', function (e) {
+        e.preventDefault();
+        browser.runtime.openOptionsPage();
+    });
+};
+
+window.onunload = function () {
+    browser.runtime.onMessage.removeListener(clock.ui.update);
+};
+
+/***/ }),
+
+/***/ 2:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -91,25 +181,13 @@ function handleError(err) {
     console.error(err);
 }
 
-module.exports = {
-    handleError: handleError
-};
+function toTitleCase(word) {
+    return word.charAt(0).toUpperCase() + word.substr(1).toLowerCase();
+}
 
-/***/ }),
-/* 2 */,
-/* 3 */,
-/* 4 */,
-/* 5 */,
-/* 6 */,
-/* 7 */,
-/* 8 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _require = __webpack_require__(1),
-    handleError = _require.handleError;
+function getLocalString(key) {
+    return browser.i18n.getMessage(key);
+}
 
 function formatTime(time) {
     var s = [];
@@ -125,73 +203,13 @@ function formatTime(time) {
     return s.join(':');
 }
 
-var clock = {
-    dom: null,
-    reversed: false,
-    locate: function locate() {
-        clock.dom = document.querySelector(".item.time");
-    },
-    update: function update(msg) {
-        clock.dom.innerHTML = formatTime(msg.time);
-
-        if (clock.reversed !== msg.reversed) {
-            clock.dom.classList.toggle('warning', clock.reversed = msg.reversed);
-        }
-        return true;
-    },
-    request: function request() {
-        browser.runtime.sendMessage({ type: 'requestTime' }).then(clock.update, handleError);
-    },
-    reset: function reset() {
-        browser.runtime.sendMessage({ type: 'resetCounter' }).then(clock.update, handleError);
-    }
+module.exports = {
+    handleError: handleError,
+    toTitleCase: toTitleCase,
+    getLocalString: getLocalString,
+    formatTime: formatTime
 };
-
-module.exports = clock;
-
-/***/ }),
-/* 9 */,
-/* 10 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 11 */,
-/* 12 */,
-/* 13 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-__webpack_require__(10);
-
-var _require = __webpack_require__(0),
-    TAG = _require.TAG,
-    eventTAG = _require.eventTAG;
-
-var clock = __webpack_require__(8);
-
-/**
- *  window event
- */
-window.onload = function () {
-    clock.locate();
-    clock.request();
-    browser.runtime.onMessage.addListener(clock.update);
-};
-
-window.onunload = function () {
-    browser.runtime.onMessage.removeListener(clock.update);
-};
-
-document.querySelector('#refresh_button').addEventListener('click', clock.reset);
-
-document.querySelector('#options_button').addEventListener('click', function (e) {
-    e.preventDefault();
-    browser.runtime.openOptionsPage();
-});
 
 /***/ })
-/******/ ]);
+
+/******/ });

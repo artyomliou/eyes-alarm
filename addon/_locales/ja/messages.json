@@ -1,11 +1,11 @@
 {
   "extensionName": {
-    "message": "護眼神器",
+    "message": "目の御守り",
     "description": "Name of the extension."
   },
 
   "extensionDescription": {
-    "message": "適時提醒你該讓眼睛休息了",
+    "message": "適時にあなたに「目を休ませてあげたほうがいい」と伝える", 
     "description": "Description of the extension."
   },
 
@@ -15,32 +15,32 @@
   },
 
   "notificationTitle": {
-    "message": "休息一下吧",
+    "message": "ちょっと休憩しましょう",
     "description": "Title of the time-to-break notification."
   },
 
   "notificationContent": {
-    "message": "站起來走一走、喝點東西吧",
+    "message": "お茶を飲みに行って、休憩しましょう",
     "description": "Tells the user what can they do"
   },
 
   "optionsWorktimeLabel": {
-    "message": "閱讀時間",
+    "message": "読む時間",
     "description": "time for reading (using eyes)"
   },
 
   "optionsBreaktimeLabel": {
-    "message": "休息時間",
+    "message": "休む時間",
     "description": "time for break"
   },
 
   "optionsApplyButton": {
-    "message": "套用",
+    "message": "適用する" ,
     "description": "button to apply new settings"
   },
 
   "optionsApplySuccessMessage": {
-    "message": "已套用新的設定並重新開始計算時間",
+    "message": "設定が適用した、そして時間の計算をやり直しました",
     "description": "successfully applied new settings, also had reset the alarm"
   }
 }
