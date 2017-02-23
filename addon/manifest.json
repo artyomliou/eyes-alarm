@@ -1,5 +1,4 @@
 {
-  // Required
   "manifest_version": 2,
   "version": "0.1.4",
   "name": "__MSG_extensionName__",
@@ -8,7 +7,6 @@
   "homepage_url": "https://github.com/bros0215/eyes-alarm",
   
 
-  // settings
   "default_locale": "en",
   "permissions": [
     "alarms",
@@ -16,11 +14,6 @@
     "storage",
     "idle"
   ],
-  "applications": {
-    "gecko": {
-      "strict_min_version": "51.0"
-    }
-  },
 
   // applications
   "icons": {
