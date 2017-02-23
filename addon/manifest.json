@@ -1,18 +1,15 @@
 {
   // Required
   "manifest_version": 2,
-  "version": "0.1.3",
+  "version": "0.1.4",
   "name": "__MSG_extensionName__",
   "description": "__MSG_extensionDescription__",
-  
-  "homepage_url": "https://github.com/bros0215/eyes-alarm",
   "author": "__MSG_authorName__",
+  "homepage_url": "https://github.com/bros0215/eyes-alarm",
+  
 
   // settings
   "default_locale": "en",
-  "icons": {
-    "96": "icons/set-timer-button.png"
-  },
   "permissions": [
     "alarms",
     "notifications",
@@ -26,9 +23,12 @@
   },
 
   // applications
+  "icons": {
+    "96": "icons/set-timer-button.png"
+  },
   "browser_action": {
-    "default_icon": "icons/set-timer-button.png",
     "default_title": "__MSG_extensionName__",
+    "default_icon": "icons/set-timer-button.png",
     "default_popup": "popup.html"
   },
   "options_ui": {

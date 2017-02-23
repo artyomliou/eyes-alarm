@@ -7,9 +7,14 @@ var icon = {
         [alarmBreak.id]: "icons/set-timer-button-red.png"
     },
     set: (id) => {
-        browser.browserAction.setIcon({
-            path: icon.paths[id]
-        })
+        try {
+            browser.browserAction.setIcon({
+                path: icon.paths[id]
+            })
+        } catch (e) {
+            console.error(e)
+        }
+
     }
 }
 

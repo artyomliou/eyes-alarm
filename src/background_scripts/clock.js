@@ -1,6 +1,6 @@
 var {clockLimit, time} = require("./time")
 const {alarmCounter} = require("../configs/alarms")
-const {handleError} = require("../utility")
+const {handleResponse, handleError} = require("../utility")
 const {TAG} = require("../tags")
 
 var clock = {
@@ -34,11 +34,7 @@ var clock = {
             }
         },
         count(number) {
-            if (clock.reversed) {
-                time.mins -= number;
-            } else {
-                time.mins += number;
-            }
+            time.mins += number;
         }
     },
     ui: {

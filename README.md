@@ -32,6 +32,7 @@ Firefox user, at least ver. 51
 - [衛福部](http://tinyurl.com/jxhgxt6)
 - [MDN](https://developer.mozilla.org/zh-TW/)
 - [MPL 2.0](https://www.openfoundry.org/tw/legal-column-list/8681-the-brief-comparison-of-mpl-11-and-mpl-20)
+- [Unicode Table](https://unicode-table.com/en/)
 - [Remove Firefox's dotted outline on BUTTONS?](http://stackoverflow.com/questions/71074/how-to-remove-firefoxs-dotted-outline-on-buttons-as-well-as-links)
 
 ## license related

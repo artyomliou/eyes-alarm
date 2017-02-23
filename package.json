@@ -1,6 +1,6 @@
 {
   "name": "eyes-alarm",
-  "version": "0.1.0",
+  "version": "0.1.4",
   "description": "Notify it's time to rest your eyes.",
   "main": "addon/content_script.js",
   "repository": "https://github.com/bros0215/eyes-alarm.git",
@@ -23,6 +23,7 @@
     "webpack": "^2.2.1"
   },
   "scripts": {
-    "build": "webpack --progress --color"
+    "build": "webpack --progress --color --config ./webpack.production.config.js",
+    "watch": "webpack --watch --color --config ./webpack.config.js"
   }
 }

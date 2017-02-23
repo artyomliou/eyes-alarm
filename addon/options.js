@@ -73,7 +73,52 @@
 "use strict";
 
 
-var _require = __webpack_require__(2),
+function handleError(err) {
+    console.error(err);
+}
+
+function handleResponse(r) {
+    console.info(r);
+}
+
+function toTitleCase(word) {
+    return word.charAt(0).toUpperCase() + word.substr(1).toLowerCase();
+}
+
+function getLocalString(key) {
+    return browser.i18n.getMessage(key);
+}
+
+function formatTime(time) {
+    var s = [];
+    for (var key in time) {
+        if (time.hasOwnProperty(key)) {
+            if (key === 'days' && time[key] === 0) {
+                continue;
+            }
+            var prefix = time[key] >= 10 ? '' : '0';
+            s.push(prefix + time[key]);
+        }
+    }
+    return s.join(':');
+}
+
+module.exports = {
+    handleResponse: handleResponse,
+    handleError: handleError,
+    toTitleCase: toTitleCase,
+    getLocalString: getLocalString,
+    formatTime: formatTime
+};
+
+/***/ }),
+/* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _require = __webpack_require__(0),
     getLocalString = _require.getLocalString;
 
 var extensionName = getLocalString("extensionName");
@@ -85,7 +130,7 @@ module.exports = {
 };
 
 /***/ }),
-/* 1 */
+/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -120,118 +165,27 @@ module.exports = {
 };
 
 /***/ }),
-/* 2 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-function handleError(err) {
-    console.error(err);
-}
-
-function toTitleCase(word) {
-    return word.charAt(0).toUpperCase() + word.substr(1).toLowerCase();
-}
-
-function getLocalString(key) {
-    return browser.i18n.getMessage(key);
-}
-
-function formatTime(time) {
-    var s = [];
-    for (var key in time) {
-        if (time.hasOwnProperty(key)) {
-            if (key === 'days' && time[key] === 0) {
-                continue;
-            }
-            var prefix = time[key] >= 10 ? '' : '0';
-            s.push(prefix + time[key]);
-        }
-    }
-    return s.join(':');
-}
-
-module.exports = {
-    handleError: handleError,
-    toTitleCase: toTitleCase,
-    getLocalString: getLocalString,
-    formatTime: formatTime
-};
-
-/***/ }),
 /* 3 */,
 /* 4 */,
 /* 5 */,
 /* 6 */,
 /* 7 */,
 /* 8 */,
-/* 9 */,
-/* 10 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _require = __webpack_require__(0),
+var _require = __webpack_require__(1),
     TAG = _require.TAG;
 
-var _require2 = __webpack_require__(1),
-    alarmKeys = _require2.alarmKeys,
-    getLocalString = _require2.getLocalString;
-
-var page = __webpack_require__(14);
-
-var options = {
-    TAG: '[options] ',
-    dom: {},
-
-    getDOM: function getDOM(key) {
-        if (options.dom.hasOwnProperty(key)) {
-            return options.dom[key];
-        } else {
-            return options.dom[key] = document.querySelector(key);
-        }
-    },
-    save: function save(e) {
-        e.preventDefault();
-        console.log(TAG + options.TAG + 'save...');
-        try {
-            browser.storage.local.set(page.columns.get());
-            options.getDOM('#apply_msg').classList.toggle('hidden', false);
-        } catch (e) {
-            options.getDOM('#apply_msg').classList.toggle('hidden', true);
-            options.getDOM('#error_msg').innerText += e.message;
-        }
-    }
-};
-
-module.exports = options;
-
-/***/ }),
-/* 11 */,
-/* 12 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 13 */,
-/* 14 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _require = __webpack_require__(0),
-    TAG = _require.TAG;
-
-var _require2 = __webpack_require__(2),
+var _require2 = __webpack_require__(0),
     toTitleCase = _require2.toTitleCase,
     getLocalString = _require2.getLocalString,
     handleError = _require2.handleError;
 
-var _require3 = __webpack_require__(1),
+var _require3 = __webpack_require__(2),
     alarmWork = _require3.alarmWork,
     alarmBreak = _require3.alarmBreak,
     alarmKeys = _require3.alarmKeys;
@@ -298,6 +252,57 @@ var page = {
 module.exports = page;
 
 /***/ }),
+/* 10 */,
+/* 11 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _require = __webpack_require__(1),
+    TAG = _require.TAG;
+
+var _require2 = __webpack_require__(2),
+    alarmKeys = _require2.alarmKeys,
+    getLocalString = _require2.getLocalString;
+
+var page = __webpack_require__(9);
+
+var options = {
+    TAG: '[options] ',
+    dom: {},
+
+    getDOM: function getDOM(key) {
+        if (options.dom.hasOwnProperty(key)) {
+            return options.dom[key];
+        } else {
+            return options.dom[key] = document.querySelector(key);
+        }
+    },
+    save: function save(e) {
+        e.preventDefault();
+        console.log(TAG + options.TAG + 'save...');
+        try {
+            browser.storage.local.set(page.columns.get());
+            options.getDOM('#apply_msg').classList.toggle('hidden', false);
+        } catch (e) {
+            options.getDOM('#apply_msg').classList.toggle('hidden', true);
+            options.getDOM('#error_msg').innerText += e.message;
+        }
+    }
+};
+
+module.exports = options;
+
+/***/ }),
+/* 12 */,
+/* 13 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 14 */,
 /* 15 */,
 /* 16 */
 /***/ (function(module, exports, __webpack_require__) {
@@ -305,9 +310,9 @@ module.exports = page;
 "use strict";
 
 
-__webpack_require__(12);
-var options = __webpack_require__(10);
-var page = __webpack_require__(14);
+__webpack_require__(13);
+var options = __webpack_require__(11);
+var page = __webpack_require__(9);
 
 document.addEventListener("DOMContentLoaded", page.render);
 document.querySelector("#apply").addEventListener("click", options.save);

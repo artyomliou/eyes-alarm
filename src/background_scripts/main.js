@@ -1,6 +1,6 @@
 const {TAG} = require("../tags")
 const {alarmWork, alarmBreak, alarmCounter} = require("../configs/alarms")
-const {handleError} = require('../utility')
+const {handleResponse, handleError} = require('../utility')
 var {clockLimit, time} = require("./time")
 var icon = require("./icon")
 var clock = require("./clock")
@@ -26,8 +26,8 @@ function startWork() {
 
 function startBreak() {
     alarms.start(alarmBreak.id)
-    setUI(true, alarmBreak.id)
     notice.create()
+    setUI(true, alarmBreak.id)
 }
 
 /**
@@ -37,6 +37,7 @@ function startBreak() {
 setting.load({
     callback: () => {
         startWork()
+        clock.start()
         idle.detect.start()
     }
 })

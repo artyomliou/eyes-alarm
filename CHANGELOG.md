@@ -1,3 +1,8 @@
+# 0.1.4
+- minor bug fixed
+- minified code for production
+- remove unnecessary images
+
 # 0.1.3
 - keep refining code
 - when click reset button in popup, the cycle will be restart instead just reset time

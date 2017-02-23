@@ -33,13 +33,17 @@ module.exports = {
       { test: /\.js$/,
         loader: 'babel-loader',
         query: {
-          presets: ['env']
+          presets: ['env'],
+          comments: false
         },
         exclude: /(node_modules|bower_components)/ }
     ]
   },
 
+  //devtool: 'cheap-source-map',
+
   plugins: [
+    new webpack.optimize.UglifyJsPlugin(),
     new ExtractTextPlugin("[name].css"),
     new HtmlWebpackPlugin({
       filename: 'popup.html',

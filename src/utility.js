@@ -2,6 +2,10 @@ function handleError(err) {
     console.error(err);
 }
 
+function handleResponse(r) {
+    console.info(r)
+}
+
 function toTitleCase(word) {
     return word.charAt(0).toUpperCase() + word.substr(1).toLowerCase()
 }
@@ -25,6 +29,7 @@ function formatTime(time) {
 }
 
 module.exports = {
+    handleResponse,
     handleError,
     toTitleCase,
     getLocalString,

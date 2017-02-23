@@ -73,7 +73,52 @@
 "use strict";
 
 
-var _require = __webpack_require__(2),
+function handleError(err) {
+    console.error(err);
+}
+
+function handleResponse(r) {
+    console.info(r);
+}
+
+function toTitleCase(word) {
+    return word.charAt(0).toUpperCase() + word.substr(1).toLowerCase();
+}
+
+function getLocalString(key) {
+    return browser.i18n.getMessage(key);
+}
+
+function formatTime(time) {
+    var s = [];
+    for (var key in time) {
+        if (time.hasOwnProperty(key)) {
+            if (key === 'days' && time[key] === 0) {
+                continue;
+            }
+            var prefix = time[key] >= 10 ? '' : '0';
+            s.push(prefix + time[key]);
+        }
+    }
+    return s.join(':');
+}
+
+module.exports = {
+    handleResponse: handleResponse,
+    handleError: handleError,
+    toTitleCase: toTitleCase,
+    getLocalString: getLocalString,
+    formatTime: formatTime
+};
+
+/***/ }),
+/* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _require = __webpack_require__(0),
     getLocalString = _require.getLocalString;
 
 var extensionName = getLocalString("extensionName");
@@ -85,7 +130,7 @@ module.exports = {
 };
 
 /***/ }),
-/* 1 */
+/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -120,61 +165,21 @@ module.exports = {
 };
 
 /***/ }),
-/* 2 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-function handleError(err) {
-    console.error(err);
-}
-
-function toTitleCase(word) {
-    return word.charAt(0).toUpperCase() + word.substr(1).toLowerCase();
-}
-
-function getLocalString(key) {
-    return browser.i18n.getMessage(key);
-}
-
-function formatTime(time) {
-    var s = [];
-    for (var key in time) {
-        if (time.hasOwnProperty(key)) {
-            if (key === 'days' && time[key] === 0) {
-                continue;
-            }
-            var prefix = time[key] >= 10 ? '' : '0';
-            s.push(prefix + time[key]);
-        }
-    }
-    return s.join(':');
-}
-
-module.exports = {
-    handleError: handleError,
-    toTitleCase: toTitleCase,
-    getLocalString: getLocalString,
-    formatTime: formatTime
-};
-
-/***/ }),
 /* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _require = __webpack_require__(1),
+var _require = __webpack_require__(2),
     alarmWork = _require.alarmWork,
     alarmBreak = _require.alarmBreak,
     alarmKeys = _require.alarmKeys;
 
-var _require2 = __webpack_require__(2),
+var _require2 = __webpack_require__(0),
     handleError = _require2.handleError;
 
-var _require3 = __webpack_require__(0),
+var _require3 = __webpack_require__(1),
     TAG = _require3.TAG;
 
 var setting = __webpack_require__(7);
@@ -227,13 +232,14 @@ var _require = __webpack_require__(8),
     clockLimit = _require.clockLimit,
     time = _require.time;
 
-var _require2 = __webpack_require__(1),
+var _require2 = __webpack_require__(2),
     alarmCounter = _require2.alarmCounter;
 
-var _require3 = __webpack_require__(2),
+var _require3 = __webpack_require__(0),
+    handleResponse = _require3.handleResponse,
     handleError = _require3.handleError;
 
-var _require4 = __webpack_require__(0),
+var _require4 = __webpack_require__(1),
     TAG = _require4.TAG;
 
 var clock = {
@@ -270,11 +276,7 @@ var clock = {
             }
         },
         count: function count(number) {
-            if (clock.reversed) {
-                time.mins -= number;
-            } else {
-                time.mins += number;
-            }
+            time.mins += number;
         }
     },
     ui: {
@@ -302,7 +304,7 @@ var _paths;
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-var _require = __webpack_require__(1),
+var _require = __webpack_require__(2),
     alarmWork = _require.alarmWork,
     alarmBreak = _require.alarmBreak;
 
@@ -310,9 +312,13 @@ var icon = {
     TAG: '[Icon] ',
     paths: (_paths = {}, _defineProperty(_paths, alarmWork.id, "icons/set-timer-button.png"), _defineProperty(_paths, alarmBreak.id, "icons/set-timer-button-red.png"), _paths),
     set: function set(id) {
-        browser.browserAction.setIcon({
-            path: icon.paths[id]
-        });
+        try {
+            browser.browserAction.setIcon({
+                path: icon.paths[id]
+            });
+        } catch (e) {
+            console.error(e);
+        }
     }
 };
 
@@ -325,10 +331,10 @@ module.exports = icon;
 "use strict";
 
 
-var _require = __webpack_require__(1),
+var _require = __webpack_require__(2),
     alarmBreak = _require.alarmBreak;
 
-var _require2 = __webpack_require__(0),
+var _require2 = __webpack_require__(1),
     TAG = _require2.TAG;
 
 var notificationParams = {
@@ -362,12 +368,12 @@ var _store;
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-var _require = __webpack_require__(1),
+var _require = __webpack_require__(2),
     alarmWork = _require.alarmWork,
     alarmBreak = _require.alarmBreak,
     alarmKeys = _require.alarmKeys;
 
-var _require2 = __webpack_require__(2),
+var _require2 = __webpack_require__(0),
     handleError = _require2.handleError;
 
 var setting = {
@@ -415,16 +421,17 @@ var time = {
 module.exports = { clockLimit: clockLimit, time: time };
 
 /***/ }),
-/* 9 */
+/* 9 */,
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _require = __webpack_require__(0),
+var _require = __webpack_require__(1),
     TAG = _require.TAG;
 
-var _require2 = __webpack_require__(1),
+var _require2 = __webpack_require__(2),
     alarmWork = _require2.alarmWork;
 
 var alarms = __webpack_require__(3);
@@ -477,7 +484,6 @@ var idle = {
 module.exports = idle;
 
 /***/ }),
-/* 10 */,
 /* 11 */,
 /* 12 */,
 /* 13 */,
@@ -488,15 +494,16 @@ module.exports = idle;
 "use strict";
 
 
-var _require = __webpack_require__(0),
+var _require = __webpack_require__(1),
     TAG = _require.TAG;
 
-var _require2 = __webpack_require__(1),
+var _require2 = __webpack_require__(2),
     alarmWork = _require2.alarmWork,
     alarmBreak = _require2.alarmBreak,
     alarmCounter = _require2.alarmCounter;
 
-var _require3 = __webpack_require__(2),
+var _require3 = __webpack_require__(0),
+    handleResponse = _require3.handleResponse,
     handleError = _require3.handleError;
 
 var _require4 = __webpack_require__(8),
@@ -506,7 +513,7 @@ var _require4 = __webpack_require__(8),
 var icon = __webpack_require__(5);
 var clock = __webpack_require__(4);
 var alarms = __webpack_require__(3);
-var idle = __webpack_require__(9);
+var idle = __webpack_require__(10);
 var setting = __webpack_require__(7);
 var notice = __webpack_require__(6);
 
@@ -527,8 +534,8 @@ function startWork() {
 
 function startBreak() {
     alarms.start(alarmBreak.id);
-    setUI(true, alarmBreak.id);
     notice.create();
+    setUI(true, alarmBreak.id);
 }
 
 /**
@@ -538,6 +545,7 @@ function startBreak() {
 setting.load({
     callback: function callback() {
         startWork();
+        clock.start();
         idle.detect.start();
     }
 });

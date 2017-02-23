@@ -3,20 +3,20 @@ const {handleError, formatTime} = require("../utility")
 var clock = {
     dom: null,
     reversed: false,
-    request: () => {
+    request() {
         browser.runtime.sendMessage({ type: 'requestTime' }).then(clock.ui.update, handleError)
     },
-    reset: () => {
+    reset() {
         browser.runtime.sendMessage({ type: 'resetCounter' }).then(clock.ui.update, handleError)
     },
 
     ui: {
-        locate: () => {
+        locate() {
             if (!clock.dom) {
                 clock.dom = document.querySelector(".item.time")
             }
         },
-        update: (msg) => {
+        update(msg) {
             clock.ui.locate()
             clock.dom.innerHTML = formatTime(msg.time)
 

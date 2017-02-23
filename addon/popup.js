@@ -74,111 +74,12 @@
 "use strict";
 
 
-var _require = __webpack_require__(2),
-    getLocalString = _require.getLocalString;
-
-var extensionName = getLocalString("extensionName");
-var TAG = '[' + extensionName + '] ';
-var eventTAG = '[event] ';
-module.exports = {
-    TAG: TAG,
-    eventTAG: eventTAG
-};
-
-/***/ }),
-
-/***/ 11:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _require = __webpack_require__(2),
-    handleError = _require.handleError,
-    formatTime = _require.formatTime;
-
-var clock = {
-    dom: null,
-    reversed: false,
-    request: function request() {
-        browser.runtime.sendMessage({ type: 'requestTime' }).then(clock.ui.update, handleError);
-    },
-    reset: function reset() {
-        browser.runtime.sendMessage({ type: 'resetCounter' }).then(clock.ui.update, handleError);
-    },
-
-    ui: {
-        locate: function locate() {
-            if (!clock.dom) {
-                clock.dom = document.querySelector(".item.time");
-            }
-        },
-        update: function update(msg) {
-            clock.ui.locate();
-            clock.dom.innerHTML = formatTime(msg.time);
-
-            if (clock.reversed !== msg.reversed) {
-                clock.dom.classList.toggle('warning', clock.reversed = msg.reversed);
-            }
-            return true;
-        }
-    }
-};
-
-module.exports = clock;
-
-/***/ }),
-
-/***/ 13:
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ 17:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-__webpack_require__(13);
-
-var _require = __webpack_require__(0),
-    TAG = _require.TAG,
-    eventTAG = _require.eventTAG;
-
-var clock = __webpack_require__(11);
-
-/**
- *  window event
- */
-window.onload = function () {
-    browser.runtime.onMessage.addListener(clock.ui.update);
-    clock.request();
-
-    document.querySelector('#refresh_button').addEventListener('click', clock.reset);
-
-    document.querySelector('#options_button').addEventListener('click', function (e) {
-        e.preventDefault();
-        browser.runtime.openOptionsPage();
-    });
-};
-
-window.onunload = function () {
-    browser.runtime.onMessage.removeListener(clock.ui.update);
-};
-
-/***/ }),
-
-/***/ 2:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
 function handleError(err) {
     console.error(err);
+}
+
+function handleResponse(r) {
+    console.info(r);
 }
 
 function toTitleCase(word) {
@@ -204,10 +105,115 @@ function formatTime(time) {
 }
 
 module.exports = {
+    handleResponse: handleResponse,
     handleError: handleError,
     toTitleCase: toTitleCase,
     getLocalString: getLocalString,
     formatTime: formatTime
+};
+
+/***/ }),
+
+/***/ 1:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _require = __webpack_require__(0),
+    getLocalString = _require.getLocalString;
+
+var extensionName = getLocalString("extensionName");
+var TAG = '[' + extensionName + '] ';
+var eventTAG = '[event] ';
+module.exports = {
+    TAG: TAG,
+    eventTAG: eventTAG
+};
+
+/***/ }),
+
+/***/ 12:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _require = __webpack_require__(0),
+    handleError = _require.handleError,
+    formatTime = _require.formatTime;
+
+var clock = {
+    dom: null,
+    reversed: false,
+    request: function request() {
+        browser.runtime.sendMessage({ type: 'requestTime' }).then(clock.ui.update, handleError);
+    },
+    reset: function reset() {
+        browser.runtime.sendMessage({ type: 'resetCounter' }).then(clock.ui.update, handleError);
+    },
+
+
+    ui: {
+        locate: function locate() {
+            if (!clock.dom) {
+                clock.dom = document.querySelector(".item.time");
+            }
+        },
+        update: function update(msg) {
+            clock.ui.locate();
+            clock.dom.innerHTML = formatTime(msg.time);
+
+            if (clock.reversed !== msg.reversed) {
+                clock.dom.classList.toggle('warning', clock.reversed = msg.reversed);
+            }
+            return true;
+        }
+    }
+};
+
+module.exports = clock;
+
+/***/ }),
+
+/***/ 14:
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ 17:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+__webpack_require__(14);
+
+var _require = __webpack_require__(1),
+    TAG = _require.TAG,
+    eventTAG = _require.eventTAG;
+
+var clock = __webpack_require__(12);
+
+/**
+ *  window event
+ */
+window.onload = function () {
+    browser.runtime.onMessage.addListener(clock.ui.update);
+    clock.request();
+
+    document.querySelector('#refresh_button').addEventListener('click', clock.reset);
+
+    document.querySelector('#options_button').addEventListener('click', function (e) {
+        e.preventDefault();
+        browser.runtime.openOptionsPage();
+    });
+};
+
+window.onunload = function () {
+    browser.runtime.onMessage.removeListener(clock.ui.update);
 };
 
 /***/ })
