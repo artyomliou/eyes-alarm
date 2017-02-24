@@ -14,8 +14,12 @@
     "storage",
     "idle"
   ],
+  "applications": {
+    "gecko": {
+      "strict_min_version": "51.0"
+    }
+  },
 
-  // applications
   "icons": {
     "96": "icons/set-timer-button.png"
   },
