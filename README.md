@@ -10,18 +10,16 @@ custom available
 
 ## for
 
-### Chrome (`28↑:ok_hand:`) [ref.](https://developer.chrome.com/extensions/api_index)
-### Firefox (`51↑:ok_hand:`) [ref.](https://developer.mozilla.org/en-US/Add-ons/WebExtensions/Browser_support_for_JavaScript_APIs)
-### Firefox for Android (`not supported` :rolling_eyes: )
-> lacks
-> - BrowserAction API
-### Edge (`not supported`:rolling_eyes:)
-> lacks
-> - Alarms API
-> - Idle API
-> - Notification API
-> - extension.getViews
-### Opera (` :thinking: `)
+- Chrome (`28↑:ok_hand:` :ok_hand:) [ref.](https://developer.chrome.com/extensions/api_index)
+- Firefox (`51↑:ok_hand:`) [ref.](https://developer.mozilla.org/en-US/Add-ons/WebExtensions/Browser_support_for_JavaScript_APIs)
+- Firefox for Android (`not supported` :cold_sweat: )
+- * BrowserAction API
+- Edge (`not supported`:cold_sweat:)
+- * Alarms API
+- * Idle API
+- * Notification API
+- * extension.getViews
+- Opera (`:japanese_goblin:`)
 
 ## translation
 
