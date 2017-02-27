@@ -25,8 +25,9 @@ custom available
 ## translation
 
 - English `Yves Liou`
-- Chinese(Trad.) `Yves Liou`
+- Chinese `Yves Liou`
 - Japanese `Jie Ting Wu`
+- Korean `Winnie Wu`
 
 ## devlopment tool
 - Less
@@ -52,6 +53,6 @@ custom available
 ## license related
 
 - [Google Fonts] (https://fonts.google.com/specimen/Anonymous+Pro)
-- icon[`set-timer-button`](http://www.flaticon.com/free-icon/set-timer-button_61017) Icon made by Google from www.flaticon.com 
+- icon[`set-timer-button`, `notification`](http://www.flaticon.com/free-icon/set-timer-button_61017) Icon made by Google from www.flaticon.com 
 - icon[`Refresh`](http://www.flaticon.com/free-icon/refresh_118799) Icon made by Lucy G from www.flaticon.com 
 - icon[`Settings`](http://www.flaticon.com/free-icon/settings_126472) Icon made by Gregor Cresnar from www.flaticon.com

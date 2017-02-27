@@ -1,3 +1,7 @@
+# 0.1.5
+- add korean, simplified chinese localization
+- fixed bug that clock wont update after applying or resetting
+
 # 0.1.4
 - minor bug fixed
 - minified code for production

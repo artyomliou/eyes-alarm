@@ -1,0 +1,46 @@
+{
+  "extensionName": {
+    "message": "护眼神器",
+    "description": "Name of the extension."
+  },
+
+  "extensionDescription": {
+    "message": "适时提醒你该让眼睛休息了",
+    "description": "Description of the extension."
+  },
+
+  "authorName": {
+    "message": "Yves Liou",
+    "description": "author's name"
+  },
+
+  "notificationTitle": {
+    "message": "休息一下",
+    "description": "Title of the time-to-break notification."
+  },
+
+  "notificationContent": {
+    "message": "站起来走一走、喝点东西吧",
+    "description": "Tells the user what can they do"
+  },
+
+  "optionsWorktimeLabel": {
+    "message": "阅读时间",
+    "description": "time for reading (using eyes)"
+  },
+
+  "optionsBreaktimeLabel": {
+    "message": "休息时间",
+    "description": "time for break"
+  },
+
+  "optionsApplyButton": {
+    "message": "套用",
+    "description": "button to apply new settings"
+  },
+
+  "optionsApplySuccessMessage": {
+    "message": "已套用新的设定并重新开始计算时间",
+    "description": "successfully applied new settings, also had reset the alarm"
+  }
+}

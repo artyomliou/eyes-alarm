@@ -1,7 +1,9 @@
 const {alarmWork, alarmBreak, alarmKeys} = require("../configs/alarms")
-const {handleError} = require('../utility')
+const {handleError, log} = require('../utility')
+const {TAG} = require("../tags")
 
 var setting = {
+    TAG: '[setting] ',
     store: {
         [alarmWork.id]: alarmWork.interval,
         [alarmBreak.id]: alarmBreak.interval,
@@ -16,6 +18,7 @@ var setting = {
             for (let key in result) {
                 setting.store[key] = result[key]
             }
+            log(TAG + setting.TAG + 'setting loaded')
             if (callback) {
                 callback(params)
             }

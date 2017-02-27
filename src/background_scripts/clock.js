@@ -1,6 +1,6 @@
 var {clockLimit, time} = require("./time")
 const {alarmCounter} = require("../configs/alarms")
-const {handleResponse, handleError} = require("../utility")
+const {handleResponse, handleError, log} = require("../utility")
 const {TAG} = require("../tags")
 
 var clock = {
@@ -12,14 +12,19 @@ var clock = {
     skipLog: false,
 
     start() {
+        log(TAG + clock.TAG + 'start...')
         browser.alarms.create(clock.id, {
             periodInMinutes: clock.interval
         })
     },
     stop() {
-        console.log(TAG + clock.TAG + 'stop...')
+        log(TAG + clock.TAG + 'stop...')
         browser.alarms.clear(clock.id)
         clock.time.reset()
+    },
+    restart() {
+        clock.stop()
+        clock.start()
     },
     reverse(isReversed = false) {
         clock.reversed = isReversed

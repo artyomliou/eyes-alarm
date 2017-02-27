@@ -1,3 +1,5 @@
+const env = require("./configs/env")
+
 function handleError(err) {
     console.error(err);
 }
@@ -12,6 +14,12 @@ function toTitleCase(word) {
 
 function getLocalString(key) {
     return browser.i18n.getMessage(key)
+}
+
+function log(s) {
+    if (env.debugMode) {
+        console.log(s)
+    }
 }
 
 function formatTime(time) {
@@ -33,5 +41,6 @@ module.exports = {
     handleError,
     toTitleCase,
     getLocalString,
+    log,
     formatTime
 }

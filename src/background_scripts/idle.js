@@ -1,5 +1,6 @@
 const {TAG} = require("../tags")
 const {alarmWork} = require("../configs/alarms")
+const {log} = require("../utility")
 var alarms = require("./alarms")
 var clock = require("./clock")
 var notice = require("./notice")
@@ -16,18 +17,18 @@ var idle = {
         switch (state) {
             case 'active':
                 if (isLocked) {
-                    console.log(TAG + idle.TAG + 're-activate...')
+                    log(TAG + idle.TAG + 're-activate...')
                     alarms.start(alarmWork.id)
                     clock.start()
                     isLocked = false
                 }
                 break;
             case 'locked':
-                console.log(TAG + idle.TAG + 'system locked, stop and reset...')
+                log(TAG + idle.TAG + 'stop counters...')
                 clock.stop()
-                alarms.stop()
+                alarms.stopAll()
 
-                // reset ui and data
+                log(TAG + idle.TAG + 'reset ui...')
                 icon.set(alarmWork.id)
                 notice.clear()
                 clock.reverse(false)

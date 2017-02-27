@@ -1,6 +1,6 @@
-const {TAG} = require("../tags")
+const {TAG, eventTAG} = require("../tags")
 const {alarmWork, alarmBreak, alarmCounter} = require("../configs/alarms")
-const {handleResponse, handleError} = require('../utility')
+const {handleResponse, handleError, log} = require('../utility')
 var {clockLimit, time} = require("./time")
 var icon = require("./icon")
 var clock = require("./clock")
@@ -14,18 +14,21 @@ var notice = require("./notice")
  */
 function setUI(reversed, id) {
     clock.reverse(reversed)
-    clock.time.reset()
     clock.ui.sync()
     icon.set(id)
 }
 
 function startWork() {
+    log(TAG + 'start work...')
     alarms.start(alarmWork.id)
+    clock.restart()
     setUI(false, alarmWork.id)
 }
 
 function startBreak() {
+    log(TAG + 'start break...')
     alarms.start(alarmBreak.id)
+    clock.restart()
     notice.create()
     setUI(true, alarmBreak.id)
 }
@@ -36,14 +39,14 @@ function startBreak() {
 // start work-alarm
 setting.load({
     callback: () => {
-        startWork()
-        clock.start()
         idle.detect.start()
+        startWork()
     }
 })
 
 // start dispatch alarm event
 browser.alarms.onAlarm.addListener(alarm => {
+    log(TAG + eventTAG + alarm.name)
     switch (alarm.name) {
         case alarmWork.id:
             startBreak()
@@ -68,12 +71,12 @@ browser.runtime.onMessage.addListener((request, sender, sendResponse) => {
      * so i use sendMessage
      * instead of directly call sendResponse
      */
+    log(TAG + eventTAG + request.type)
     switch (request.type) {
         case 'requestTime':
             break;
         case 'resetCounter':
-            alarms.stop()
-            clock.stop()
+            alarms.stopAll()
             startWork()
             break;
     }
@@ -89,8 +92,13 @@ browser.runtime.onMessage.addListener((request, sender, sendResponse) => {
 // reset alarms when setting changes
 browser.storage.onChanged.addListener((changes, area) => {
     if (area === 'local') {
-        console.log(TAG + '[storage] changed')
-        alarms.reload()
+        log(TAG + '[storage] changed')
+        setting.load({
+            callback: () => {
+                alarms.restart()
+                clock.restart()
+            }
+        })
     }
 })
 
