@@ -18,7 +18,7 @@ var clock = {
             if (!clock.dom) {
                 clock.dom = document.querySelector("#monitor")
             }
-            clock.dom.innerHTML = formatTime(msg.time)
+            clock.dom.innerText = formatTime(msg.time)
             clock.dom.classList.toggle('warning', !msg.reading)
             return true;
         }

@@ -1,3 +1,6 @@
+# 0.2.1
+- using non-minified codes
+
 # 0.2.0
 - adjust structure
 - unify uses of alarms API
