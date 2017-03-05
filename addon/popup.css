@@ -5,9 +5,6 @@
   width: 25px;
   height: 25px;
 }
-.text-0-8 {
-  font-size: 0.8rem;
-}
 .success {
   color: #2EB872;
 }
@@ -15,7 +12,7 @@
   color: #FA4659;
 }
 .hidden {
-  display: none;
+  visibility: hidden;
 }
 .clock {
   text-align: center;

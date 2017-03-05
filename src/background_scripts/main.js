@@ -1,68 +1,55 @@
-const {TAG, eventTAG} = require("../tags")
-const {alarmWork, alarmBreak, alarmCounter} = require("../configs/alarms")
-const {handleResponse, handleError, log} = require('../utility')
-var {clockLimit, time} = require("./time")
-var icon = require("./icon")
-var clock = require("./clock")
-var alarms = require("./alarms")
+const { handleResponse } = require('../utility')
+var ui = require("./ui")
 var idle = require("./idle")
-var setting = require("./setting")
-var notice = require("./notice")
+var clock = require("./clock")
+var counter = require("./counter")
+var storage = require("./storage")
 
 /**
  *  callbacks
  */
-function setUI(reversed, id) {
-    clock.reverse(reversed)
-    clock.ui.sync()
-    icon.set(id)
-}
-
-function startWork() {
-    log(TAG + 'start work...')
-    alarms.start(alarmWork.id)
-    clock.restart()
-    setUI(false, alarmWork.id)
+function startRead() {
+    clock.reset()
+    ui.icon.switch(true)
+    ui.clock.switch(true)
+    ui.clock.sync()
 }
 
 function startBreak() {
-    log(TAG + 'start break...')
-    alarms.start(alarmBreak.id)
-    clock.restart()
-    notice.create()
-    setUI(true, alarmBreak.id)
+    clock.reset()
+    ui.icon.switch(false)
+    ui.clock.switch(false)
+    ui.clock.sync()
+    ui.notice.create()
 }
 
-/**
- *  business logic
- */
-// start work-alarm
-setting.load({
-    callback: () => {
-        idle.detect.start()
-        startWork()
-    }
-})
+function shouldRead() {
+    return 
+         ! storage.store.isReading
+        && storage.store.passedMinutes >= storage.store.breakTimeAmount
+}
 
-// start dispatch alarm event
+function shouldBreak() {
+    return storage.store.isReading
+        && storage.store.passedMinutes >= storage.store.readingTimeAmount
+}
+
+function updateClock() {
+    clock.plus(1)
+    ui.clock.sync()
+}
+
+// dispatch alarm event
 browser.alarms.onAlarm.addListener(alarm => {
-    log(TAG + eventTAG + alarm.name)
-    switch (alarm.name) {
-        case alarmWork.id:
-            startBreak()
-            break;
-
-        case alarmBreak.id:
-            startWork()
-            break;
-
-        case alarmCounter.id:
-            clock.time.count(alarmCounter.interval)
-            clock.ui.sync()
-            break;
+    updateClock()
+    if (shouldBreak()) {
+        counter.restart()
+        startBreak()
+    } else if (shouldRead()) {
+        counter.restart()
+        startRead()
     }
 })
-
 // start dispatch request
 browser.runtime.onMessage.addListener((request, sender, sendResponse) => {
     /**
@@ -71,20 +58,20 @@ browser.runtime.onMessage.addListener((request, sender, sendResponse) => {
      * so i use sendMessage
      * instead of directly call sendResponse
      */
-    log(TAG + eventTAG + request.type)
     switch (request.type) {
         case 'requestTime':
             break;
         case 'resetCounter':
-            alarms.stopAll()
-            startWork()
+            counter.restart()
+            startRead()
             break;
     }
     if (browser.extension.getViews({ type: "popup" }).length) {
-        browser.runtime.sendMessage({
-            time,
-            reversed: clock.reversed
-        }).catch(handleError)
+        var messageFormat = {
+            time: storage.store.passedMinutes,
+            reading: storage.store.isReading
+        }
+        browser.runtime.sendMessage(messageFormat).catch(err => { console.error(err) })
     }
     return true;
 })
@@ -92,20 +79,21 @@ browser.runtime.onMessage.addListener((request, sender, sendResponse) => {
 // reset alarms when setting changes
 browser.storage.onChanged.addListener((changes, area) => {
     if (area === 'local') {
-        log(TAG + '[storage] changed')
-        setting.load({
+        storage.load({
             callback: () => {
-                alarms.restart()
-                clock.restart()
+                counter.restart()
+                startRead()
             }
         })
     }
 })
 
 /**
- *  interactive events
+ *  business logic
  */
-browser.browserAction.onClicked.addListener(() => {
-    browser.notifications.clear(alarmBreak.id)
+storage.load({
+    callback: () => {
+        idle.detect.start()
+        counter.start()
+    }
 })
-// browser.browserAction.onClosed

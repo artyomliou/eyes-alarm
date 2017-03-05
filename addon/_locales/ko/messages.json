@@ -25,12 +25,12 @@
   },
 
   "optionsWorktimeLabel": {
-    "message": "읽은 시간",
+    "message": "읽은 시간 (분)",
     "description": "time for reading (using eyes)"
   },
 
   "optionsBreaktimeLabel": {
-    "message": "쉬는 시간",
+    "message": "쉬는 시간 (분)",
     "description": "time for break"
   },
 

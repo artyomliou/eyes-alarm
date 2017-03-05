@@ -9,7 +9,7 @@ every 50 min passed, rest for 10 mins
 custom available
 
 ## for
-
+*higher version is better*
 - Chrome (`28↑` :ok_hand:) 
 - Vivaldi (`1.7↑` :ok_hand:)
 - Firefox (`51↑` :ok_hand:)
@@ -20,7 +20,6 @@ custom available
   * Idle API
   * Notification API
   * extension.getViews
-- Opera :japanese_goblin:
 
 ## translation
 

@@ -5,19 +5,20 @@ html
         table
             tr
                 td
-                    label(id="alarmWork_label")
+                    label(id="readingTime_label")
                 td
-                    input(id="alarmWork" type="number" min="1" max="60")
+                    input(id="readingTimeAmount" type="number" min="1" max="120")
             tr
                 td
-                    label(id="alarmBreak_label")
+                    label(id="breakTime_label")
                 td
-                    input(id="alarmBreak" type="number" min="1" max="60")
+                    input(id="breakTimeAmount" type="number" min="1" max="120")
             tr
                 td
-                    label(id="apply_label")
                 td
                     button(id="apply" type="submit")
-                    p(id="apply_msg" class="success text-0-8 hidden")
-                    p(id="error_msg" class="warning")
+        hr
+        .container.vertical.center
+            span.item(id="apply_msg" class="success hidden")
+            span.item(id="error_msg" class="warning")
         script(src="browser-polyfill.js")

@@ -25,12 +25,12 @@
   },
 
   "optionsWorktimeLabel": {
-    "message": "Reading time",
+    "message": "Reading time(Minutes)",
     "description": "time for reading (using eyes)"
   },
 
   "optionsBreaktimeLabel": {
-    "message": "Break time",
+    "message": "Break time(Minutes)",
     "description": "time for break"
   },
   

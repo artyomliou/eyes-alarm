@@ -1,20 +1,32 @@
 @import "table.less";
+@import "container.less";
 @import "classes.less";
+@import "colors.less";
 
 * {
     font-family: 'Microsoft JhengHei';
 }
 
-form {
-    .item {
-        margin-bottom: 5px;
+label {
+    font-size: 18px;
+}
 
-        label {
-            margin-right: 5px;
-        }
-    }
+span,
+button,
+input[type="number"] {
+    font-size: 16px;
+}
 
-    button {
-        border-radius: 3px;
-    }
+button {
+    margin-top: 10px;
+}
+
+label {
+    margin-right: 5px;
+    vertical-align: text-bottom;
+}
+
+span {
+    font-size: 0.9rem;
+    vertical-align: text-bottom;
 }

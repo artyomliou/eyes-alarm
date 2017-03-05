@@ -1,3 +1,9 @@
+# 0.2.0
+- adjust structure
+- unify uses of alarms API
+- simplify time accumulation
+- expand range of reading time & break time to 120 mins
+
 # 0.1.5
 - add korean, simplified chinese localization
 - fixed bug that clock wont update after applying or resetting

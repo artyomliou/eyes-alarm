@@ -1,3 +1,3 @@
 module.exports = {
-    debugMode: false
+    debugMode: true
 }

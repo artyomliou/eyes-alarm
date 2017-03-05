@@ -25,12 +25,12 @@
   },
 
   "optionsWorktimeLabel": {
-    "message": "読む時間",
+    "message": "読む時間 (分)",
     "description": "time for reading (using eyes)"
   },
 
   "optionsBreaktimeLabel": {
-    "message": "休む時間",
+    "message": "休む時間 (分)",
     "description": "time for break"
   },
 

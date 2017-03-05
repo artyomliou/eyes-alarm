@@ -1,58 +1,41 @@
-const {TAG} = require("../tags")
-const {toTitleCase, getLocalString, handleError} = require("../utility")
-const {alarmWork, alarmBreak, alarmKeys} = require("../configs/alarms")
+const { toTitleCase, getLocalString } = require("../utility")
+const defaultValues = require('../configs/defaults')
+var nodes = require('./nodes')
 
-function getInterval(key) {
-    switch (key) {
-        case alarmWork.id:
-            return alarmWork.interval;
-        case alarmBreak.id:
-            return alarmBreak.interval;
-        default:
-            return null;
-    }
+const reflect = {
+    /**
+     * [dom key]: [locale string key]
+     */
+    readingTime_label: 'optionsWorkTimeLabel',
+    breakTime_label: 'optionsBreakTimeLabel',
+    apply: 'optionsApplyButton',
+    apply_msg: 'optionsApplySuccessMessage'
 }
-
-var nodes = {
-    pool: {},
-    getDOM(key) {
-        if (nodes.pool.hasOwnProperty(key)) {
-            return nodes.pool[key]
-        } else {
-            return nodes.pool[key] = document.querySelector('#' + key)
-        }
-    }
-}
+const storageKeys = [
+    'breakTimeAmount',
+    'readingTimeAmount'
+]
 
 var page = {
-    TAG: '[options] ',
-    reflect: {
-        alarmWork_label: 'WorkTimeLabel',
-        alarmBreak_label: 'BreakTimeLabel',
-        apply: 'ApplyButton',
-        apply_msg: 'ApplySuccessMessage'
-    },
     render() {
-        console.log(TAG + page.TAG + 'render...')
-        browser.storage.local.get(alarmKeys).then(page.columns.set, handleError)
+        // input
+        browser.storage.local.get(storageKeys)
+            .then(page.inputs.set, err => { console.error(err) })
 
-        Object.keys(page.reflect).forEach(key => {
-            nodes.getDOM(key).innerText = getLocalString('options' + page.reflect[key])
-        })
+        // label
+        for (var key in reflect) {
+            nodes.getDOM(key).innerText = getLocalString(reflect[key])
+        }
     },
-    columns: {
-        pool: {},
+    inputs: {
         set(result) {
-            alarmKeys.forEach(key => {
-                let val = result[key] || getInterval(key);
-                if (val) {
-                    nodes.getDOM(key).value = val
-                }
+            storageKeys.forEach(key => {
+                nodes.getDOM(key).value = result[key] || defaultValues[key]
             })
         },
         get() {
             let set = {}
-            alarmKeys.forEach(key => {
+            storageKeys.forEach(key => {
                 set[key] = parseInt(nodes.getDOM(key).value)
             })
             return set

@@ -1,12 +1,11 @@
 require("../styles/popup_entry.less")
-const {TAG, eventTAG} = require("../tags")
 var clock = require("./clock")
 
 /**
  *  window event
  */
 window.onload = () => {
-    browser.runtime.onMessage.addListener(clock.ui.update)
+    browser.runtime.onMessage.addListener(clock.update)
     clock.request()
 
     document.querySelector('#refresh_button').addEventListener('click', clock.reset)
@@ -18,5 +17,5 @@ window.onload = () => {
 }
 
 window.onunload = () => {
-    browser.runtime.onMessage.removeListener(clock.ui.update)
+    browser.runtime.onMessage.removeListener(clock.update)
 }

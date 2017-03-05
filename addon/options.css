@@ -1,8 +1,31 @@
+tr {
+  margin-bottom: 10px;
+}
 td label {
   float: right;
 }
 td label::after {
   clear: right;
+}
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  align-content: flex-start;
+}
+.vertical {
+  flex-direction: column;
+}
+.horizontal {
+  flex-direction: row;
+}
+.center {
+  align-items: center;
+  justify-content: center;
+}
+.item {
+  flex-grow: 1;
 }
 .unselectable {
   user-select: none;
@@ -11,9 +34,6 @@ td label::after {
   width: 25px;
   height: 25px;
 }
-.text-0-8 {
-  font-size: 0.8rem;
-}
 .success {
   color: #2EB872;
 }
@@ -21,17 +41,27 @@ td label::after {
   color: #FA4659;
 }
 .hidden {
-  display: none;
+  visibility: hidden;
 }
 * {
   font-family: 'Microsoft JhengHei';
 }
-form .item {
-  margin-bottom: 5px;
+label {
+  font-size: 18px;
 }
-form .item label {
+span,
+button,
+input[type="number"] {
+  font-size: 16px;
+}
+button {
+  margin-top: 10px;
+}
+label {
   margin-right: 5px;
+  vertical-align: text-bottom;
 }
-form button {
-  border-radius: 3px;
+span {
+  font-size: 0.9rem;
+  vertical-align: text-bottom;
 }

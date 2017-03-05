@@ -1,30 +1,28 @@
-const {handleError, formatTime} = require("../utility")
+const { formatTime } = require("../utility")
 
 var clock = {
     dom: null,
-    reversed: false,
     request() {
-        browser.runtime.sendMessage({ type: 'requestTime' }).then(clock.ui.update, handleError)
+        browser.runtime.sendMessage({ type: 'requestTime' })
+            .then(clock.update, err => { console.error(err) })
     },
     reset() {
-        browser.runtime.sendMessage({ type: 'resetCounter' }).then(clock.ui.update, handleError)
+        browser.runtime.sendMessage({ type: 'resetCounter' })
+            .then(clock.update, err => { console.error(err) })
     },
 
-    ui: {
-        locate() {
+    update(msg) {
+        if (typeof msg !== 'object') {
+            return;
+        } else {
             if (!clock.dom) {
-                clock.dom = document.querySelector(".item.time")
+                clock.dom = document.querySelector("#monitor")
             }
-        },
-        update(msg) {
-            clock.ui.locate()
             clock.dom.innerHTML = formatTime(msg.time)
-
-            if (clock.reversed !== msg.reversed) {
-                clock.dom.classList.toggle('warning', clock.reversed = msg.reversed)
-            }
+            clock.dom.classList.toggle('warning', !msg.reading)
             return true;
         }
+
     }
 }
 

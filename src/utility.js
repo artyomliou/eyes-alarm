@@ -1,9 +1,5 @@
 const env = require("./configs/env")
 
-function handleError(err) {
-    console.error(err);
-}
-
 function handleResponse(r) {
     console.info(r)
 }
@@ -16,29 +12,35 @@ function getLocalString(key) {
     return browser.i18n.getMessage(key)
 }
 
-function log(s) {
+function log() {
     if (env.debugMode) {
-        console.log(s)
+        console.log(arguments.reduce((acc, val) => acc + val, ''))
     }
 }
 
-function formatTime(time) {
-    let s = []
-    for (let key in time) {
-        if (time.hasOwnProperty(key)) {
-            if (key === 'days' && time[key] === 0) {
-                continue
-            }
-            let prefix = time[key] >= 10 ? '' : '0'
-            s.push(prefix + time[key])
-        }
+function formatTime(minutes) {
+    if (!Number.isInteger(minutes)) {
+        console.error(`input time [${minutes}] is not integer`)
+        return 'ERROR'
     }
-    return s.join(':')
+    let formatted = []
+    let hour = 0
+    if (minutes >= 60) {
+        do {
+            minutes -= 60;
+            hour += 1;
+        } while (minutes >= 60)
+    }
+    formatted.push(hour, minutes)
+    return formatted.map(el => padTime(el)).join(':')
+}
+
+function padTime(val) {
+    return (val < 10) ? `0${val}` : val
 }
 
 module.exports = {
     handleResponse,
-    handleError,
     toTitleCase,
     getLocalString,
     log,

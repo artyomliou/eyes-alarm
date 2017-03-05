@@ -25,12 +25,12 @@
   },
 
   "optionsWorktimeLabel": {
-    "message": "閱讀時間",
+    "message": "閱讀時間 (分鐘)",
     "description": "time for reading (using eyes)"
   },
 
   "optionsBreaktimeLabel": {
-    "message": "休息時間",
+    "message": "休息時間 (分鐘)",
     "description": "time for break"
   },
 
