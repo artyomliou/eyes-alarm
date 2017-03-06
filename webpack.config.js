@@ -29,7 +29,7 @@ module.exports = {
           use: "css-loader!less-loader"
         })
       },
-      { test: /\.(png|jpg|jpeg|gif|woff|ttf)$/, loader: 'file-loader' },
+      { test: /\.(png|jpg|jpeg|gif|woff2)$/, loader: 'file-loader' },
       { test: /\.js$/,
         loader: 'babel-loader',
         query: {

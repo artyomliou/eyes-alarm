@@ -1,6 +1,6 @@
 {
   "manifest_version": 2,
-  "version": "0.2.0",
+  "version": "0.2.2",
   "name": "__MSG_extensionName__",
   "description": "__MSG_extensionDescription__",
   "author": "__MSG_authorName__",
@@ -14,11 +14,6 @@
     "storage",
     "idle"
   ],
-  "applications": {
-    "gecko": {
-      "strict_min_version": "51.0"
-    }
-  },
 
   "icons": {
     "96": "icons/set-timer-button.png"

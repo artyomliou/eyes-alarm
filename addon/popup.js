@@ -198,6 +198,9 @@ module.exports = clock;
 __webpack_require__(13);
 var clock = __webpack_require__(11);
 
+/**
+ *  window event
+ */
 window.onload = function () {
     browser.runtime.onMessage.addListener(clock.update);
     clock.request();

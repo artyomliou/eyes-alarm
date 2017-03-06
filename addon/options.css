@@ -1,11 +1,8 @@
+table {
+  width: 100%;
+}
 tr {
   margin-bottom: 10px;
-}
-td label {
-  float: right;
-}
-td label::after {
-  clear: right;
 }
 .container {
   display: flex;
@@ -46,22 +43,14 @@ td label::after {
 * {
   font-family: 'Microsoft JhengHei';
 }
-label {
-  font-size: 18px;
-}
 span,
+label,
 button,
 input[type="number"] {
   font-size: 16px;
 }
-button {
-  margin-top: 10px;
-}
-label {
-  margin-right: 5px;
-  vertical-align: text-bottom;
-}
-span {
-  font-size: 0.9rem;
-  vertical-align: text-bottom;
+@media screen and (max-width: 400px) {
+  input[type="number"] {
+    width: 100%;
+  }
 }

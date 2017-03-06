@@ -191,6 +191,9 @@ var defaultValues = __webpack_require__(4);
 var nodes = __webpack_require__(3);
 
 var reflect = {
+    /**
+     * [dom key]: [locale string key]
+     */
     readingTime_label: 'optionsWorkTimeLabel',
     breakTime_label: 'optionsBreakTimeLabel',
     apply: 'optionsApplyButton',
@@ -200,10 +203,12 @@ var storageKeys = ['breakTimeAmount', 'readingTimeAmount'];
 
 var page = {
     render: function render() {
+        // input
         browser.storage.local.get(storageKeys).then(page.inputs.set, function (err) {
             console.error(err);
         });
 
+        // label
         for (var key in reflect) {
             nodes.getDOM(key).innerText = getLocalString(reflect[key]);
         }
@@ -239,14 +244,15 @@ var page = __webpack_require__(8);
 var nodes = __webpack_require__(3);
 
 var options = {
-    dom: {},
-
     save: function save(e) {
         e.preventDefault();
         try {
-            browser.storage.local.set(page.inputs.get());
-            nodes.getDOM('apply_msg').classList.toggle('hidden', false);
-            nodes.getDOM('error_msg').innerText = '';
+            browser.storage.local.set(page.inputs.get()).then(function () {
+                nodes.getDOM('apply_msg').classList.toggle('hidden', false);
+                nodes.getDOM('error_msg').innerText = '';
+            }).catch(function (err) {
+                throw err;
+            });
         } catch (e) {
             nodes.getDOM('apply_msg').classList.toggle('hidden', true);
             nodes.getDOM('error_msg').innerText += e.message;

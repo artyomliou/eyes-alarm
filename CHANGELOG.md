@@ -1,3 +1,10 @@
+# 0.2.2
+- fixed bug that state wont be changed after break time finished
+- fixed minor bugs
+- rewrite setting-saving workflow in options page
+- add cent browser support to readme.md
+- font *anonymous pro* is now bundled with extension
+
 # 0.2.1
 - using non-minified codes
 

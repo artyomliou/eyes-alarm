@@ -156,7 +156,8 @@ var storage = {
 
         browser.storage.local.get(Object.keys(storage.store)).then(function (result) {
             storageKeys.forEach(function (key) {
-                storage.store[key] = result[key] || defaultValues[key];
+                var val = result.hasOwnProperty(key) ? result[key] : defaultValues[key];
+                storage.store[key] = val;
             });
             if (callback) {
                 callback(params);
@@ -271,7 +272,7 @@ var ui = {
                     time: storage.store.passedMinutes,
                     reading: storage.store.isReading
                 }).catch(function (err) {
-                    return console.error(err);
+                    console.error(err);
                 });
             }
         }
@@ -365,24 +366,18 @@ var clock = __webpack_require__(5);
 var counter = __webpack_require__(6);
 var storage = __webpack_require__(2);
 
-function startRead() {
+/**
+ *  callbacks
+ */
+function resetUI(iconIsGreen) {
     clock.reset();
-    ui.icon.switch(true);
-    ui.clock.switch(true);
+    ui.icon.switch(iconIsGreen);
+    ui.clock.switch(iconIsGreen);
     ui.clock.sync();
-}
-
-function startBreak() {
-    clock.reset();
-    ui.icon.switch(false);
-    ui.clock.switch(false);
-    ui.clock.sync();
-    ui.notice.create();
 }
 
 function shouldRead() {
-    return;
-    !storage.store.isReading && storage.store.passedMinutes >= storage.store.breakTimeAmount;
+    return !storage.store.isReading && storage.store.passedMinutes >= storage.store.breakTimeAmount;
 }
 
 function shouldBreak() {
@@ -394,24 +389,32 @@ function updateClock() {
     ui.clock.sync();
 }
 
+// dispatch alarm event
 browser.alarms.onAlarm.addListener(function (alarm) {
     updateClock();
     if (shouldBreak()) {
         counter.restart();
-        startBreak();
+        resetUI(false);
     } else if (shouldRead()) {
         counter.restart();
-        startRead();
+        resetUI(true);
+        ui.notice.create();
     }
 });
-
+// start dispatch request
 browser.runtime.onMessage.addListener(function (request, sender, sendResponse) {
+    /**
+     * the sendResponse is undefined on Chrome
+     * maybe the polyfill provided by moz includes bug?
+     * so i use sendMessage
+     * instead of directly call sendResponse
+     */
     switch (request.type) {
         case 'requestTime':
             break;
         case 'resetCounter':
             counter.restart();
-            startRead();
+            resetUI(true);
             break;
     }
     if (browser.extension.getViews({ type: "popup" }).length) {
@@ -426,17 +429,21 @@ browser.runtime.onMessage.addListener(function (request, sender, sendResponse) {
     return true;
 });
 
+// reset alarms when setting changes
 browser.storage.onChanged.addListener(function (changes, area) {
     if (area === 'local') {
         storage.load({
             callback: function callback() {
                 counter.restart();
-                startRead();
+                resetUI(true);
             }
         });
     }
 });
 
+/**
+ *  business logic
+ */
 storage.load({
     callback: function callback() {
         idle.detect.start();

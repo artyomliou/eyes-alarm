@@ -32,7 +32,7 @@ var ui = {
                 browser.runtime.sendMessage({
                     time: storage.store.passedMinutes,
                     reading: storage.store.isReading
-                }).catch(err => console.error(err))
+                }).catch(err => { console.error(err) })
             }
         }
     }

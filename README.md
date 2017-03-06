@@ -11,7 +11,8 @@ custom available
 ## for
 *higher version is better*
 - Chrome (`28↑` :ok_hand:) 
-- Vivaldi (`1.7↑` :ok_hand:)
+- Vivaldi (`latest` :ok_hand:)
+- Cent (`latest` :ok_hand:)
 - Firefox (`51↑` :ok_hand:)
 - Firefox for Android :cold_sweat:
   * BrowserAction API
@@ -44,10 +45,9 @@ custom available
 - [MDN](https://developer.mozilla.org/zh-TW/)
 - [MPL 2.0](https://www.openfoundry.org/tw/legal-column-list/8681-the-brief-comparison-of-mpl-11-and-mpl-20)
 - [Unicode Table](https://unicode-table.com/en/)
-- [Remove Firefox's dotted outline on BUTTONS?](http://stackoverflow.com/questions/71074/how-to-remove-firefoxs-dotted-outline-on-buttons-as-well-as-links)
+- [Github Emoji](https://gist.github.com/rxaviers/7360908)
 - [Chrome Ext. APIs](https://developer.chrome.com/extensions/api_index)
 - [Browser support for Web.Ext. APIs](https://developer.mozilla.org/en-US/Add-ons/WebExtensions/Browser_support_for_JavaScript_APIs)
-- [Github Emoji](https://gist.github.com/rxaviers/7360908)
 
 ## license related
 

@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Anonymous+Pro);.unselectable {
+.unselectable {
   user-select: none;
 }
 .square-25px {
@@ -80,6 +80,14 @@ button:active {
 }
 button:active .button-icon {
   fill: ghostwhite;
+}
+/* latin */
+@font-face {
+  font-family: 'Anonymous Pro';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Anonymous Pro'), local('AnonymousPro'), url(/3a6c73cf1d68f83f52ae4e1e7ab876ff.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
 }
 * {
   font-family: 'Anonymous Pro', monospace;

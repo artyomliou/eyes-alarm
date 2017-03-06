@@ -8,25 +8,16 @@ var storage = require("./storage")
 /**
  *  callbacks
  */
-function startRead() {
+function resetUI(iconIsGreen) {
     clock.reset()
-    ui.icon.switch(true)
-    ui.clock.switch(true)
+    ui.icon.switch(iconIsGreen)
+    ui.clock.switch(iconIsGreen)
     ui.clock.sync()
-}
-
-function startBreak() {
-    clock.reset()
-    ui.icon.switch(false)
-    ui.clock.switch(false)
-    ui.clock.sync()
-    ui.notice.create()
 }
 
 function shouldRead() {
-    return 
-         ! storage.store.isReading
-        && storage.store.passedMinutes >= storage.store.breakTimeAmount
+    return   ! storage.store.isReading
+            && storage.store.passedMinutes >= storage.store.breakTimeAmount
 }
 
 function shouldBreak() {
@@ -44,10 +35,11 @@ browser.alarms.onAlarm.addListener(alarm => {
     updateClock()
     if (shouldBreak()) {
         counter.restart()
-        startBreak()
+        resetUI(false)
     } else if (shouldRead()) {
         counter.restart()
-        startRead()
+        resetUI(true)
+        ui.notice.create()
     }
 })
 // start dispatch request
@@ -63,7 +55,7 @@ browser.runtime.onMessage.addListener((request, sender, sendResponse) => {
             break;
         case 'resetCounter':
             counter.restart()
-            startRead()
+            resetUI(true)
             break;
     }
     if (browser.extension.getViews({ type: "popup" }).length) {
@@ -82,7 +74,7 @@ browser.storage.onChanged.addListener((changes, area) => {
         storage.load({
             callback: () => {
                 counter.restart()
-                startRead()
+                resetUI(true)
             }
         })
     }

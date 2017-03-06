@@ -14,7 +14,8 @@ var storage = {
         browser.storage.local.get(Object.keys(storage.store))
             .then(result => {
                 storageKeys.forEach(key => {
-                    storage.store[key] = result[key] || defaultValues[key]
+                    let val = result.hasOwnProperty(key) ? result[key] : defaultValues[key]
+                    storage.store[key] = val
                 })
                 if (callback) {
                     callback(params)
