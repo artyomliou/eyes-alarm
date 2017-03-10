@@ -89,7 +89,11 @@ function getLocalString(key) {
 
 function log() {
     if (env.debugMode) {
-        console.log(arguments.reduce(function (acc, val) {
+        for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+            args[_key] = arguments[_key];
+        }
+
+        console.log(args.reduce(function (acc, val) {
             return acc + val;
         }, ''));
     }
@@ -170,7 +174,7 @@ module.exports = {
     passedMinutes: 0,
     breakTimeAmount: 10,
     readingTimeAmount: 50,
-    idleDetectionInterval: 600
+    idleDetectionInterval: 1200
 };
 
 /***/ }),
@@ -196,8 +200,7 @@ var reflect = {
      */
     readingTime_label: 'optionsWorkTimeLabel',
     breakTime_label: 'optionsBreakTimeLabel',
-    apply: 'optionsApplyButton',
-    apply_msg: 'optionsApplySuccessMessage'
+    apply: 'optionsApplyButton'
 };
 var storageKeys = ['breakTimeAmount', 'readingTimeAmount'];
 
@@ -221,7 +224,9 @@ var page = {
             });
         },
         get: function get() {
-            var set = {};
+            var set = {
+                last_modified: new Date().toLocaleTimeString()
+            };
             storageKeys.forEach(function (key) {
                 set[key] = parseInt(nodes.getDOM(key).value);
             });
@@ -240,23 +245,25 @@ module.exports = page;
 "use strict";
 
 
+var _require = __webpack_require__(0),
+    getLocalString = _require.getLocalString;
+
 var page = __webpack_require__(8);
 var nodes = __webpack_require__(3);
 
 var options = {
     save: function save(e) {
         e.preventDefault();
-        try {
-            browser.storage.local.set(page.inputs.get()).then(function () {
-                nodes.getDOM('apply_msg').classList.toggle('hidden', false);
-                nodes.getDOM('error_msg').innerText = '';
-            }).catch(function (err) {
-                throw err;
-            });
-        } catch (e) {
-            nodes.getDOM('apply_msg').classList.toggle('hidden', true);
-            nodes.getDOM('error_msg').innerText += e.message;
-        }
+        var data = page.inputs.get();
+        var time = data.last_modified;
+
+        browser.storage.local.set(data).then(function () {
+            nodes.getDOM('apply_msg').innerText = '[' + time + '] ' + getLocalString('optionsApplySuccessMessage');
+            nodes.getDOM('error_msg').innerText = '';
+        }).catch(function (err) {
+            nodes.getDOM('apply_msg').innerText = '';
+            nodes.getDOM('error_msg').innerText = '[' + time + '] ' + err.message;
+        });
     }
 };
 

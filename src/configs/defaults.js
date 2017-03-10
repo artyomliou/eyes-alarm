@@ -3,5 +3,5 @@ module.exports = {
     passedMinutes: 0,
     breakTimeAmount: 10,
     readingTimeAmount: 50,
-    idleDetectionInterval: 600
+    idleDetectionInterval: 1200
 }

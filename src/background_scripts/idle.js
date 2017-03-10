@@ -5,8 +5,8 @@ var counter = require("./counter")
 var isLocked = false
 
 var idle = {
-    setInterval: (val) => {
-        browser.idle.setDetectionInterval(val)
+    init(val) {
+        browser.idle.setDetectionInterval(val);
     },
     detect: {
         start: () => {
@@ -21,17 +21,16 @@ var idle = {
             case 'active':
                 if (isLocked) {
                     counter.start()
-                    
+                    ui.icon.switch(true)
+                    ui.clock.switch(true)
+                    ui.clock.sync()
                     isLocked = false
                 }
                 break;
+            case 'idle':
             case 'locked':
                 counter.stop()
                 ui.notice.clear()
-                ui.icon.switch(true)
-                ui.clock.switch(true)
-                ui.clock.sync()
-                
                 isLocked = true
                 break;
         }

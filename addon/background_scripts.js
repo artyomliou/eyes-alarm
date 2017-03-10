@@ -89,7 +89,11 @@ function getLocalString(key) {
 
 function log() {
     if (env.debugMode) {
-        console.log(arguments.reduce(function (acc, val) {
+        for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+            args[_key] = arguments[_key];
+        }
+
+        console.log(args.reduce(function (acc, val) {
             return acc + val;
         }, ''));
     }
@@ -154,10 +158,9 @@ var storage = {
         var callback = _ref.callback,
             params = _ref.params;
 
-        browser.storage.local.get(Object.keys(storage.store)).then(function (result) {
+        browser.storage.local.get(null).then(function (result) {
             storageKeys.forEach(function (key) {
-                var val = result.hasOwnProperty(key) ? result[key] : defaultValues[key];
-                storage.store[key] = val;
+                storage.store[key] = result[key] || defaultValues[key];
             });
             if (callback) {
                 callback(params);
@@ -183,7 +186,7 @@ module.exports = {
     passedMinutes: 0,
     breakTimeAmount: 10,
     readingTimeAmount: 50,
-    idleDetectionInterval: 600
+    idleDetectionInterval: 1200
 };
 
 /***/ }),
@@ -247,6 +250,8 @@ var noticeParams = {
     message: browser.i18n.getMessage("notificationContent")
 };
 
+var notificationID = 'eyes-alarm-n';
+
 var ui = {
     icon: {
         switch: function _switch(isGreen) {
@@ -256,10 +261,10 @@ var ui = {
     },
     notice: {
         create: function create() {
-            browser.notifications.create('eyes-alarm-n', noticeParams);
+            browser.notifications.create(notificationID, noticeParams);
         },
         clear: function clear() {
-            browser.notifications.clear('eyes-alarm-n');
+            browser.notifications.clear(notificationID);
         }
     },
     clock: {
@@ -296,9 +301,10 @@ var counter = __webpack_require__(6);
 var isLocked = false;
 
 var idle = {
-    setInterval: function setInterval(val) {
+    init: function init(val) {
         browser.idle.setDetectionInterval(val);
     },
+
     detect: {
         start: function start() {
             browser.idle.onStateChanged.addListener(idle.dispatch);
@@ -312,17 +318,16 @@ var idle = {
             case 'active':
                 if (isLocked) {
                     counter.start();
-
+                    ui.icon.switch(true);
+                    ui.clock.switch(true);
+                    ui.clock.sync();
                     isLocked = false;
                 }
                 break;
+            case 'idle':
             case 'locked':
                 counter.stop();
                 ui.notice.clear();
-                ui.icon.switch(true);
-                ui.clock.switch(true);
-                ui.clock.sync();
-
                 isLocked = true;
                 break;
         }
@@ -394,42 +399,37 @@ browser.alarms.onAlarm.addListener(function (alarm) {
     updateClock();
     if (shouldBreak()) {
         counter.restart();
-        resetUI(false);
+        resetUI(false); // turn to red
+        ui.notice.create();
     } else if (shouldRead()) {
         counter.restart();
-        resetUI(true);
-        ui.notice.create();
+        resetUI(true); // turn to green
     }
 });
+
 // start dispatch request
-browser.runtime.onMessage.addListener(function (request, sender, sendResponse) {
-    /**
-     * the sendResponse is undefined on Chrome
-     * maybe the polyfill provided by moz includes bug?
-     * so i use sendMessage
-     * instead of directly call sendResponse
-     */
+
+function timeResponse() {
+    return {
+        time: storage.store.passedMinutes,
+        reading: storage.store.isReading
+    };
+}
+browser.runtime.onMessage.addListener(function (request, sender) {
     switch (request.type) {
+
         case 'requestTime':
-            break;
+            return Promise.resolve(timeResponse());
+
         case 'resetCounter':
             counter.restart();
             resetUI(true);
-            break;
+            return Promise.resolve(timeResponse());
     }
-    if (browser.extension.getViews({ type: "popup" }).length) {
-        var messageFormat = {
-            time: storage.store.passedMinutes,
-            reading: storage.store.isReading
-        };
-        browser.runtime.sendMessage(messageFormat).catch(function (err) {
-            console.error(err);
-        });
-    }
-    return true;
 });
 
 // reset alarms when setting changes
+
 browser.storage.onChanged.addListener(function (changes, area) {
     if (area === 'local') {
         storage.load({
@@ -446,6 +446,7 @@ browser.storage.onChanged.addListener(function (changes, area) {
  */
 storage.load({
     callback: function callback() {
+        idle.init(storage.store.idleDetectionInterval);
         idle.detect.start();
         counter.start();
     }

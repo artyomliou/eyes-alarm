@@ -1,3 +1,17 @@
+# 0.2.31
+- add uuid for firefox version
+
+# 0.2.3
+- *added* `bestzip` package for packing
+- *added* stop time counter after 20 idle mins
+- *fixed* notification appears after break-time finished
+- *fixed* setting missing after restart
+- *fixed* applying new setting with values as same as old setting wont reset counter
+- *changed* bg_script returns a resolved promise as response instead of making another `sendMessage` call
+- *changed* alter utility function `log` from `arguments` to spread syntax
+- *changed* alter from `window.onload` to `window.addEventListener` in popup
+- *removed* unnecessary polyfill file in src folder
+
 # 0.2.2
 - fixed bug that state wont be changed after break time finished
 - fixed minor bugs

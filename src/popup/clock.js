@@ -4,25 +4,24 @@ var clock = {
     dom: null,
     request() {
         browser.runtime.sendMessage({ type: 'requestTime' })
-            .then(clock.update, err => { console.error(err) })
+            .then(clock.update)
+            .catch(err => { console.error(err) })
     },
     reset() {
         browser.runtime.sendMessage({ type: 'resetCounter' })
-            .then(clock.update, err => { console.error(err) })
+            .then(clock.update)
+            .catch(err => { console.error(err) })
     },
 
     update(msg) {
-        if (typeof msg !== 'object') {
-            return;
-        } else {
+        if (typeof msg === 'object') {
             if (!clock.dom) {
                 clock.dom = document.querySelector("#monitor")
             }
             clock.dom.innerText = formatTime(msg.time)
             clock.dom.classList.toggle('warning', !msg.reading)
-            return true;
         }
-
+        return true;
     }
 }
 

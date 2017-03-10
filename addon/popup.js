@@ -90,7 +90,11 @@ function getLocalString(key) {
 
 function log() {
     if (env.debugMode) {
-        console.log(arguments.reduce(function (acc, val) {
+        for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+            args[_key] = arguments[_key];
+        }
+
+        console.log(args.reduce(function (acc, val) {
             return acc + val;
         }, ''));
     }
@@ -155,26 +159,24 @@ var _require = __webpack_require__(0),
 var clock = {
     dom: null,
     request: function request() {
-        browser.runtime.sendMessage({ type: 'requestTime' }).then(clock.update, function (err) {
+        browser.runtime.sendMessage({ type: 'requestTime' }).then(clock.update).catch(function (err) {
             console.error(err);
         });
     },
     reset: function reset() {
-        browser.runtime.sendMessage({ type: 'resetCounter' }).then(clock.update, function (err) {
+        browser.runtime.sendMessage({ type: 'resetCounter' }).then(clock.update).catch(function (err) {
             console.error(err);
         });
     },
     update: function update(msg) {
-        if ((typeof msg === 'undefined' ? 'undefined' : _typeof(msg)) !== 'object') {
-            return;
-        } else {
+        if ((typeof msg === 'undefined' ? 'undefined' : _typeof(msg)) === 'object') {
             if (!clock.dom) {
                 clock.dom = document.querySelector("#monitor");
             }
             clock.dom.innerText = formatTime(msg.time);
             clock.dom.classList.toggle('warning', !msg.reading);
-            return true;
         }
+        return true;
     }
 };
 
@@ -198,24 +200,21 @@ module.exports = clock;
 __webpack_require__(13);
 var clock = __webpack_require__(11);
 
-/**
- *  window event
- */
-window.onload = function () {
+document.querySelector('#refresh_button').addEventListener('click', clock.reset);
+
+document.querySelector('#options_button').addEventListener('click', function (e) {
+    e.preventDefault();
+    browser.runtime.openOptionsPage();
+});
+
+window.addEventListener("load", function (event) {
     browser.runtime.onMessage.addListener(clock.update);
     clock.request();
+});
 
-    document.querySelector('#refresh_button').addEventListener('click', clock.reset);
-
-    document.querySelector('#options_button').addEventListener('click', function (e) {
-        e.preventDefault();
-        browser.runtime.openOptionsPage();
-    });
-};
-
-window.onunload = function () {
+window.addEventListener("unload", function (event) {
     browser.runtime.onMessage.removeListener(clock.update);
-};
+});
 
 /***/ })
 

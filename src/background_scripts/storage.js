@@ -11,11 +11,10 @@ var storage = {
     store: {},
 
     load({callback, params}) {
-        browser.storage.local.get(Object.keys(storage.store))
+        browser.storage.local.get(null)
             .then(result => {
                 storageKeys.forEach(key => {
-                    let val = result.hasOwnProperty(key) ? result[key] : defaultValues[key]
-                    storage.store[key] = val
+                    storage.store[key] = result[key] || defaultValues[key]
                 })
                 if (callback) {
                     callback(params)

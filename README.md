@@ -8,12 +8,15 @@ Web extension used to notice it's time to rest your eyes.
 every 50 min passed, rest for 10 mins
 custom available
 
+extension will reset if you dont make any input for 20 mins
+or your computer is locked up
+
 ## for
 *higher version is better*
-- Chrome (`28↑` :ok_hand:) 
+- Chrome (`56` :ok_hand:) 
 - Vivaldi (`latest` :ok_hand:)
 - Cent (`latest` :ok_hand:)
-- Firefox (`51↑` :ok_hand:)
+- Firefox (`52` :ok_hand:)
 - Firefox for Android :cold_sweat:
   * BrowserAction API
 - Edge :cold_sweat:

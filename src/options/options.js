@@ -1,22 +1,22 @@
+const { getLocalString } = require("../utility")
 var page = require('./page')
 var nodes = require('./nodes')
 
 var options = {
     save(e) {
         e.preventDefault()
-        try {
-            browser.storage.local.set(page.inputs.get())
-                .then(() => {
-                    nodes.getDOM('apply_msg').classList.toggle('hidden', false)
-                    nodes.getDOM('error_msg').innerText = ''
-                })
-                .catch(err => {
-                    throw err;
-                })
-        } catch (e) {
-            nodes.getDOM('apply_msg').classList.toggle('hidden', true)
-            nodes.getDOM('error_msg').innerText += e.message
-        }
+        let data = page.inputs.get()
+        let time = data.last_modified
+
+        browser.storage.local.set(data)
+            .then(() => {
+                nodes.getDOM('apply_msg').innerText = `[${time}] ` + getLocalString('optionsApplySuccessMessage')
+                nodes.getDOM('error_msg').innerText = ''
+            })
+            .catch(err => {
+                nodes.getDOM('apply_msg').innerText = ''
+                nodes.getDOM('error_msg').innerText = `[${time}] ${err.message}`
+            })
     }
 }
 

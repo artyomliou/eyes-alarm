@@ -12,9 +12,9 @@ function getLocalString(key) {
     return browser.i18n.getMessage(key)
 }
 
-function log() {
+function log(...args) {
     if (env.debugMode) {
-        console.log(arguments.reduce((acc, val) => acc + val, ''))
+        console.log(args.reduce((acc, val) => acc + val, ''))
     }
 }
 

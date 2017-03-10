@@ -8,8 +8,7 @@ const reflect = {
      */
     readingTime_label: 'optionsWorkTimeLabel',
     breakTime_label: 'optionsBreakTimeLabel',
-    apply: 'optionsApplyButton',
-    apply_msg: 'optionsApplySuccessMessage'
+    apply: 'optionsApplyButton'
 }
 const storageKeys = [
     'breakTimeAmount',
@@ -34,7 +33,9 @@ var page = {
             })
         },
         get() {
-            let set = {}
+            let set = {
+                last_modified: (new Date).toLocaleTimeString()
+            }
             storageKeys.forEach(key => {
                 set[key] = parseInt(nodes.getDOM(key).value)
             })

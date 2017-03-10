@@ -8,6 +8,8 @@ const noticeParams = {
     message: browser.i18n.getMessage("notificationContent")
 }
 
+const notificationID = 'eyes-alarm-n'
+
 var ui = {
     icon: {
         switch(isGreen) {
@@ -17,10 +19,10 @@ var ui = {
     },
     notice: {
         create() {
-            browser.notifications.create('eyes-alarm-n', noticeParams)
+            browser.notifications.create(notificationID, noticeParams)
         },
         clear() {
-            browser.notifications.clear('eyes-alarm-n')
+            browser.notifications.clear(notificationID)
         }
     },
     clock: {

@@ -1,12 +1,10 @@
 {
   "manifest_version": 2,
-  "version": "0.2.2",
+  "version": "0.2.31",
   "name": "__MSG_extensionName__",
   "description": "__MSG_extensionDescription__",
   "author": "__MSG_authorName__",
   "homepage_url": "https://github.com/bros0215/eyes-alarm",
-  
-
   "default_locale": "en",
   "permissions": [
     "alarms",
@@ -14,6 +12,12 @@
     "storage",
     "idle"
   ],
+  "applications": {
+    "gecko": {
+      "id": "{548c04e1-8687-42d1-8b1c-032dc42be5b7}",
+      "strict_min_version": "51.0"
+    }
+  },
 
   "icons": {
     "96": "icons/set-timer-button.png"

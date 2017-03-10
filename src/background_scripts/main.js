@@ -16,8 +16,8 @@ function resetUI(iconIsGreen) {
 }
 
 function shouldRead() {
-    return   ! storage.store.isReading
-            && storage.store.passedMinutes >= storage.store.breakTimeAmount
+    return !storage.store.isReading
+        && storage.store.passedMinutes >= storage.store.breakTimeAmount
 }
 
 function shouldBreak() {
@@ -35,40 +35,37 @@ browser.alarms.onAlarm.addListener(alarm => {
     updateClock()
     if (shouldBreak()) {
         counter.restart()
-        resetUI(false)
+        resetUI(false) // turn to red
+        ui.notice.create()
     } else if (shouldRead()) {
         counter.restart()
-        resetUI(true)
-        ui.notice.create()
+        resetUI(true) // turn to green
     }
 })
+
 // start dispatch request
-browser.runtime.onMessage.addListener((request, sender, sendResponse) => {
-    /**
-     * the sendResponse is undefined on Chrome
-     * maybe the polyfill provided by moz includes bug?
-     * so i use sendMessage
-     * instead of directly call sendResponse
-     */
+
+function timeResponse() {
+    return {
+        time: storage.store.passedMinutes,
+        reading: storage.store.isReading
+    }
+}
+browser.runtime.onMessage.addListener((request, sender) => {
     switch (request.type) {
+
         case 'requestTime':
-            break;
+            return Promise.resolve(timeResponse())
+
         case 'resetCounter':
             counter.restart()
             resetUI(true)
-            break;
+            return Promise.resolve(timeResponse())
     }
-    if (browser.extension.getViews({ type: "popup" }).length) {
-        var messageFormat = {
-            time: storage.store.passedMinutes,
-            reading: storage.store.isReading
-        }
-        browser.runtime.sendMessage(messageFormat).catch(err => { console.error(err) })
-    }
-    return true;
 })
 
 // reset alarms when setting changes
+
 browser.storage.onChanged.addListener((changes, area) => {
     if (area === 'local') {
         storage.load({
@@ -80,11 +77,13 @@ browser.storage.onChanged.addListener((changes, area) => {
     }
 })
 
+
 /**
  *  business logic
  */
 storage.load({
     callback: () => {
+        idle.init(storage.store.idleDetectionInterval)
         idle.detect.start()
         counter.start()
     }
