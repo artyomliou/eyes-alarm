@@ -1,0 +1,15 @@
+// Place your settings in this file to overwrite default and user settings.
+{
+    "standard.options": {
+      "globals": ["browser"],
+      "ignore": [
+          "node_modules/**"
+      ],
+      "workingDirectories": [
+          "src/**.js",
+          "src/**/**.js"
+      ],
+      "plugins": ["html"],
+      "parser": "babel-eslint"
+  }
+}

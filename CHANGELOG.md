@@ -1,3 +1,7 @@
+# 0.2.4
+- *changed* icon
+- *disabled* icon changing feature
+
 # 0.2.31
 - add uuid for firefox version
 

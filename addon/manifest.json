@@ -1,6 +1,6 @@
 {
   "manifest_version": 2,
-  "version": "0.2.31",
+  "version": "0.2.4",
   "name": "__MSG_extensionName__",
   "description": "__MSG_extensionDescription__",
   "author": "__MSG_authorName__",
@@ -20,11 +20,13 @@
   },
 
   "icons": {
-    "96": "icons/set-timer-button.png"
+    "48": "icons/icon@48.png",
+    "96": "icons/icon@96.png",
+    "128": "icons/icon@128.png"
   },
   "browser_action": {
     "default_title": "__MSG_extensionName__",
-    "default_icon": "icons/set-timer-button.png",
+    "default_icon": "icons/icon-darken@128.png",
     "default_popup": "popup.html"
   },
   "options_ui": {

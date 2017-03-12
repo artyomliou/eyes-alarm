@@ -13,8 +13,10 @@ const notificationID = 'eyes-alarm-n'
 var ui = {
     icon: {
         switch(isGreen) {
+            /*
             let path = isGreen ? paths.greenButton : paths.redButton
             browser.browserAction.setIcon({ path })
+            */
         }
     },
     notice: {

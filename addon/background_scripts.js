@@ -254,10 +254,7 @@ var notificationID = 'eyes-alarm-n';
 
 var ui = {
     icon: {
-        switch: function _switch(isGreen) {
-            var path = isGreen ? paths.greenButton : paths.redButton;
-            browser.browserAction.setIcon({ path: path });
-        }
+        switch: function _switch(isGreen) {}
     },
     notice: {
         create: function create() {
@@ -350,7 +347,8 @@ module.exports = idle;
 var paths = {
     greenButton: "icons/set-timer-button.png",
     redButton: "icons/set-timer-button-red.png",
-    notificationIcon: "icons/notification.png"
+    notificationIcon: "icons/icon-pad@128.png",
+    coloredButton: "icons/icon@128.png"
 };
 
 module.exports = paths;
@@ -371,9 +369,6 @@ var clock = __webpack_require__(5);
 var counter = __webpack_require__(6);
 var storage = __webpack_require__(2);
 
-/**
- *  callbacks
- */
 function resetUI(iconIsGreen) {
     clock.reset();
     ui.icon.switch(iconIsGreen);
@@ -394,20 +389,17 @@ function updateClock() {
     ui.clock.sync();
 }
 
-// dispatch alarm event
 browser.alarms.onAlarm.addListener(function (alarm) {
     updateClock();
     if (shouldBreak()) {
         counter.restart();
-        resetUI(false); // turn to red
+        resetUI(false);
         ui.notice.create();
     } else if (shouldRead()) {
         counter.restart();
-        resetUI(true); // turn to green
+        resetUI(true);
     }
 });
-
-// start dispatch request
 
 function timeResponse() {
     return {
@@ -428,8 +420,6 @@ browser.runtime.onMessage.addListener(function (request, sender) {
     }
 });
 
-// reset alarms when setting changes
-
 browser.storage.onChanged.addListener(function (changes, area) {
     if (area === 'local') {
         storage.load({
@@ -441,9 +431,6 @@ browser.storage.onChanged.addListener(function (changes, area) {
     }
 });
 
-/**
- *  business logic
- */
 storage.load({
     callback: function callback() {
         idle.init(storage.store.idleDetectionInterval);

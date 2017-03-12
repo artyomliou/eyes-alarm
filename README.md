@@ -32,6 +32,12 @@ or your computer is locked up
 - Japanese `Jie Ting Wu`
 - Korean `Winnie Wu`
 
+If you want to add a localization, plz check [*HERE*](https://github.com/bros0215/eyes-alarm/tree/master/addon/_locales)
+By reference english localization you may be able to make your own localization
+After finished, plz email the file to me (bros0215@gmail.com)
+I will try checking the content,
+if everything seems to be OK, i will make update ASAP and add your name here
+
 ## devlopment tool
 - Less
 - Pug

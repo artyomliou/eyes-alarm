@@ -1,6 +1,6 @@
 {
   "name": "eyes-alarm",
-  "version": "0.2.31",
+  "version": "0.2.4",
   "description": "Notify it's time to rest your eyes.",
   "main": "addon/content_script.js",
   "repository": "https://github.com/bros0215/eyes-alarm.git",

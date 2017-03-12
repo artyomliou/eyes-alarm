@@ -195,9 +195,6 @@ var defaultValues = __webpack_require__(4);
 var nodes = __webpack_require__(3);
 
 var reflect = {
-    /**
-     * [dom key]: [locale string key]
-     */
     readingTime_label: 'optionsWorkTimeLabel',
     breakTime_label: 'optionsBreakTimeLabel',
     apply: 'optionsApplyButton'
@@ -206,12 +203,10 @@ var storageKeys = ['breakTimeAmount', 'readingTimeAmount'];
 
 var page = {
     render: function render() {
-        // input
         browser.storage.local.get(storageKeys).then(page.inputs.set, function (err) {
             console.error(err);
         });
 
-        // label
         for (var key in reflect) {
             nodes.getDOM(key).innerText = getLocalString(reflect[key]);
         }
