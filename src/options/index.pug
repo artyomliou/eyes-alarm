@@ -7,19 +7,27 @@ html
                 td
                     label(id="readingTime_label")
                 td
-                    input(id="readingTimeAmount" type="number" min="1" max="120")
+                    input(id="readingTimeAmount" type="number" min="1" max="180" step="1")
             tr
                 td
                     label(id="breakTime_label")
                 td
-                    input(id="breakTimeAmount" type="number" min="1" max="120")
+                    input(id="breakTimeAmount" type="number" min="1" max="120" step="1")
+            tr
+                td
+                    label(id="title_label")
+                td
+                    input(id="title" type="text")
+            tr
+                td
+                    label(id="message_label")
+                td
+                    textarea(id="message" rows="3")
             tr
                 td
                 td
                     button(id="apply" type="submit")
-        hr
+                    button(id="reset" type="submit")
         .container.vertical.center
-            span(id="apply_msg" class="success")
-            span(id="error_msg" class="warning")
-        hr
+            span(id="msg")
         script(src="browser-polyfill.js")

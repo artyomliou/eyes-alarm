@@ -21,7 +21,7 @@ var idle = {
             case 'active':
                 if (isLocked) {
                     counter.start()
-                    ui.icon.switch(true)
+                    //ui.icon.switch(true)
                     ui.clock.switch(true)
                     ui.clock.sync()
                     isLocked = false

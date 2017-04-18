@@ -19,7 +19,7 @@
     "description": "Title of the time-to-break notification."
   },
 
-  "notificationContent": {
+  "notificationMessage": {
     "message": "お茶を飲みに行って、休憩しましょう",
     "description": "Tells the user what can they do"
   },
@@ -34,9 +34,24 @@
     "description": "time for break"
   },
 
+   "optionsNotificationTitleLabel": {
+    "message": "タイトル",
+    "description": "notification's title"
+  },
+
+  "optionsNotificationMessageLabel": {
+    "message": "コンテント",
+    "description": "content in notification"
+  },
+
   "optionsApplyButton": {
     "message": "適用する" ,
     "description": "button to apply new settings"
+  },
+
+  "optionsResetButton": {
+    "message": "リセット",
+    "description": "button to restore default settings"
   },
 
   "optionsApplySuccessMessage": {

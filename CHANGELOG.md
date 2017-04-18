@@ -1,3 +1,15 @@
+# 0.2.6
+- *changed* localization key "notificationContent" to "notificationMessage"
+- *changed* setting-updating strategy
+- *changed* move to babili instead of original babel-env-preset
+- *add* custom notification title and message
+- *removed* icon-changing feature
+
+# 0.2.5
+- *change* reverse counter
+- *add* options' value validation
+- minor syntax changes
+
 # 0.2.4
 - *changed* icon
 - *disabled* icon changing feature

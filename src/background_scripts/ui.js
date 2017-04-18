@@ -1,14 +1,15 @@
-var paths = require("../configs/paths")
 var storage = require("./storage")
+var timePacket = require("./timePacket")
+var paths = require("../configs/paths")
+var defaultValues = require("../configs/defaults")
 
-const noticeParams = {
+let notificationParams = {
     type: 'basic',
     iconUrl: browser.extension.getURL(paths.notificationIcon),
-    title: browser.i18n.getMessage("notificationTitle"),
-    message: browser.i18n.getMessage("notificationContent")
+    title: defaultValues.title,
+    message: defaultValues.message
 }
-
-const notificationID = 'eyes-alarm-n'
+let notificationID = 'eyes-alarm-n'
 
 var ui = {
     icon: {
@@ -20,8 +21,23 @@ var ui = {
         }
     },
     notice: {
+        checkCustomExists(callback) {
+            let storageKeys = ['title', 'message']
+
+            browser.storage.local.get(storageKeys)
+                .then(result => {
+                    storageKeys.forEach(key => {
+                        if (result[key]) {
+                            notificationParams[key] = result[key]
+                        }
+                    })
+                    callback()
+                })
+        },
         create() {
-            browser.notifications.create(notificationID, noticeParams)
+            ui.notice.checkCustomExists(() => {
+                browser.notifications.create(notificationID, notificationParams)
+            })
         },
         clear() {
             browser.notifications.clear(notificationID)
@@ -33,10 +49,7 @@ var ui = {
         },
         sync() {
             if (browser.extension.getViews({ type: "popup" }).length) {
-                browser.runtime.sendMessage({
-                    time: storage.store.passedMinutes,
-                    reading: storage.store.isReading
-                }).catch(err => { console.error(err) })
+                browser.runtime.sendMessage(timePacket()).catch(err => { console.error(err) })
             }
         }
     }

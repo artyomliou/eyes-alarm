@@ -18,7 +18,8 @@ var clock = {
             if (!clock.dom) {
                 clock.dom = document.querySelector("#monitor")
             }
-            clock.dom.innerText = formatTime(msg.time)
+            let remain = msg.limit - msg.time
+            clock.dom.innerText = formatTime(remain)
             clock.dom.classList.toggle('warning', !msg.reading)
         }
         return true;

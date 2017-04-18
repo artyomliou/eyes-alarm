@@ -19,7 +19,7 @@
     "description": "Title of the time-to-break notification."
   },
 
-  "notificationContent": {
+  "notificationMessage": {
     "message": "일어나서  좀  움직입니다. 뭘 좀 마셔요.",
     "description": "Tells the user what can they do"
   },
@@ -34,9 +34,24 @@
     "description": "time for break"
   },
 
+   "optionsNotificationTitleLabel": {
+    "message": "Notification's title",
+    "description": "notification's title"
+  },
+
+  "optionsNotificationMessageLabel": {
+    "message": "Notification's content",
+    "description": "content in notification"
+  },
+
   "optionsApplyButton": {
     "message": "확인",
     "description": "button to apply new settings"
+  },
+
+  "optionsResetButton": {
+    "message": "Reset",
+    "description": "button to reset default settings"
   },
 
   "optionsApplySuccessMessage": {

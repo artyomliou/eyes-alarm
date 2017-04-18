@@ -19,7 +19,7 @@
     "description": "Title of the time-to-break notification."
   },
 
-  "notificationContent": {
+  "notificationMessage": {
     "message": "How about a cup of tea?",
     "description": "Tells the user what can they do"
   },
@@ -33,10 +33,25 @@
     "message": "Break time(Minutes)",
     "description": "time for break"
   },
+
+  "optionsNotificationTitleLabel": {
+    "message": "Notification's title",
+    "description": "notification's title"
+  },
+
+  "optionsNotificationMessageLabel": {
+    "message": "Notification's content",
+    "description": "content in notification"
+  },
   
   "optionsApplyButton": {
     "message": "Apply",
     "description": "button to apply new settings"
+  },
+
+  "optionsResetButton": {
+    "message": "Reset",
+    "description": "button to restore default settings"
   },
 
   "optionsApplySuccessMessage": {

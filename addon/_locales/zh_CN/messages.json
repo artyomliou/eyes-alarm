@@ -19,7 +19,7 @@
     "description": "Title of the time-to-break notification."
   },
 
-  "notificationContent": {
+  "notificationMessage": {
     "message": "站起来走一走、喝点东西吧",
     "description": "Tells the user what can they do"
   },
@@ -34,9 +34,24 @@
     "description": "time for break"
   },
 
+  "optionsNotificationTitleLabel": {
+    "message": "通知的标题",
+    "description": "notification's title"
+  },
+
+  "optionsNotificationMessageLabel": {
+    "message": "通知的内容",
+    "description": "content in notification"
+  },
+
   "optionsApplyButton": {
     "message": "套用",
     "description": "button to apply new settings"
+  },
+
+  "optionsResetButton": {
+    "message": "重设",
+    "description": "button to restore default settings"
   },
 
   "optionsApplySuccessMessage": {

@@ -3,5 +3,7 @@ module.exports = {
     passedMinutes: 0,
     breakTimeAmount: 10,
     readingTimeAmount: 50,
-    idleDetectionInterval: 1200
+    idleDetectionInterval: 1200,
+    title: browser.i18n.getMessage("notificationTitle"),
+    message: browser.i18n.getMessage("notificationMessage")
 }
