@@ -1,4 +1,4 @@
-require("../styles/options_entry.less")
+require("../styles/options_entry.sass")
 var options = require('./options')
 var page = require('./page')
 var nodes = require('./nodes')

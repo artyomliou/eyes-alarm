@@ -24,9 +24,9 @@ module.exports = {
   module: {
     rules: [
       { test: /\.pug$/, loader: 'pug-loader'},
-      { test: /\.less$/, use: ExtractTextPlugin.extract({
+      { test: /\.sass$/, use: ExtractTextPlugin.extract({
           fallback: "style-loader",
-          use: "css-loader!less-loader"
+          use: "css-loader!sass-loader"
         })
       },
       { test: /\.(png|jpg|jpeg|gif|woff2)$/, loader: 'file-loader' },

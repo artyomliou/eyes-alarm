@@ -1,24 +1,22 @@
-@import "classes.less";
-@import "bulma/sass/grid/form";
-@import "bulma/sass/grid/button";
-@import "bulma/sass/grid/notification";
+@import "classes"
+@import "~bulma/sass/utilities/_all"
+@import "~bulma/sass/elements/form"
+@import "~bulma/sass/elements/button"
+@import "~bulma/sass/elements/notification"
 
 span,
 label,
 button,
 input,
-textarea {
-    font-size: 16px;
-}
+textarea
+    font-size: 16px
 
 // because default width of option page in Chrome is more narrow
 // than Firefox's one
 // so need to detect the width of option page
 // if width is more than 400px, it's running on firefox
 // and the width setting should be ignored
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 400px) 
     input[type="text"],
-    textarea {
-        max-width: none;
-    }
-}
+    textarea
+        max-width: none

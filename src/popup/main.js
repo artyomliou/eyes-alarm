@@ -1,4 +1,4 @@
-require("../styles/popup_entry.less")
+require("../styles/popup_entry.sass")
 var clock = require("./clock")
 
 
