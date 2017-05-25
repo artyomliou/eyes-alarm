@@ -11,7 +11,7 @@ const reflect = {
     title_label: 'optionsNotificationTitleLabel',
     message_label: 'optionsNotificationMessageLabel',
     soundEnabled_label: 'optionsSoundEnabledLabel',
-    customSoundURL_label: 'optionsCustomSoundURLLabel',
+    soundPath_label: 'optionsSoundPathLabel',
     apply: 'optionsApplyButton',
     reset: 'optionsResetButton'
 }
@@ -23,7 +23,7 @@ const storageKeys = [
     'title',
     'message',
     'soundEnabled',
-    'customSoundURL'
+    'soundPath'
 ]
 
 var page = {
@@ -43,7 +43,17 @@ var page = {
             browser.storage.local.get(storageKeys)
                 .then(result => {
                     storageKeys.forEach(key => {
-                        nodes.getDOM(key).value = result[key] || defaultValues[key]
+                        let node = nodes.getDOM(key)
+                        let value = result[key]  || defaultValues[key]
+                        switch (node.type) {
+                            case 'checkbox':
+                                nodes.getDOM(key).checked = value
+                                break;
+                            default:
+                                nodes.getDOM(key).value = value
+                                break;
+                        }
+                        
                     })
                 })
                 .catch(err => {
@@ -57,8 +67,19 @@ var page = {
             storageKeys.forEach(key => {
                 let node = nodes.getDOM(key)
                 let attrs = node.attributes
-                if (attrs.type && attrs.type.value === 'number') {
-                    set[key] = node.valueAsNumber
+
+                if (attrs.type) {
+                    switch (attrs.type.value) {
+                        case 'number':
+                            set[key] = node.valueAsNumber
+                            break;
+                        case 'checkbox':
+                            set[key] = node.checked
+                            break;
+                        default:
+                            set[key] = node.value
+                            break;
+                    }
                 } else {
                     set[key] = node.value
                 }
@@ -67,6 +88,15 @@ var page = {
         },
         dom() {
             return Array.from(storageKeys.map(key => nodes.getDOM(key)))
+        }
+    },
+    button: {
+        toggleLoading (isLoading = '') {
+            if (isLoading === '') {
+                nodes.getDOM('apply').classList.toggle('is-loading')
+            } else {
+                nodes.getDOM('apply').classList.toggle('is-loading', isLoading)
+            }
         }
     }
 }

@@ -7,5 +7,5 @@ module.exports = {
     title: browser.i18n.getMessage("notificationTitle"),
     message: browser.i18n.getMessage("notificationMessage"),
     soundEnabled: false,
-    customSoundURL: ''
+    soundPath: ''
 }

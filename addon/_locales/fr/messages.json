@@ -1,46 +1,46 @@
 {
   "extensionName": {
-    "message": "Eyes Alarm",
+    "message": "Alarme visuelle",
     "description": "Name of the extension."
   },
 
   "extensionDescription": {
-    "message": "Notice you it's time to take a break",
+    "message": "Vous préviens qu'il est temps de prendre une pause",
     "description": "Description of the extension."
   },
 
   "authorName": {
-    "message": "Yves Liou",
+    "message": "Yoann Anciaux",
     "description": "author's name"
   },
 
   "notificationTitle": {
-    "message": "Time to break",
+    "message": "Une pause s'impose !",
     "description": "Title of the time-to-break notification."
   },
 
   "notificationMessage": {
-    "message": "How about a cup of tea?",
+    "message": "Que diriez-vous d'une tasse de thé ?",
     "description": "Tells the user what can they do"
   },
 
   "optionsWorktimeLabel": {
-    "message": "Reading time(Minutes)",
+    "message": "Temps devant l'écran (Minutes)",
     "description": "time for reading (using eyes)"
   },
 
   "optionsBreaktimeLabel": {
-    "message": "Break time(Minutes)",
+    "message": "Temps de pause (Minutes)",
     "description": "time for break"
   },
 
   "optionsNotificationTitleLabel": {
-    "message": "Notification's title",
+    "message": "Titre de la notification",
     "description": "notification's title"
   },
 
   "optionsNotificationMessageLabel": {
-    "message": "Notification's content",
+    "message": "Contenu de la notification",
     "description": "content in notification"
   },
 
@@ -53,19 +53,19 @@
     "message": "Path of sound",
     "description": "url/path of the sound file specified"
   },
-  
+
   "optionsApplyButton": {
-    "message": "Apply",
+    "message": "Appliquer",
     "description": "button to apply new settings"
   },
 
   "optionsResetButton": {
-    "message": "Reset",
+    "message": "Réinitialiser",
     "description": "button to restore default settings"
   },
 
   "optionsApplySuccessMessage": {
-    "message": "Succeeded, the alarm have restarted",
+    "message": "Les changements ont été appliqués avec succès, l'alarme a été redémarrée",
     "description": "successfully applied new settings, also the alarm had been reset"
   }
 }

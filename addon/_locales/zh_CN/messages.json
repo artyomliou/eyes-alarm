@@ -44,6 +44,16 @@
     "description": "content in notification"
   },
 
+  "optionsSoundEnabledLabel": {
+    "message": "启用音效",
+    "description": "enable to play sound when alarm is fired"
+  },
+
+  "optionsSoundPathLabel": {
+    "message": "音频档案路径",
+    "description": "url/path of the sound file specified"
+  },
+
   "optionsApplyButton": {
     "message": "套用",
     "description": "button to apply new settings"

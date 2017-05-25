@@ -35,26 +35,25 @@ html
         section.section
             .container
                 .field
+                    label.label(id="soundEnabled_label")
                     p.control
                         input(
                             id="soundEnabled"
                             type="checkbox")
-                        span#soundEnabled_label
-                .box.is-hidden#customSoundPanel
+                        span
+                .box.is-hidden
                     .field
-                        p.control
-                            input(
-                                id="selectSoundFile"
-                                type="file")
-                        label.label(id="customSoundURL_label")
+                        label.label(id="soundPath_label")
                         p.control
                             input.input.is-small(
-                                id="customSoundURL"
+                                id="soundPath"
                                 type="text")
+        br
         section.section
             .flex-container.center.horizontal
                 button.item.button.is-success(id="apply")
                 button.item.button.is-link(id="reset")
+            br
             .container
                 .notification#msg
         script(src="browser-polyfill.js")

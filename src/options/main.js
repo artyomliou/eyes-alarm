@@ -7,4 +7,3 @@ document.addEventListener("DOMContentLoaded", page.render);
 nodes.getDOM("apply").addEventListener("click", options.save);
 nodes.getDOM("reset").addEventListener("click", options.reset);
 nodes.getDOM("soundEnabled").addEventListener("click", options.switchSelectButtonStatus);
-nodes.getDOM("selectSoundFile").addEventListener("change", options.reset);

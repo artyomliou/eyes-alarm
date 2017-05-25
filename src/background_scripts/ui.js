@@ -2,7 +2,7 @@ var storage = require("./storage")
 var timePacket = require("./timePacket")
 var paths = require("../configs/paths")
 var defaultValues = require("../configs/defaults")
-const defaultSoundURL = require("file-loader!../178646__zabuhailo__bronzebell1.wav")
+var defaultSoundPath = require('file-loader!../178646__zabuhailo__bronzebell1.wav')
 
 let notificationParams = {
     type: 'basic',
@@ -40,9 +40,9 @@ var ui = {
                 // creating
                 browser.notifications.create(notificationID, notificationParams)
             })
-            ui.notice.checkCustomDataExists(['soundEnabled', 'customSoundURL'], (keys, result) => {
+            ui.notice.checkCustomDataExists(['soundEnabled', 'soundPath'], (keys, result) => {
                 if (result.soundEnabled) {
-                    sound.play(result.customSoundURL)
+                    ui.sound.play(result.soundPath)
                 }
             })
         },
@@ -61,17 +61,32 @@ var ui = {
         }
     },
     sound: {
-        play (url = '') {
+        /**
+         * if user doesnt specify the sound to play, play default one
+         * if user specified a path, play it
+         * @param {String} specifiedPath 
+         */
+        judgePath (specifiedPath = '') {
             try {
-                if (url) {
-                    (new Audio(url)).play()
-                } else {
-                    (new Audio(defaultSoundURL)).play()
-                }
+                new URL(specifiedPath)
+                return specifiedPath
+            } catch (e) {
+                return defaultSoundPath
             }
-            catch (err) {
-                console.error(err)
-            }
+        },
+        /**
+         * Audio contructor accept a URLString
+         * means that it will try to download the file
+         * @param {String} specifiedPath 
+         */
+        play (specifiedPath) {
+            try {
+                let executablePath = ui.sound.judgePath(specifiedPath)
+                let audio = new Audio(executablePath)
+                audio.play()
+            } catch (err) {
+                console.log(err)
+            }            
         }
     }
 }

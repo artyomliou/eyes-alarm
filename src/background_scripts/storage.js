@@ -6,7 +6,7 @@ const storageKeys = [
     'readingTimeAmount',
     'idleDetectionInterval',
     'soundEnabled',
-    'customSoundURL'
+    'soundPath'
 ]
 
 var storage = {

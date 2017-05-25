@@ -4,6 +4,12 @@ var nodes = require('./nodes')
 var defaultValues = require('../configs/defaults')
 
 var options = {
+    /**
+     * gather data from all specified columns
+     * (specify by storageKeys of page.js)
+     * then save them
+     * @param {*} e 
+     */
     save(e) {
         e.preventDefault()
         let data = page.inputs.get()
@@ -17,24 +23,14 @@ var options = {
 
         options.apply(timestamp, data)
     },
+
     /**
-     * after select a file for alarm's sound
-     * retrieve the path of file display it in "customSoundURL"
+     * switch status whether sound-related columns is editable
      * @param {*} e 
      */
-    saveFilePath(e) {
-        console.log(e)
-    },
     switchSelectButtonStatus(e) {
-        console.log(nodes.getDOM("selectSoundFile"))
-        switch (e.target.value) {
-            case "true":
-                break;
-            default:
-            case "false":
-                
-                break;
-        }
+        let editable = !e.target.checked
+        nodes.getDOM('soundPath').disabled = editable
     },
     /**
      * 重設所有欄位
@@ -66,17 +62,16 @@ var options = {
         }).filter(el => el).length
     },
     apply(timestamp, data, callback = undefined) {
+        page.button.toggleLoading(true) // animation
         browser.storage.local.set(data)
             .then(() => {
-
                 options.msg(timestamp + getLocalString('optionsApplySuccessMessage'), true)
                 callback && callback()
-
+                page.button.toggleLoading(false) // animation
             })
             .catch(err => {
-
                 options.msg(timestamp + err.message, false)
-
+                page.button.toggleLoading(false) // animation
             })
     },
     msg(text, isSuccess) {
