@@ -2,49 +2,59 @@ html
     head
         meta(charset="utf-8")
     body
-        table
-            tr
-                td
-                    label(id="readingTime_label")
-                td
-                    input(id="readingTimeAmount" type="number" min="1" max="180" step="1")
-            tr
-                td
-                    label(id="breakTime_label")
-                td
-                    input(id="breakTimeAmount" type="number" min="1" max="120" step="1")
-            tr
-                td
-                    label(id="title_label")
-                td
-                    input(id="title" type="text")
-            tr
-                td
-                    label(id="message_label")
-                td
-                    textarea(id="message" rows="3")
-            tr
-                td
-                    label(id="soundEnabled_label")
-                td
-                    input(id="soundEnabled" type="checkbox")
-        table
-            legend
-                tr
-                    td
-                        label(id="customSoundURL_label")
-                    td
-                        input(id="selectSoundFile" type="file")
-                tr
-                    td
-                    td
-                        input(id="customSoundURL" type="text")
-        table
-            tr
-                td
-                td
-                    button(id="apply" type="submit")
-                    button(id="reset" type="submit")
-        .container.vertical.center
-            span(id="msg")
+        section.section
+            .container
+                .field
+                    label.label(id="readingTime_label")
+                    p.control
+                        input.input.is-small(
+                            id="readingTimeAmount"
+                            type="number"
+                            min="1"
+                            max="180"
+                            step="1")
+                    label.label(id="breakTime_label")
+                    p.control
+                        input.input.is-small(
+                            id="breakTimeAmount"
+                            type="number"
+                            min="1"
+                            max="120"
+                            step="1")
+                    label.label(id="title_label")
+                    p.control
+                        input.input.is-small(
+                            id="title"
+                            type="text")
+                    label.label(id="message_label")
+                    p.control
+                        input.input.is-small(
+                            id="message"
+                            type="text"
+                            rows="2")
+        section.section
+            .container
+                .field
+                    p.control
+                        input(
+                            id="soundEnabled"
+                            type="checkbox")
+                        span#soundEnabled_label
+                .box.is-hidden#customSoundPanel
+                    .field
+                        p.control
+                            input(
+                                id="selectSoundFile"
+                                type="file")
+                        label.label(id="customSoundURL_label")
+                        p.control
+                            input.input.is-small(
+                                id="customSoundURL"
+                                type="text")
+        section.section
+            .flex-container.center.horizontal
+                button.item.button.is-success(id="apply")
+                button.item.button.is-link(id="reset")
+            .container
+                .notification#msg
         script(src="browser-polyfill.js")

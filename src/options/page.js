@@ -10,6 +10,8 @@ const reflect = {
     breakTime_label: 'optionsBreakTimeLabel',
     title_label: 'optionsNotificationTitleLabel',
     message_label: 'optionsNotificationMessageLabel',
+    soundEnabled_label: 'optionsSoundEnabledLabel',
+    customSoundURL_label: 'optionsCustomSoundURLLabel',
     apply: 'optionsApplyButton',
     reset: 'optionsResetButton'
 }

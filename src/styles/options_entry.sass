@@ -1,15 +1,11 @@
 @import "classes"
+@import "flex-container"
 @import "~bulma/sass/utilities/_all"
+@import "~bulma/sass/elements/box"
 @import "~bulma/sass/elements/form"
 @import "~bulma/sass/elements/button"
 @import "~bulma/sass/elements/notification"
 
-span,
-label,
-button,
-input,
-textarea
-    font-size: 16px
 
 // because default width of option page in Chrome is more narrow
 // than Firefox's one
@@ -17,6 +13,10 @@ textarea
 // if width is more than 400px, it's running on firefox
 // and the width setting should be ignored
 @media screen and (max-width: 400px) 
-    input[type="text"],
-    textarea
-        max-width: none
+    input,
+    .box
+        max-width: 85vw !important
+@media screen and (min-width: 401px) 
+    input,
+    .box
+        max-width: 400px !important

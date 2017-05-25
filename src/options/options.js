@@ -36,6 +36,10 @@ var options = {
                 break;
         }
     },
+    /**
+     * 重設所有欄位
+     * @param {*} e 
+     */
     reset(e) {
         e.preventDefault()
 
@@ -75,11 +79,6 @@ var options = {
 
             })
     },
-    /**
-     * 
-     * @param {*} text 
-     * @param {*} isSuccess 
-     */
     msg(text, isSuccess) {
         let n = nodes.getDOM('msg')
         n.innerText = text
