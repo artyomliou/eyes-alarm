@@ -5,5 +5,7 @@ module.exports = {
     readingTimeAmount: 50,
     idleDetectionInterval: 1200,
     title: browser.i18n.getMessage("notificationTitle"),
-    message: browser.i18n.getMessage("notificationMessage")
+    message: browser.i18n.getMessage("notificationMessage"),
+    soundEnabled: false,
+    customSoundURL: ''
 }

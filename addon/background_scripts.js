@@ -76,7 +76,7 @@ const env=__webpack_require__(2);function handleResponse(a){console.info(a)}func
 /* 1 */
 /***/ (function(module, exports) {
 
-module.exports={isReading:!0,passedMinutes:0,breakTimeAmount:10,readingTimeAmount:50,idleDetectionInterval:1200,title:browser.i18n.getMessage("notificationTitle"),message:browser.i18n.getMessage("notificationMessage")};
+module.exports={isReading:!0,passedMinutes:0,breakTimeAmount:10,readingTimeAmount:50,idleDetectionInterval:1200,title:browser.i18n.getMessage("notificationTitle"),message:browser.i18n.getMessage("notificationMessage"),soundEnabled:!1,customSoundURL:""};
 
 /***/ }),
 /* 2 */
@@ -88,7 +88,7 @@ module.exports={debugMode:!0};
 /* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const defaultValues=__webpack_require__(1),storageKeys=['isReading','passedMinutes','breakTimeAmount','readingTimeAmount','idleDetectionInterval'];var storage={store:{},load({callback:a,params:b}){browser.storage.local.get(null).then((c)=>{storageKeys.forEach((d)=>{storage.store[d]=c[d]||defaultValues[d]}),a&&a(b)}).catch((c)=>{console.error(c)})}};module.exports=storage;
+const defaultValues=__webpack_require__(1),storageKeys=['isReading','passedMinutes','breakTimeAmount','readingTimeAmount','idleDetectionInterval','soundEnabled','customSoundURL'];var storage={store:{},load({callback:a,params:b}){browser.storage.local.get(null).then((c)=>{storageKeys.forEach((d)=>{storage.store[d]=c[d]||defaultValues[d]}),a&&a(b)}).catch((c)=>{console.error(c)})}};module.exports=storage;
 
 /***/ }),
 /* 4 */,
@@ -113,7 +113,7 @@ var storage=__webpack_require__(3),timePacket=()=>{return{time:storage.store.pas
 /* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var storage=__webpack_require__(3),timePacket=__webpack_require__(7),paths=__webpack_require__(16),defaultValues=__webpack_require__(1);let notificationParams={type:"basic",iconUrl:browser.extension.getURL(paths.notificationIcon),title:defaultValues.title,message:defaultValues.message},notificationID="eyes-alarm-n";var ui={icon:{switch(){}},notice:{checkCustomExists(a){let b=["title","message"];browser.storage.local.get(b).then((c)=>{b.forEach((d)=>{c[d]&&(notificationParams[d]=c[d])}),a()})},create(){ui.notice.checkCustomExists(()=>{browser.notifications.create(notificationID,notificationParams)})},clear(){browser.notifications.clear(notificationID)}},clock:{switch(a){storage.store.isReading=a},sync(){browser.extension.getViews({type:"popup"}).length&&browser.runtime.sendMessage(timePacket()).catch((a)=>{console.error(a)})}}};module.exports=ui;
+var storage=__webpack_require__(3),timePacket=__webpack_require__(7),paths=__webpack_require__(16),defaultValues=__webpack_require__(1);const defaultSoundURL=__webpack_require__(19);let notificationParams={type:"basic",iconUrl:browser.extension.getURL(paths.notificationIcon),title:defaultValues.title,message:defaultValues.message},notificationID="eyes-alarm-n";var ui={icon:{switch(){}},notice:{checkCustomDataExists(a,b){browser.storage.local.get(a).then((c)=>{b(a,c)})},create(){ui.notice.checkCustomDataExists(["title","message"],(a,b)=>{a.forEach((c)=>{b[c]&&(notificationParams[c]=b[c])}),browser.notifications.create(notificationID,notificationParams)}),ui.notice.checkCustomDataExists(["soundEnabled","customSoundURL"],(a,b)=>{b.soundEnabled&&sound.play(b.customSoundURL)})},clear(){browser.notifications.clear(notificationID)}},clock:{switch(a){storage.store.isReading=a},sync(){browser.extension.getViews({type:"popup"}).length&&browser.runtime.sendMessage(timePacket()).catch((a)=>{console.error(a)})}},sound:{play(a=""){try{a?new Audio(a).play():new Audio(defaultSoundURL).play()}catch(b){console.error(b)}}}};module.exports=ui;
 
 /***/ }),
 /* 9 */,
@@ -137,6 +137,14 @@ const{handleResponse}=__webpack_require__(0);var ui=__webpack_require__(8),idle=
 /***/ (function(module, exports) {
 
 var paths={greenButton:"icons/set-timer-button.png",redButton:"icons/set-timer-button-red.png",notificationIcon:"icons/icon-pad@128.png",coloredButton:"icons/icon@128.png"};module.exports=paths;
+
+/***/ }),
+/* 17 */,
+/* 18 */,
+/* 19 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "a5d97ad536ac3f7b1accf037828bafed.wav";
 
 /***/ })
 /******/ ]);

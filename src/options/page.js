@@ -2,6 +2,8 @@ const { toTitleCase, getLocalString } = require("../utility")
 const defaultValues = require('../configs/defaults')
 var nodes = require('./nodes')
 
+// used to map a DOM's key to the locallized string
+// to render the options page
 const reflect = {
     // [dom key]: [locale string key]
     readingTime_label: 'optionsWorkTimeLabel',
@@ -11,11 +13,15 @@ const reflect = {
     apply: 'optionsApplyButton',
     reset: 'optionsResetButton'
 }
+
+// used to retrieve data from specified nodes
 const storageKeys = [
     'breakTimeAmount',
     'readingTimeAmount',
     'title',
-    'message'
+    'message',
+    'soundEnabled',
+    'customSoundURL'
 ]
 
 var page = {

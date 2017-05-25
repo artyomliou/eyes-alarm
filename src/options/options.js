@@ -17,6 +17,25 @@ var options = {
 
         options.apply(timestamp, data)
     },
+    /**
+     * after select a file for alarm's sound
+     * retrieve the path of file display it in "customSoundURL"
+     * @param {*} e 
+     */
+    saveFilePath(e) {
+        console.log(e)
+    },
+    switchSelectButtonStatus(e) {
+        console.log(nodes.getDOM("selectSoundFile"))
+        switch (e.target.value) {
+            case "true":
+                break;
+            default:
+            case "false":
+                
+                break;
+        }
+    },
     reset(e) {
         e.preventDefault()
 
@@ -56,6 +75,11 @@ var options = {
 
             })
     },
+    /**
+     * 
+     * @param {*} text 
+     * @param {*} isSuccess 
+     */
     msg(text, isSuccess) {
         let n = nodes.getDOM('msg')
         n.innerText = text

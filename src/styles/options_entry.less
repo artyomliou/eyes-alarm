@@ -1,11 +1,7 @@
-@import "table.less";
-@import "container.less";
 @import "classes.less";
-@import "colors.less";
-
-* {
-    font-family: 'Microsoft JhengHei';
-}
+@import "bulma/sass/grid/form";
+@import "bulma/sass/grid/button";
+@import "bulma/sass/grid/notification";
 
 span,
 label,
@@ -15,14 +11,11 @@ textarea {
     font-size: 16px;
 }
 
-input[type="number"],
-input[type="text"],
-textarea {
-    width: 100%;
-    max-width: 300px;
-}
-
-// this is for ext's setting layout in Chrome
+// because default width of option page in Chrome is more narrow
+// than Firefox's one
+// so need to detect the width of option page
+// if width is more than 400px, it's running on firefox
+// and the width setting should be ignored
 @media screen and (max-width: 400px) {
     input[type="text"],
     textarea {

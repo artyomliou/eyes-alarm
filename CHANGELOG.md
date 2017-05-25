@@ -1,3 +1,7 @@
+# 0.2.7
+- *add* french translation by Anciaux Yoann
+- *add* default alarm sound by Zabuhailo
+
 # 0.2.6
 - *changed* localization key "notificationContent" to "notificationMessage"
 - *changed* setting-updating strategy

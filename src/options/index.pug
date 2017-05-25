@@ -25,6 +25,23 @@ html
                     textarea(id="message" rows="3")
             tr
                 td
+                    label(id="soundEnabled_label")
+                td
+                    input(id="soundEnabled" type="checkbox")
+        table
+            legend
+                tr
+                    td
+                        label(id="customSoundURL_label")
+                    td
+                        input(id="selectSoundFile" type="file")
+                tr
+                    td
+                    td
+                        input(id="customSoundURL" type="text")
+        table
+            tr
+                td
                 td
                     button(id="apply" type="submit")
                     button(id="reset" type="submit")

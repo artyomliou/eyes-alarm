@@ -1,6 +1,6 @@
 {
   "name": "eyes-alarm",
-  "version": "0.2.6",
+  "version": "0.2.7",
   "description": "Notify it's time to rest your eyes.",
   "main": "addon/content_script.js",
   "repository": "https://github.com/bros0215/eyes-alarm.git",
@@ -28,5 +28,8 @@
     "watch": "webpack --watch --color --config ./webpack.config.js",
     "zipf": "bestzip zip/firefox.zip addon/*",
     "zipc": "bestzip zip/chrome.zip addon/*"
+  },
+  "dependencies": {
+    "bulma": "^0.4.1"
   }
 }

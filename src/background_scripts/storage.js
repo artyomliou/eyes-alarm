@@ -4,7 +4,9 @@ const storageKeys = [
     'passedMinutes',
     'breakTimeAmount',
     'readingTimeAmount',
-    'idleDetectionInterval'
+    'idleDetectionInterval',
+    'soundEnabled',
+    'customSoundURL'
 ]
 
 var storage = {

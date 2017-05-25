@@ -31,6 +31,7 @@ or your computer is locked up
 - Chinese `Yves Liou`
 - Japanese `Jie Ting Wu`
 - Korean `Winnie Wu`
+- French `Anciaux Yoann`
 
 If you want to add a localization, plz check [*HERE*](https://github.com/bros0215/eyes-alarm/tree/master/addon/_locales)
 By reference english localization you may be able to make your own localization
@@ -64,3 +65,4 @@ if everything seems to be OK, i will make update ASAP and add your name here
 - icon[`set-timer-button`, `notification`](http://www.flaticon.com/free-icon/set-timer-button_61017) Icon made by Google from www.flaticon.com 
 - icon[`Refresh`](http://www.flaticon.com/free-icon/refresh_118799) Icon made by Lucy G from www.flaticon.com 
 - icon[`Settings`](http://www.flaticon.com/free-icon/settings_126472) Icon made by Gregor Cresnar from www.flaticon.com
+- sound(http://www.freesound.org/people/Zabuhailo/sounds/178646/) by Zabuhailo

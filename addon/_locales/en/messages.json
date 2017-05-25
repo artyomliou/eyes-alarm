@@ -43,6 +43,16 @@
     "message": "Notification's content",
     "description": "content in notification"
   },
+
+  "optionsSoundEnabledLabel": {
+    "message": "Enable sound",
+    "description": "enable to play sound when alarm is fired"
+  },
+
+  "optionsCustomSoundURLLabel": {
+    "message": "Path of sound",
+    "description": "url/path of the sound file specified"
+  },
   
   "optionsApplyButton": {
     "message": "Apply",

@@ -2,6 +2,7 @@ var storage = require("./storage")
 var timePacket = require("./timePacket")
 var paths = require("../configs/paths")
 var defaultValues = require("../configs/defaults")
+const defaultSoundURL = require("file-loader!../178646__zabuhailo__bronzebell1.wav")
 
 let notificationParams = {
     type: 'basic',
@@ -21,22 +22,28 @@ var ui = {
         }
     },
     notice: {
-        checkCustomExists(callback) {
-            let storageKeys = ['title', 'message']
-
-            browser.storage.local.get(storageKeys)
+        checkCustomDataExists(keys, callback) {
+            browser.storage.local.get(keys)
                 .then(result => {
-                    storageKeys.forEach(key => {
-                        if (result[key]) {
-                            notificationParams[key] = result[key]
-                        }
-                    })
-                    callback()
+                    callback(keys, result)
                 })
         },
         create() {
-            ui.notice.checkCustomExists(() => {
+            ui.notice.checkCustomDataExists(['title', 'message'], (keys, result) => {
+                // rewrite data for creating notification
+                keys.forEach(key => {
+                    if (result[key]) {
+                        notificationParams[key] = result[key]
+                    }
+                })
+
+                // creating
                 browser.notifications.create(notificationID, notificationParams)
+            })
+            ui.notice.checkCustomDataExists(['soundEnabled', 'customSoundURL'], (keys, result) => {
+                if (result.soundEnabled) {
+                    sound.play(result.customSoundURL)
+                }
             })
         },
         clear() {
@@ -50,6 +57,20 @@ var ui = {
         sync() {
             if (browser.extension.getViews({ type: "popup" }).length) {
                 browser.runtime.sendMessage(timePacket()).catch(err => { console.error(err) })
+            }
+        }
+    },
+    sound: {
+        play (url = '') {
+            try {
+                if (url) {
+                    (new Audio(url)).play()
+                } else {
+                    (new Audio(defaultSoundURL)).play()
+                }
+            }
+            catch (err) {
+                console.error(err)
             }
         }
     }
