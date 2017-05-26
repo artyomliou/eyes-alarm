@@ -66,7 +66,7 @@ var page = {
              */
             toggleEditable(e = null) {
                 let disabled = false
-                let switchList = ['soundPath', 'soundSelection', 'soundVolume']
+                let switchList = ['soundPath', 'soundVolume']
 
                 if (e === null) {
                     disabled = !nodes.getDOM('soundEnabled').checked

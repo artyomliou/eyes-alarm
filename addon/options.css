@@ -1248,5 +1248,6 @@ input[type="submit"].button {
 
 @media screen and (min-width: 401px) {
   input,
-  .box {
+  .box,
+  .flex-container {
     max-width: 400px !important; } }
