@@ -8,33 +8,27 @@ var options = {
      * gather data from all specified columns
      * (specify by storageKeys of page.js)
      * then save them
-     * @param {*} e 
+     * @param {Event} e 
      */
     save(e) {
+        page.button.loading.toggle(true) // animation
         e.preventDefault()
+        
         let data = page.inputs.get()
         let dom = page.inputs.dom()
         let timestamp = `[${data.last_modified}] `
+        let stopLoadingAnimation = page.button.loading.toggleFactory(false)
 
         if (options.checkInputErrorExists(dom)) {
             options.msg('', false)
             return;
         }
 
-        options.apply(timestamp, data)
-    },
-
-    /**
-     * switch status whether sound-related columns is editable
-     * @param {*} e 
-     */
-    switchSelectButtonStatus(e) {
-        let editable = !e.target.checked
-        nodes.getDOM('soundPath').disabled = editable
+        options.apply(timestamp, data, stopLoadingAnimation, stopLoadingAnimation)
     },
     /**
      * 重設所有欄位
-     * @param {*} e 
+     * @param {Event} e 
      */
     reset(e) {
         e.preventDefault()
@@ -48,6 +42,10 @@ var options = {
             function updateOptionsInputs() { page.inputs.set() }
         )
     },
+    /**
+     * 根據input type 檢查資料是否合乎要求
+     * @param {*} dom 
+     */
     checkInputErrorExists(dom) {
         return dom.map(el => {
 
@@ -61,17 +59,23 @@ var options = {
 
         }).filter(el => el).length
     },
-    apply(timestamp, data, callback = undefined) {
-        page.button.toggleLoading(true) // animation
+    /**
+     * save data into local storage
+     * @param {String} timestamp 
+     * @param {Object} data 
+     * @param {Function} successCallback 
+     * @param {Function} failCallback
+     */
+    apply(timestamp, data, successCallback = undefined, failCallback = undefined) {
+        
         browser.storage.local.set(data)
             .then(() => {
                 options.msg(timestamp + getLocalString('optionsApplySuccessMessage'), true)
-                callback && callback()
-                page.button.toggleLoading(false) // animation
+                successCallback && successCallback()
             })
             .catch(err => {
                 options.msg(timestamp + err.message, false)
-                page.button.toggleLoading(false) // animation
+                failCallback && failCallback()
             })
     },
     msg(text, isSuccess) {

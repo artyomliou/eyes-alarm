@@ -12,8 +12,14 @@ let notificationParams = {
 }
 let notificationID = 'eyes-alarm-n'
 
+var audioElement = new Audio(defaultSoundPath)
+
 var ui = {
     icon: {
+        /**
+         * once used to change the color of clock inside popup
+         * @param {Boolean} isGreen 
+         */
         switch(isGreen) {
             /*
             let path = isGreen ? paths.greenButton : paths.redButton
@@ -22,12 +28,22 @@ var ui = {
         }
     },
     notice: {
+        /**
+         * check some custom data if they existed
+         * and passed them to callback for futher process
+         * @param {Array} keys 
+         * @param {Function} callback 
+         */
         checkCustomDataExists(keys, callback) {
             browser.storage.local.get(keys)
                 .then(result => {
                     callback(keys, result)
                 })
         },
+        /**
+         * check if there it's some custom data to rewrite parameters used for showing notifiation
+         * then check again, but this time is for playing sound
+         */
         create() {
             ui.notice.checkCustomDataExists(['title', 'message'], (keys, result) => {
                 // rewrite data for creating notification
@@ -40,20 +56,31 @@ var ui = {
                 // creating
                 browser.notifications.create(notificationID, notificationParams)
             })
-            ui.notice.checkCustomDataExists(['soundEnabled', 'soundPath'], (keys, result) => {
+            ui.notice.checkCustomDataExists(['soundEnabled', 'soundPath', 'soundVolume'], (keys, result) => {
                 if (result.soundEnabled) {
-                    ui.sound.play(result.soundPath)
+                    ui.sound.play(result.soundPath, result.soundVolume)
                 }
             })
         },
+        /**
+         * close notifcation
+         */
         clear() {
             browser.notifications.clear(notificationID)
         }
     },
     clock: {
+        /**
+         * change storage.store.isReading
+         * for indicating whether it's at reading mode
+         * @param {Boolean} isGreen 
+         */
         switch(isGreen) {
             storage.store.isReading = isGreen
         },
+        /**
+         * send time to popup from background_script
+         */
         sync() {
             if (browser.extension.getViews({ type: "popup" }).length) {
                 browser.runtime.sendMessage(timePacket()).catch(err => { console.error(err) })
@@ -62,28 +89,25 @@ var ui = {
     },
     sound: {
         /**
-         * if user doesnt specify the sound to play, play default one
+         * if user doesnt specify the path to play, play default one
          * if user specified a path, play it
-         * @param {String} specifiedPath 
+         * @param {String} path 
          */
-        judgePath (specifiedPath = '') {
-            try {
-                new URL(specifiedPath)
-                return specifiedPath
-            } catch (e) {
-                return defaultSoundPath
+        updatePath (path = '') {
+            if (path && audioElement.src !== path) {
+                audioElement.src = path
             }
         },
         /**
-         * Audio contructor accept a URLString
-         * means that it will try to download the file
-         * @param {String} specifiedPath 
+         * set path and volume
+         * then play
+         * @param {String} path 
          */
-        play (specifiedPath) {
+        play (path, volume) {
             try {
-                let executablePath = ui.sound.judgePath(specifiedPath)
-                let audio = new Audio(executablePath)
-                audio.play()
+                ui.sound.updatePath(path)
+                audioElement.volume = volume
+                audioElement.play()
             } catch (err) {
                 console.log(err)
             }            

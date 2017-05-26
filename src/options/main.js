@@ -3,7 +3,8 @@ var options = require('./options')
 var page = require('./page')
 var nodes = require('./nodes')
 
-document.addEventListener("DOMContentLoaded", page.render);
-nodes.getDOM("apply").addEventListener("click", options.save);
-nodes.getDOM("reset").addEventListener("click", options.reset);
-nodes.getDOM("soundEnabled").addEventListener("click", options.switchSelectButtonStatus);
+document.addEventListener("DOMContentLoaded", page.render)
+nodes.getDOM("apply").addEventListener("click", options.save)
+nodes.getDOM("reset").addEventListener("click", options.reset)
+nodes.getDOM("soundEnabled").addEventListener("click", page.inputs.sound.toggleEditable)
+nodes.getDOM("soundVolume").addEventListener("change", page.labels.sound.volume.set)

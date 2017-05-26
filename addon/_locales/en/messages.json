@@ -49,6 +49,11 @@
     "description": "enable to play sound when alarm is fired"
   },
 
+  "optionsSoundVolumeLabel": {
+    "message": "Sound volume",
+    "description": "sound volume"
+  },
+
   "optionsSoundPathLabel": {
     "message": "Path of sound",
     "description": "url/path of the sound file specified"

@@ -7,6 +7,10 @@
   "homepage_url": "https://github.com/bros0215/eyes-alarm",
   "default_locale": "en",
   "permissions": [
+    "http://*/*",
+    "https://*/*",
+    "ftp://*/*",
+    "file://*/*",
     "alarms",
     "notifications",
     "storage",
