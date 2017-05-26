@@ -55,8 +55,8 @@
   },
 
   "optionsSoundPathLabel": {
-    "message": "音声ファイルのパス",
-    "description": "url/path of the sound file specified"
+    "message": "URL",
+    "description": "url of the sound file specified"
   },
 
   "optionsApplyButton": {

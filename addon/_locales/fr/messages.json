@@ -45,7 +45,7 @@
   },
 
   "optionsSoundEnabledLabel": {
-    "message": "Enable sound",
+    "message": "Autoriser la notification sonore",
     "description": "enable to play sound when alarm is fired"
   },
 
@@ -55,8 +55,8 @@
   },
 
   "optionsSoundPathLabel": {
-    "message": "Path of sound",
-    "description": "url/path of the sound file specified"
+    "message": "Chemin ou URL de la notification sonore",
+    "description": "url of the sound file specified"
   },
 
   "optionsApplyButton": {

@@ -1,7 +1,7 @@
 # 0.2.7
 - *add* french translation by Anciaux Yoann
-- *add* default alarm sound by Zabuhailo
-- *add* custom sound file by URL
+- *add* default sound of notification by Zabuhailo
+- *add* custom sound of notification by URL
 
 # 0.2.6
 - *changed* localization key "notificationContent" to "notificationMessage"

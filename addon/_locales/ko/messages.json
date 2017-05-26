@@ -56,7 +56,7 @@
 
   "optionsSoundPathLabel": {
     "message": "Path of sound",
-    "description": "url/path of the sound file specified"
+    "description": "url of the sound file specified"
   },
 
   "optionsApplyButton": {

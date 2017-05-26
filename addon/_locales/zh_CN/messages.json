@@ -55,8 +55,8 @@
   },
 
   "optionsSoundPathLabel": {
-    "message": "音频档案路径",
-    "description": "url/path of the sound file specified"
+    "message": "音频档案网址",
+    "description": "url of the sound file specified"
   },
 
   "optionsApplyButton": {

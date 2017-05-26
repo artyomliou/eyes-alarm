@@ -76,7 +76,7 @@ const env=__webpack_require__(2);function handleResponse(a){console.info(a)}func
 /* 1 */
 /***/ (function(module, exports) {
 
-module.exports={isReading:!0,passedMinutes:0,breakTimeAmount:10,readingTimeAmount:50,idleDetectionInterval:1200,title:browser.i18n.getMessage("notificationTitle"),message:browser.i18n.getMessage("notificationMessage"),soundEnabled:!1,soundPath:"",soundVolume:1};
+module.exports={isReading:!0,passedMinutes:0,breakTimeAmount:10,readingTimeAmount:50,idleDetectionInterval:1200,title:browser.i18n.getMessage("notificationTitle"),message:browser.i18n.getMessage("notificationMessage"),soundEnabled:!1,soundPath:"",soundVolume:0.5};
 
 /***/ }),
 /* 2 */
@@ -113,7 +113,7 @@ var storage=__webpack_require__(3),timePacket=()=>{return{time:storage.store.pas
 /* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var storage=__webpack_require__(3),timePacket=__webpack_require__(7),paths=__webpack_require__(16),defaultValues=__webpack_require__(1),defaultSoundPath=__webpack_require__(19);let notificationParams={type:"basic",iconUrl:browser.extension.getURL(paths.notificationIcon),title:defaultValues.title,message:defaultValues.message},notificationID="eyes-alarm-n";var audioElement=new Audio(defaultSoundPath),ui={icon:{switch(){}},notice:{checkCustomDataExists(a,b){browser.storage.local.get(a).then((c)=>{b(a,c)})},create(){ui.notice.checkCustomDataExists(["title","message"],(a,b)=>{a.forEach((c)=>{b[c]&&(notificationParams[c]=b[c])}),browser.notifications.create(notificationID,notificationParams)}),ui.notice.checkCustomDataExists(["soundEnabled","soundPath","soundVolume"],(a,b)=>{b.soundEnabled&&ui.sound.play(b.soundPath,b.soundVolume)})},clear(){browser.notifications.clear(notificationID)}},clock:{switch(a){storage.store.isReading=a},sync(){browser.extension.getViews({type:"popup"}).length&&browser.runtime.sendMessage(timePacket()).catch((a)=>{console.error(a)})}},sound:{updatePath(a=""){a&&audioElement.src!==a&&(audioElement.src=a)},play(a,b){try{ui.sound.updatePath(a),audioElement.volume=b,audioElement.play()}catch(c){console.log(c)}}}};module.exports=ui;
+var storage=__webpack_require__(3),timePacket=__webpack_require__(7),{audioElement,defaultSoundPath}=__webpack_require__(25),paths=__webpack_require__(16),defaultValues=__webpack_require__(1);let notificationParams={type:"basic",iconUrl:browser.extension.getURL(paths.notificationIcon),title:defaultValues.title,message:defaultValues.message},notificationID="eyes-alarm-n";var ui={icon:{switch(){}},notice:{checkCustomDataExists(a,b){browser.storage.local.get(a).then((c)=>{b(a,c)})},create(){ui.notice.checkCustomDataExists(["title","message"],(a,b)=>{a.forEach((c)=>{b[c]&&(notificationParams[c]=b[c])}),browser.notifications.create(notificationID,notificationParams)}),ui.notice.checkCustomDataExists(["soundEnabled","soundPath","soundVolume"],(a,b)=>{b.soundEnabled&&ui.sound.play(b.soundPath,b.soundVolume)})},clear(){browser.notifications.clear(notificationID)}},clock:{switch(a){storage.store.isReading=a},sync(){browser.extension.getViews({type:"popup"}).length&&browser.runtime.sendMessage(timePacket()).catch((a)=>{console.error(a)})}},sound:{updatePath(a=""){a?audioElement.src!==a&&(audioElement.src=a):audioElement.src!==defaultSoundPath&&(audioElement.src=defaultSoundPath)},play(a,b){try{ui.sound.updatePath(a),audioElement.volume=b,audioElement.play()}catch(c){console.error(c),console.log(audioElement)}}}};module.exports=ui;
 
 /***/ }),
 /* 9 */,
@@ -145,6 +145,17 @@ var paths={greenButton:"icons/set-timer-button.png",redButton:"icons/set-timer-b
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "a5d97ad536ac3f7b1accf037828bafed.wav";
+
+/***/ }),
+/* 20 */,
+/* 21 */,
+/* 22 */,
+/* 23 */,
+/* 24 */,
+/* 25 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var defaultSoundPath=__webpack_require__(19),audioElement=new Audio(defaultSoundPath);audioElement.preload=!0,audioElement.loop=!1,module.exports={audioElement,defaultSoundPath};
 
 /***/ })
 /******/ ]);

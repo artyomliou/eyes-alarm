@@ -76,7 +76,7 @@ const env=__webpack_require__(2);function handleResponse(a){console.info(a)}func
 /* 1 */
 /***/ (function(module, exports) {
 
-module.exports={isReading:!0,passedMinutes:0,breakTimeAmount:10,readingTimeAmount:50,idleDetectionInterval:1200,title:browser.i18n.getMessage("notificationTitle"),message:browser.i18n.getMessage("notificationMessage"),soundEnabled:!1,soundPath:"",soundVolume:1};
+module.exports={isReading:!0,passedMinutes:0,breakTimeAmount:10,readingTimeAmount:50,idleDetectionInterval:1200,title:browser.i18n.getMessage("notificationTitle"),message:browser.i18n.getMessage("notificationMessage"),soundEnabled:!1,soundPath:"",soundVolume:0.5};
 
 /***/ }),
 /* 2 */

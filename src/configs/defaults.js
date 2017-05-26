@@ -8,5 +8,5 @@ module.exports = {
     message: browser.i18n.getMessage("notificationMessage"),
     soundEnabled: false,
     soundPath: '',
-    soundVolume: 1
+    soundVolume: 0.5
 }

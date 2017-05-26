@@ -10,7 +10,6 @@
     "http://*/*",
     "https://*/*",
     "ftp://*/*",
-    "file://*/*",
     "alarms",
     "notifications",
     "storage",

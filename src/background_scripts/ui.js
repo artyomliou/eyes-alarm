@@ -1,8 +1,8 @@
 var storage = require("./storage")
 var timePacket = require("./timePacket")
+var {audioElement, defaultSoundPath} = require("./audioElement")
 var paths = require("../configs/paths")
 var defaultValues = require("../configs/defaults")
-var defaultSoundPath = require('file-loader!../178646__zabuhailo__bronzebell1.wav')
 
 let notificationParams = {
     type: 'basic',
@@ -11,8 +11,6 @@ let notificationParams = {
     message: defaultValues.message
 }
 let notificationID = 'eyes-alarm-n'
-
-var audioElement = new Audio(defaultSoundPath)
 
 var ui = {
     icon: {
@@ -35,10 +33,9 @@ var ui = {
          * @param {Function} callback 
          */
         checkCustomDataExists(keys, callback) {
-            browser.storage.local.get(keys)
-                .then(result => {
-                    callback(keys, result)
-                })
+            browser.storage.local.get(keys).then(result => {
+                callback(keys, result)
+            })
         },
         /**
          * check if there it's some custom data to rewrite parameters used for showing notifiation
@@ -94,8 +91,12 @@ var ui = {
          * @param {String} path 
          */
         updatePath (path = '') {
-            if (path && audioElement.src !== path) {
-                audioElement.src = path
+            if (path) {
+                if (audioElement.src !== path) {
+                    audioElement.src = path
+                }
+            } else if (audioElement.src !== defaultSoundPath) {
+                audioElement.src = defaultSoundPath
             }
         },
         /**
@@ -109,7 +110,8 @@ var ui = {
                 audioElement.volume = volume
                 audioElement.play()
             } catch (err) {
-                console.log(err)
+                console.error(err)
+                console.log(audioElement)
             }            
         }
     }
