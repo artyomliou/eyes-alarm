@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 18);
+/******/ 	return __webpack_require__(__webpack_require__.s = 19);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -75,24 +75,24 @@ const env=__webpack_require__(2);function handleResponse(a){console.info(a)}func
 
 /***/ }),
 
-/***/ 12:
+/***/ 13:
 /***/ (function(module, exports, __webpack_require__) {
 
 const{formatTime}=__webpack_require__(0);var clock={dom:null,request(){browser.runtime.sendMessage({type:'requestTime'}).then(clock.update).catch((a)=>{console.error(a)})},reset(){browser.runtime.sendMessage({type:'resetCounter'}).then(clock.update).catch((a)=>{console.error(a)})},update(a){if('object'==typeof a){clock.dom||(clock.dom=document.querySelector('#monitor'));let b=a.limit-a.time;clock.dom.innerText=formatTime(b),clock.dom.classList.toggle('warning',!a.reading)}return!0}};module.exports=clock;
 
 /***/ }),
 
-/***/ 14:
+/***/ 15:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ 18:
+/***/ 19:
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(14);var clock=__webpack_require__(12);document.querySelector("#refresh_button").addEventListener("click",clock.reset),document.querySelector("#options_button").addEventListener("click",(a)=>{a.preventDefault(),browser.runtime.openOptionsPage()}),window.addEventListener("load",function(){browser.runtime.onMessage.addListener(clock.update),clock.request()}),window.addEventListener("unload",function(){browser.runtime.onMessage.removeListener(clock.update)});
+__webpack_require__(15);var clock=__webpack_require__(13);document.querySelector("#refresh_button").addEventListener("click",clock.reset),document.querySelector("#options_button").addEventListener("click",(a)=>{a.preventDefault(),browser.runtime.openOptionsPage()}),window.addEventListener("load",function(){browser.runtime.onMessage.addListener(clock.update),clock.request()}),window.addEventListener("unload",function(){browser.runtime.onMessage.removeListener(clock.update)});
 
 /***/ }),
 

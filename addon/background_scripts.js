@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 15);
+/******/ 	return __webpack_require__(__webpack_require__.s = 16);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -113,49 +113,44 @@ var storage=__webpack_require__(3),timePacket=()=>{return{time:storage.store.pas
 /* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var storage=__webpack_require__(3),timePacket=__webpack_require__(7),{audioElement,defaultSoundPath}=__webpack_require__(25),paths=__webpack_require__(16),defaultValues=__webpack_require__(1);let notificationParams={type:"basic",iconUrl:browser.extension.getURL(paths.notificationIcon),title:defaultValues.title,message:defaultValues.message},notificationID="eyes-alarm-n";var ui={icon:{switch(){}},notice:{checkCustomDataExists(a,b){browser.storage.local.get(a).then((c)=>{b(a,c)})},create(){ui.notice.checkCustomDataExists(["title","message"],(a,b)=>{a.forEach((c)=>{b[c]&&(notificationParams[c]=b[c])}),browser.notifications.create(notificationID,notificationParams)}),ui.notice.checkCustomDataExists(["soundEnabled","soundPath","soundVolume"],(a,b)=>{b.soundEnabled&&ui.sound.play(b.soundPath,b.soundVolume)})},clear(){browser.notifications.clear(notificationID)}},clock:{switch(a){storage.store.isReading=a},sync(){browser.extension.getViews({type:"popup"}).length&&browser.runtime.sendMessage(timePacket()).catch((a)=>{console.error(a)})}},sound:{updatePath(a=""){a?audioElement.src!==a&&(audioElement.src=a):audioElement.src!==defaultSoundPath&&(audioElement.src=defaultSoundPath)},play(a,b){try{ui.sound.updatePath(a),audioElement.volume=b,audioElement.play()}catch(c){console.error(c),console.log(audioElement)}}}};module.exports=ui;
+var storage=__webpack_require__(3),timePacket=__webpack_require__(7),{audioElement,defaultSoundPath}=__webpack_require__(10),paths=__webpack_require__(17),defaultValues=__webpack_require__(1);let notificationParams={type:"basic",iconUrl:browser.extension.getURL(paths.notificationIcon),title:defaultValues.title,message:defaultValues.message},notificationID="eyes-alarm-n";var ui={icon:{switch(){}},notice:{checkCustomDataExists(a,b){browser.storage.local.get(a).then((c)=>{b(a,c)})},create(){ui.notice.checkCustomDataExists(["title","message"],(a,b)=>{a.forEach((c)=>{b[c]&&(notificationParams[c]=b[c])}),browser.notifications.create(notificationID,notificationParams)}),ui.notice.checkCustomDataExists(["soundEnabled","soundPath","soundVolume"],(a,b)=>{b.soundEnabled&&ui.sound.play(b.soundPath,b.soundVolume)})},clear(){browser.notifications.clear(notificationID)}},clock:{switch(a){storage.store.isReading=a},sync(){browser.extension.getViews({type:"popup"}).length&&browser.runtime.sendMessage(timePacket()).catch((a)=>{console.error(a)})}},sound:{updatePath(a=""){a?audioElement.src!==a&&(audioElement.src=a):audioElement.src!==defaultSoundPath&&(audioElement.src=defaultSoundPath)},play(a,b){try{ui.sound.updatePath(a),audioElement.volume=b,audioElement.play()}catch(c){console.error(c),console.log(audioElement)}}}};module.exports=ui;
 
 /***/ }),
 /* 9 */,
 /* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var ui=__webpack_require__(8),clock=__webpack_require__(5),counter=__webpack_require__(6),isLocked=!1,idle={init(a){browser.idle.setDetectionInterval(a)},detect:{start:()=>{browser.idle.onStateChanged.addListener(idle.dispatch)},stop:()=>{browser.idle.onStateChanged.removeListener(idle.dispatch)}},dispatch:(a)=>{"active"===a?isLocked&&(counter.start(),ui.clock.switch(!0),ui.clock.sync(),isLocked=!1):"idle"===a||"locked"===a?(counter.stop(),ui.notice.clear(),isLocked=!0):void 0}};module.exports=idle;
+var defaultSoundPath=__webpack_require__(20),audioElement=new Audio(defaultSoundPath);audioElement.preload=!0,audioElement.loop=!1,module.exports={audioElement,defaultSoundPath};
 
 /***/ }),
-/* 11 */,
+/* 11 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var ui=__webpack_require__(8),clock=__webpack_require__(5),counter=__webpack_require__(6),audioElement=__webpack_require__(10),isLocked=!1,idle={init(a){browser.idle.setDetectionInterval(a)},detect:{start:()=>{browser.idle.onStateChanged.addListener(idle.dispatch)}},dispatch:(a)=>{"active"===a?isLocked&&(audioElement.muted=!1,counter.start(),ui.clock.switch(!0),ui.clock.sync(),isLocked=!1):"idle"===a||"locked"===a?(audioElement.muted=!0,counter.stop(),ui.notice.clear(),clock.reset(),isLocked=!0):void 0}};module.exports=idle;
+
+/***/ }),
 /* 12 */,
 /* 13 */,
 /* 14 */,
-/* 15 */
+/* 15 */,
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const{handleResponse}=__webpack_require__(0);var ui=__webpack_require__(8),idle=__webpack_require__(10),clock=__webpack_require__(5),counter=__webpack_require__(6),storage=__webpack_require__(3),timePacket=__webpack_require__(7);function resetUI(a){clock.reset(),ui.clock.switch(a),ui.clock.sync()}function shouldRead(){return!storage.store.isReading&&storage.store.passedMinutes>=storage.store.breakTimeAmount}function shouldBreak(){return storage.store.isReading&&storage.store.passedMinutes>=storage.store.readingTimeAmount}function updateClock(){clock.plus(1),ui.clock.sync()}browser.alarms.onAlarm.addListener(()=>{updateClock(),shouldBreak()?(counter.restart(),resetUI(!1),ui.notice.create()):shouldRead()&&(counter.restart(),resetUI(!0))}),browser.runtime.onMessage.addListener((a)=>{switch(a.type){case"requestTime":return Promise.resolve(timePacket());case"resetCounter":return counter.restart(),resetUI(!0),Promise.resolve(timePacket());}}),browser.storage.onChanged.addListener((a,b)=>{"local"===b&&storage.load({callback:()=>{counter.restart(),resetUI(!0)}})}),storage.load({callback:()=>{idle.init(storage.store.idleDetectionInterval),idle.detect.start(),counter.start()}});
+const{handleResponse}=__webpack_require__(0);var ui=__webpack_require__(8),idle=__webpack_require__(11),clock=__webpack_require__(5),counter=__webpack_require__(6),storage=__webpack_require__(3),timePacket=__webpack_require__(7);function resetUI(a){clock.reset(),ui.clock.switch(a),ui.clock.sync()}function shouldRead(){return!storage.store.isReading&&storage.store.passedMinutes>=storage.store.breakTimeAmount}function shouldBreak(){return storage.store.isReading&&storage.store.passedMinutes>=storage.store.readingTimeAmount}function updateClock(){clock.plus(1),ui.clock.sync()}browser.alarms.onAlarm.addListener(()=>{updateClock(),shouldBreak()?(counter.restart(),resetUI(!1),ui.notice.create()):shouldRead()&&(counter.restart(),resetUI(!0))}),browser.runtime.onMessage.addListener((a)=>{switch(a.type){case"requestTime":return Promise.resolve(timePacket());case"resetCounter":return counter.restart(),resetUI(!0),Promise.resolve(timePacket());}}),browser.storage.onChanged.addListener((a,b)=>{"local"===b&&storage.load({callback:()=>{counter.restart(),resetUI(!0)}})}),storage.load({callback:()=>{idle.init(storage.store.idleDetectionInterval),idle.detect.start(),counter.start()}});
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ (function(module, exports) {
 
 var paths={greenButton:"icons/set-timer-button.png",redButton:"icons/set-timer-button-red.png",notificationIcon:"icons/icon-pad@128.png",coloredButton:"icons/icon@128.png"};module.exports=paths;
 
 /***/ }),
-/* 17 */,
 /* 18 */,
-/* 19 */
+/* 19 */,
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "a5d97ad536ac3f7b1accf037828bafed.wav";
-
-/***/ }),
-/* 20 */,
-/* 21 */,
-/* 22 */,
-/* 23 */,
-/* 24 */,
-/* 25 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var defaultSoundPath=__webpack_require__(19),audioElement=new Audio(defaultSoundPath);audioElement.preload=!0,audioElement.loop=!1,module.exports={audioElement,defaultSoundPath};
 
 /***/ })
 /******/ ]);

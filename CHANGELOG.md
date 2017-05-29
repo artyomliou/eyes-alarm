@@ -1,7 +1,11 @@
 # 0.2.7
-- *add* french translation by Anciaux Yoann
+- *add* french localization by Anciaux Yoann
 - *add* default sound of notification by Zabuhailo
 - *add* custom sound of notification by URL
+- *update* options page
+- *fix* korean localization
+- *fix* reset time counting after computer is locked up (wont work in firefox)
+- using bulma framework and sass now
 
 # 0.2.6
 - *changed* localization key "notificationContent" to "notificationMessage"

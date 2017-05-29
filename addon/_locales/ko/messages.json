@@ -35,27 +35,27 @@
   },
 
    "optionsNotificationTitleLabel": {
-    "message": "Notification's title",
+    "message": "알림 제목",
     "description": "notification's title"
   },
 
   "optionsNotificationMessageLabel": {
-    "message": "Notification's content",
+    "message": "알림 내용",
     "description": "content in notification"
   },
 
   "optionsSoundEnabledLabel": {
-    "message": "Enable sound",
+    "message": "사운드 사용",
     "description": "enable to play sound when alarm is fired"
   },
 
   "optionsSoundVolumeLabel": {
-    "message": "Sound volume",
+    "message": "볼륨",
     "description": "sound volume"
   },
 
   "optionsSoundPathLabel": {
-    "message": "Path of sound",
+    "message": "사운드 URL",
     "description": "url of the sound file specified"
   },
 
@@ -65,7 +65,7 @@
   },
 
   "optionsResetButton": {
-    "message": "Reset",
+    "message": "복설",
     "description": "button to reset default settings"
   },
 

@@ -3,7 +3,7 @@
 
 Web extension used to notice it's time to rest your eyes.  
 
-## cycle
+### cycle
 
 every 50 min passed, rest for 10 mins  
 custom of time and sound is available  
@@ -11,12 +11,13 @@ custom of time and sound is available
 counter will be reset if you dont make any input for 20 mins  
 or your computer is locked up  
 
-## for
+## browsers' support
 *higher version is better*
 - Chrome (`56` :ok_hand:) 
 - Vivaldi (`latest` :ok_hand:)
 - Cent (`latest` :ok_hand:)
 - Firefox (`52` :ok_hand:)
+  * Idle API locked status
 - Firefox for Android :cold_sweat:
   * BrowserAction API
 - Edge :cold_sweat:
@@ -37,6 +38,7 @@ or your computer is locked up
 
 If you want to add a localization, please check [*HERE*](https://github.com/bros0215/eyes-alarm/tree/master/addon/_locales)  
 By this english localization you may be able to make your own localization  
+
 After finished, please email the file to me (bros0215@gmail.com)  
 I will try checking the content,  
 If everything seems to be OK, i will make update ASAP and add your name here  
@@ -63,8 +65,8 @@ If everything seems to be OK, i will make update ASAP and add your name here
 
 ## license related
 
-- [Google Fonts] (https://fonts.google.com/specimen/Anonymous+Pro)
+- [Google Fonts](https://fonts.google.com/specimen/Anonymous+Pro)
 - icon[`set-timer-button`, `notification`](http://www.flaticon.com/free-icon/set-timer-button_61017) Icon made by Google from www.flaticon.com 
 - icon[`Refresh`](http://www.flaticon.com/free-icon/refresh_118799) Icon made by Lucy G from www.flaticon.com 
 - icon[`Settings`](http://www.flaticon.com/free-icon/settings_126472) Icon made by Gregor Cresnar from www.flaticon.com
-- sound(http://www.freesound.org/people/Zabuhailo/sounds/178646/) by Zabuhailo under [CC](https://creativecommons.org/licenses/by/3.0/deed.zh_TW), not modified
+- [sound](http://www.freesound.org/people/Zabuhailo/sounds/178646/) by Zabuhailo under [CC](https://creativecommons.org/licenses/by/3.0/deed.zh_TW), not modified

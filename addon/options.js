@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 17);
+/******/ 	return __webpack_require__(__webpack_require__.s = 18);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -103,26 +103,27 @@ const{toTitleCase,getLocalString}=__webpack_require__(0),defaultValues=__webpack
 
 /***/ }),
 /* 10 */,
-/* 11 */
+/* 11 */,
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 const{getLocalString}=__webpack_require__(0);var page=__webpack_require__(9),nodes=__webpack_require__(4),defaultValues=__webpack_require__(1),options={save(a){page.button.loading.toggle(!0),a.preventDefault();let b=page.inputs.get(),c=page.inputs.dom(),d=`[${b.last_modified}] `,f=page.button.loading.toggleFactory(!1);return options.checkInputErrorExists(c)?void options.msg('',!1):void options.apply(d,b,f,f)},reset(a){a.preventDefault();let b=({title,message,breakTimeAmount,readingTimeAmount}=defaultValues),c=b.last_modified=new Date().toLocaleTimeString();options.apply(c,b,function(){page.inputs.set()})},checkInputErrorExists(a){return a.map((b)=>{return b.attributes.type&&'number'===b.attributes.type.value&&(b.validity.rangeOverflow||b.validity.rangeUnderflow)}).filter((b)=>b).length},apply(a,b,c=void 0,d=void 0){browser.storage.local.set(b).then(()=>{options.msg(a+getLocalString('optionsApplySuccessMessage'),!0),c&&c()}).catch((f)=>{options.msg(a+f.message,!1),d&&d()})},msg(a,b){let c=nodes.getDOM('msg');c.innerText=a,c.classList.toggle('success',b),c.classList.toggle('warning',!b)}};module.exports=options;
 
 /***/ }),
-/* 12 */,
-/* 13 */
+/* 13 */,
+/* 14 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 14 */,
 /* 15 */,
 /* 16 */,
-/* 17 */
+/* 17 */,
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(13);var options=__webpack_require__(11),page=__webpack_require__(9),nodes=__webpack_require__(4);document.addEventListener('DOMContentLoaded',page.render),nodes.getDOM('apply').addEventListener('click',options.save),nodes.getDOM('reset').addEventListener('click',options.reset),nodes.getDOM('soundEnabled').addEventListener('click',page.inputs.sound.toggleEditable),nodes.getDOM('soundVolume').addEventListener('change',page.labels.sound.volume.set);
+__webpack_require__(14);var options=__webpack_require__(12),page=__webpack_require__(9),nodes=__webpack_require__(4);document.addEventListener('DOMContentLoaded',page.render),nodes.getDOM('apply').addEventListener('click',options.save),nodes.getDOM('reset').addEventListener('click',options.reset),nodes.getDOM('soundEnabled').addEventListener('click',page.inputs.sound.toggleEditable),nodes.getDOM('soundVolume').addEventListener('change',page.labels.sound.volume.set);
 
 /***/ })
 /******/ ]);

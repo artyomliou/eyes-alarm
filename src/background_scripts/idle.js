@@ -1,6 +1,7 @@
 var ui = require("./ui")
 var clock = require("./clock")
 var counter = require("./counter")
+var audioElement = require("./audioElement")
 
 var isLocked = false
 
@@ -11,15 +12,13 @@ var idle = {
     detect: {
         start: () => {
             browser.idle.onStateChanged.addListener(idle.dispatch)
-        },
-        stop: () => {
-            browser.idle.onStateChanged.removeListener(idle.dispatch)
         }
     },
     dispatch: state => {
         switch (state) {
             case 'active':
                 if (isLocked) {
+                    audioElement.muted = false
                     counter.start()
                     //ui.icon.switch(true)
                     ui.clock.switch(true)
@@ -29,8 +28,10 @@ var idle = {
                 break;
             case 'idle':
             case 'locked':
+                audioElement.muted = true
                 counter.stop()
                 ui.notice.clear()
+                clock.reset()
                 isLocked = true
                 break;
         }
