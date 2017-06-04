@@ -50,12 +50,12 @@
   },
 
   "optionsSoundVolumeLabel": {
-    "message": "Sound volume",
+    "message": "Volume",
     "description": "sound volume"
   },
 
   "optionsSoundPathLabel": {
-    "message": "Chemin ou URL de la notification sonore",
+    "message": "URL de la notification sonore",
     "description": "url of the sound file specified"
   },
 

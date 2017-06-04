@@ -32,10 +32,12 @@ module.exports = {
       { test: /\.(png|jpg|jpeg|gif|woff2)$/, loader: 'file-loader' },
       { test: /\.js$/,
         loader: 'babel-loader',
+        /*
         query: {
           presets: ['babili'],
-          comments: false
+          comments: true
         },
+        */
         exclude: /(node_modules|bower_components)/ }
     ]
   },

@@ -71,14 +71,106 @@
 /***/ 0:
 /***/ (function(module, exports, __webpack_require__) {
 
-const env=__webpack_require__(2);function handleResponse(a){console.info(a)}function log(...a){env.debugMode&&console.log(a.reduce((b,c)=>b+c,''))}function toTitleCase(a){return a.charAt(0).toUpperCase()+a.substr(1).toLowerCase()}function getLocalString(a){return browser.i18n.getMessage(a)}function formatTime(a){if(!Number.isInteger(a))return console.error(`input time [${a}] is not integer`),'ERROR';let b=[],c=0;if(60<=a)do a-=60,c+=1;while(60<=a);return b.push(c,a),b.map((d)=>padTime(d)).join(':')}function padTime(a){return 10>a?`0${a}`:a}module.exports={handleResponse,toTitleCase,getLocalString,log,formatTime};
+const env = __webpack_require__(2);
+
+function handleResponse(r) {
+    console.info(r);
+}
+
+function log(...args) {
+    if (env.debugMode) {
+        console.log(args.reduce((acc, val) => acc + val, ''));
+    }
+}
+
+/**
+ * baNANA => Banana
+ * @param {String} word 
+ */
+function toTitleCase(word) {
+    return word.charAt(0).toUpperCase() + word.substr(1).toLowerCase();
+}
+
+/**
+ * retrieve localized string
+ * @param {String} key 
+ */
+function getLocalString(key) {
+    return browser.i18n.getMessage(key);
+}
+
+/**
+ * format time to [12:00] style
+ * @param {Number} minutes 
+ */
+function formatTime(minutes) {
+    if (!Number.isInteger(minutes)) {
+        console.error(`input time [${minutes}] is not integer`);
+        return 'ERROR';
+    }
+    let formatted = [];
+    let hour = 0;
+    if (minutes >= 60) {
+        do {
+            minutes -= 60;
+            hour += 1;
+        } while (minutes >= 60);
+    }
+    formatted.push(hour, minutes);
+    return formatted.map(el => padTime(el)).join(':');
+}
+
+/**
+ * accept a number
+ * if it's less than 10, pad it with zero
+ * @param {Number} val 
+ */
+function padTime(val) {
+    return val < 10 ? `0${val}` : val;
+}
+
+module.exports = {
+    handleResponse,
+    toTitleCase,
+    getLocalString,
+    log,
+    formatTime
+};
 
 /***/ }),
 
 /***/ 13:
 /***/ (function(module, exports, __webpack_require__) {
 
-const{formatTime}=__webpack_require__(0);var clock={dom:null,request(){browser.runtime.sendMessage({type:'requestTime'}).then(clock.update).catch((a)=>{console.error(a)})},reset(){browser.runtime.sendMessage({type:'resetCounter'}).then(clock.update).catch((a)=>{console.error(a)})},update(a){if('object'==typeof a){clock.dom||(clock.dom=document.querySelector('#monitor'));let b=a.limit-a.time;clock.dom.innerText=formatTime(b),clock.dom.classList.toggle('warning',!a.reading)}return!0}};module.exports=clock;
+const { formatTime } = __webpack_require__(0);
+
+var clock = {
+    dom: null,
+    request() {
+        browser.runtime.sendMessage({ type: 'requestTime' }).then(clock.update).catch(err => {
+            console.error(err);
+        });
+    },
+    reset() {
+        browser.runtime.sendMessage({ type: 'resetCounter' }).then(clock.update).catch(err => {
+            console.error(err);
+        });
+    },
+
+    update(msg) {
+        if (typeof msg === 'object') {
+            if (!clock.dom) {
+                clock.dom = document.querySelector("#monitor");
+            }
+            let remain = msg.limit - msg.time;
+            clock.dom.innerText = formatTime(remain);
+            clock.dom.classList.toggle('warning', !msg.reading);
+        }
+        return true;
+    }
+};
+
+module.exports = clock;
 
 /***/ }),
 
@@ -92,14 +184,33 @@ const{formatTime}=__webpack_require__(0);var clock={dom:null,request(){browser.r
 /***/ 19:
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(15);var clock=__webpack_require__(13);document.querySelector("#refresh_button").addEventListener("click",clock.reset),document.querySelector("#options_button").addEventListener("click",(a)=>{a.preventDefault(),browser.runtime.openOptionsPage()}),window.addEventListener("load",function(){browser.runtime.onMessage.addListener(clock.update),clock.request()}),window.addEventListener("unload",function(){browser.runtime.onMessage.removeListener(clock.update)});
+__webpack_require__(15);
+var clock = __webpack_require__(13);
+
+document.querySelector('#refresh_button').addEventListener('click', clock.reset);
+
+document.querySelector('#options_button').addEventListener('click', e => {
+    e.preventDefault();
+    browser.runtime.openOptionsPage();
+});
+
+window.addEventListener("load", function (event) {
+    browser.runtime.onMessage.addListener(clock.update);
+    clock.request();
+});
+
+window.addEventListener("unload", function (event) {
+    browser.runtime.onMessage.removeListener(clock.update);
+});
 
 /***/ }),
 
 /***/ 2:
 /***/ (function(module, exports) {
 
-module.exports={debugMode:!0};
+module.exports = {
+    debugMode: true
+};
 
 /***/ })
 

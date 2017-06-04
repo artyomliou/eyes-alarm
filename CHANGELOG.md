@@ -1,3 +1,6 @@
+# 0.2.71
+- update franch localization
+
 # 0.2.7
 - *add* french localization by Anciaux Yoann
 - *add* default sound of notification by Zabuhailo
