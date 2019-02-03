@@ -1,10 +1,10 @@
 {
   "manifest_version": 2,
-  "version": "0.2.72",
+  "version": "0.2.73",
   "name": "__MSG_extensionName__",
   "description": "__MSG_extensionDescription__",
   "author": "__MSG_authorName__",
-  "homepage_url": "https://github.com/bros0215/eyes-alarm",
+  "homepage_url": "https://github.com/artyomliou/eyes-alarm",
   "default_locale": "en",
   "permissions": [
     "http://*/*",
