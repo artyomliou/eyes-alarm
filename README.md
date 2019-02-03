@@ -37,10 +37,10 @@ or your computer is locked up
 
 ### new localization
 
-If you want to add a localization, please check [*HERE*](https://github.com/bros0215/eyes-alarm/tree/master/addon/_locales)  
+If you want to add a localization, please check [*HERE*](https://github.com/artyomliou/eyes-alarm/tree/master/addon/_locales)  
 By this english localization you may be able to make your own localization  
 
-After finished, please email the file to me (bros0215@gmail.com)  
+After finished, please email the file to me (artyomliou@gmail.com)  
 I will try checking the content,  
 If everything seems to be OK, i will make update ASAP and add your name here  
 

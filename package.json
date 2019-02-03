@@ -3,8 +3,8 @@
   "version": "0.2.71",
   "description": "Notify it's time to rest your eyes.",
   "main": "addon/content_script.js",
-  "repository": "https://github.com/bros0215/eyes-alarm.git",
-  "author": "Yves Liou <bros0215@gmail.com>",
+  "repository": "https://github.com/artyomliou/eyes-alarm.git",
+  "author": "Artyom Liou <artyomliou@gmail.com>",
   "license": "MIT",
   "devDependencies": {
     "babel-core": "^6.22.1",
