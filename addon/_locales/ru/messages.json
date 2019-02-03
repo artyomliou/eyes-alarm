@@ -1,0 +1,76 @@
+{
+  "extensionName": {
+    "message": "Eyes Alarm",
+    "description": "Название дополнения."
+  },
+
+  "extensionDescription": {
+    "message": "Уведомляет о необходимости сделать перерыв.",
+    "description": "Описание дополнения."
+  },
+
+  "authorName": {
+    "message": "Artyom Liou",
+    "description": "Имя автора"
+  },
+
+  "notificationTitle": {
+    "message": "Пора отдохнуть",
+    "description": "Заголовок уведомления о небходимости сделать перерыв."
+  },
+
+  "notificationMessage": {
+    "message": "Как насчет кружки чая?",
+    "description": "Сообщает пользователю вариант отдыха."
+  },
+
+  "optionsWorktimeLabel": {
+    "message": "Время чтения (в минутах)",
+    "description": "продолжительность нагрузки на глаза."
+  },
+
+  "optionsBreaktimeLabel": {
+    "message": "Время отдыха(в минутах)",
+    "description": "продолжительность перерыва"
+  },
+
+  "optionsNotificationTitleLabel": {
+    "message": "Заголовок уведомления",
+    "description": "заголовок уведомления"
+  },
+
+  "optionsNotificationMessageLabel": {
+    "message": "Содержание уведомления",
+    "description": "контент в уведомлении"
+  },
+
+  "optionsSoundEnabledLabel": {
+    "message": "Включить звук",
+    "description": "Разрешает воспроизводить звук во время уведомления."
+  },
+
+  "optionsSoundVolumeLabel": {
+    "message": "Громкость звука",
+    "description": "громкость звука"
+  },
+
+  "optionsSoundPathLabel": {
+    "message": "URL",
+    "description": "Ссылка на звуковой файл"
+  },
+  
+  "optionsApplyButton": {
+    "message": "Применить",
+    "description": "Кнопка для сохранения изменений"
+  },
+
+  "optionsResetButton": {
+    "message": "Сбросить",
+    "description": "Кнопка для отмены изменений."
+  },
+
+  "optionsApplySuccessMessage": {
+    "message": "Готово! Таймер сброшен!",
+    "description": "новые настройки успешно применены, также сброшен таймер."
+  }
+}

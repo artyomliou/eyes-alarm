@@ -28,11 +28,12 @@ or your computer is locked up
 
 ## translation
 
-- English `Yves Liou`
-- Chinese `Yves Liou`
+- Chinese `Artyom Liou`
+- English `Artyom Liou`
+- French `Anciaux Yoann`
 - Japanese `Jie Ting Wu`
 - Korean `Winnie Wu`
-- French `Anciaux Yoann`
+- Russian `VladimirCreative`
 
 ### new localization
 
