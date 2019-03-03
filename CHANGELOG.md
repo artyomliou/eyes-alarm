@@ -1,3 +1,9 @@
+# 0.2.74
+- update german localization
+
+# 0.2.73
+- update russian localization
+
 # 0.2.71
 - update franch localization
 

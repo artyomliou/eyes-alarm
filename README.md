@@ -31,6 +31,7 @@ or your computer is locked up
 - Chinese `Artyom Liou`
 - English `Artyom Liou`
 - French `Anciaux Yoann`
+- German `Julius Rummel`
 - Japanese `Jie Ting Wu`
 - Korean `Winnie Wu`
 - Russian `VladimirCreative`
@@ -39,7 +40,10 @@ or your computer is locked up
 
 If you want to add a localization, please check [*HERE*](https://github.com/artyomliou/eyes-alarm/tree/master/addon/_locales)  
 By this english localization you may be able to make your own localization  
-
+  
+If you find something text did not fit your culture well,
+you may change that without losing functional meaning.
+  
 After finished, please email the file to me (artyomliou@gmail.com)  
 I will try checking the content,  
 If everything seems to be OK, i will make update ASAP and add your name here  

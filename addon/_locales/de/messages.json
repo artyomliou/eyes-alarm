@@ -1,0 +1,76 @@
+{
+  "extensionName": {
+    "message": "Eyes Alarm",
+    "description": "Name of the extension."
+  },
+
+  "extensionDescription": {
+    "message": "Hilft dir regelmäßig augenschonende Pausen zu machen",
+    "description": "Description of the extension."
+  },
+
+  "authorName": {
+    "message": "Artyom Liou",
+    "description": "author's name"
+  },
+
+  "notificationTitle": {
+    "message": "Es ist Zeit für eine Pause",
+    "description": "Title of the time-to-break notification."
+  },
+
+  "notificationMessage": {
+    "message": "Wie wäre es mit einem Tee?",
+    "description": "Tells the user what can they do"
+  },
+
+  "optionsWorktimeLabel": {
+    "message": "Länge der Arbeitszeit (Minuten)",
+    "description": "time for reading (using eyes)"
+  },
+
+  "optionsBreaktimeLabel": {
+    "message": "Länge der Pause (Minuten)",
+    "description": "time for break"
+  },
+
+  "optionsNotificationTitleLabel": {
+    "message": "Benachrichtigungstitel",
+    "description": "notification's title"
+  },
+
+  "optionsNotificationMessageLabel": {
+    "message": "Benachrichtigungsinhalt",
+    "description": "content in notification"
+  },
+
+  "optionsSoundEnabledLabel": {
+    "message": "Aktiviere Sound",
+    "description": "enable to play sound when alarm is fired"
+  },
+
+  "optionsSoundVolumeLabel": {
+    "message": "Lautstärke des Sounds",
+    "description": "sound volume"
+  },
+
+  "optionsSoundPathLabel": {
+    "message": "URL",
+    "description": "url of the sound file specified"
+  },
+  
+  "optionsApplyButton": {
+    "message": "Anwenden",
+    "description": "button to apply new settings"
+  },
+
+  "optionsResetButton": {
+    "message": "Zurücksetzen",
+    "description": "button to restore default settings"
+  },
+
+  "optionsApplySuccessMessage": {
+    "message": "Erfolgreich gespeichert! Der Alarm wurde zurückgesetzt",
+    "description": "successfully applied new settings, also the alarm had been reset"
+  }
+}
