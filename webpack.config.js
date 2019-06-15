@@ -1,9 +1,14 @@
-const { resolve } = require('path'),
-      webpack = require('webpack'),
-      HtmlWebpackPlugin = require('html-webpack-plugin'),
-      ExtractTextPlugin = require("extract-text-webpack-plugin");
+const { resolve } = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
+
+  mode: 'production',
+
+  optimization: {
+    minimize: false,
+  },
 
   entry: {
     background_scripts: "./src/background_scripts/main.js",
@@ -23,30 +28,44 @@ module.exports = {
 
   module: {
     rules: [
-      { test: /\.pug$/, loader: 'pug-loader'},
-      { test: /\.sass$/, use: ExtractTextPlugin.extract({
-          fallback: "style-loader",
-          use: "css-loader!sass-loader"
-        })
+      {
+        test: /\.pug$/,
+        use: 'pug-loader'
       },
-      { test: /\.(png|jpg|jpeg|gif|woff2)$/, loader: 'file-loader' },
-      { test: /\.js$/,
-        loader: 'babel-loader',
-        /*
-        query: {
-          presets: ['babili'],
-          comments: true
-        },
-        */
-        exclude: /(node_modules|bower_components)/ }
+      {
+        test: /\.sass$/,
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+          },
+          // "style-loader", // creates style nodes from JS strings
+          "css-loader", // translates CSS into CommonJS
+          "sass-loader" // compiles Sass to CSS, using Node Sass by default
+        ]
+      },
+      {
+        test: /\.(png|jpg|jpeg|gif|woff2)$/,
+        use: 'file-loader'
+      },
+      {
+        test: /\.m?js$/,
+        exclude: /(node_modules|bower_components)/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            compact: false,
+            minified: false,
+            presets: ['@babel/preset-env']
+          }
+        }
+      }
     ]
   },
 
-  //devtool: 'cheap-source-map',
-
   plugins: [
-    //new webpack.optimize.UglifyJsPlugin(),
-    new ExtractTextPlugin("[name].css"),
+    new MiniCssExtractPlugin({
+      filename: "[name].css"
+    }),
     new HtmlWebpackPlugin({
       filename: 'popup.html',
       template: 'src/popup/index.pug',

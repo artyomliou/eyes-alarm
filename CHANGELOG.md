@@ -1,3 +1,6 @@
+# 0.2.75
+- update dev tool chain
+
 # 0.2.74
 - update german localization
 
