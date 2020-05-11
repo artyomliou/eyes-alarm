@@ -48,6 +48,16 @@ After finished, please email the file to me (artyomliou@gmail.com)
 I will try checking the content,  
 If everything seems to be OK, i will make update ASAP and add your name here  
 
+## compile
+### os & node & npm
+- Ubuntu 18.04
+- nodejs v10.19.0
+- npm 6.13.4
+### steps
+- npm install
+- npm run build
+- npm run zipf && npm run zipc
+
 ## ref.
 ### resources
 - [WebExtension Polyfill](https://github.com/mozilla/webextension-polyfill)

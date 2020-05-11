@@ -246,9 +246,9 @@ var reflect = {
   soundVolume_label: 'optionsSoundVolumeLabel',
   soundPath_label: 'optionsSoundPathLabel',
   apply: 'optionsApplyButton',
-  reset: 'optionsResetButton' // used to retrieve data from specified nodes
+  reset: 'optionsResetButton'
+}; // used to retrieve data from specified nodes
 
-};
 var storageKeys = ['breakTimeAmount', 'readingTimeAmount', 'title', 'message', 'soundEnabled', 'soundPath', 'soundVolume'];
 var page = {
   render: function render() {
