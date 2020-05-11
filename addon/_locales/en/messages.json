@@ -5,13 +5,13 @@
   },
 
   "extensionDescription": {
-    "message": "Notice you it's time to take a break",
+    "message": "Notifies you it's time to take a break",
     "description": "Description of the extension."
   },
 
   "authorName": {
     "message": "Artyom Liou",
-    "description": "author's name"
+    "description": "Author's name"
   },
 
   "notificationTitle": {
@@ -21,7 +21,7 @@
 
   "notificationMessage": {
     "message": "How about a cup of tea?",
-    "description": "Tells the user what can they do"
+    "description": "Tells the user what they can do"
   },
 
   "optionsWorktimeLabel": {
@@ -70,7 +70,7 @@
   },
 
   "optionsApplySuccessMessage": {
-    "message": "Succeeded, the alarm have restarted",
+    "message": "Succeeded, the alarm has restarted",
     "description": "successfully applied new settings, also the alarm had been reset"
   }
 }
