@@ -10,7 +10,7 @@
     "@babel/core": "^7.4.5",
     "@babel/preset-env": "^7.4.5",
     "babel-loader": "^8.0.6",
-    "bestzip": "^2.1.4",
+    "bestzip": "^2.1.7",
     "bulma": "^0.7.5",
     "css-loader": "^3.0.0",
     "file-loader": "^4.0.0",
