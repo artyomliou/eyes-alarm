@@ -44,7 +44,7 @@ By this english localization you may be able to make your own localization
 If you find something text did not fit your culture well,
 you may change that without losing functional meaning.
   
-After finished, please email the file to me (artyomliou@gmail.com)  
+After finished, please make pull-request
 I will try checking the content,  
 If everything seems to be OK, i will make update ASAP and add your name here  
 
