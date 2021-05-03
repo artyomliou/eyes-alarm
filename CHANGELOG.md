@@ -1,3 +1,6 @@
+# 0.2.9
+- update italian localization
+
 # 0.2.8
 - update dev tool chain
 

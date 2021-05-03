@@ -1,0 +1,76 @@
+{
+  "extensionName": {
+    "message": "Eyes Alarm",
+    "description": "Name of the extension."
+  },
+
+  "extensionDescription": {
+    "message": "Ti notifica quand'è l'ora di fare una pausa",
+    "description": "Description of the extension."
+  },
+
+  "authorName": {
+    "message": "Artyom Liou",
+    "description": "Author's name"
+  },
+
+  "notificationTitle": {
+    "message": "È ora di fermarsi",
+    "description": "Title of the time-to-break notification."
+  },
+
+  "notificationMessage": {
+    "message": "Che ne dici di una tazza di té?",
+    "description": "Tells the user what they can do"
+  },
+
+  "optionsWorktimeLabel": {
+    "message": "Durata della lettura (minuti)",
+    "description": "time for reading (using eyes)"
+  },
+
+  "optionsBreaktimeLabel": {
+    "message": "Durata della pausa (minuti)",
+    "description": "time for break"
+  },
+
+  "optionsNotificationTitleLabel": {
+    "message": "Titolo della notifica",
+    "description": "notification's title"
+  },
+
+  "optionsNotificationMessageLabel": {
+    "message": "Contenuto della notifica",
+    "description": "content in notification"
+  },
+
+  "optionsSoundEnabledLabel": {
+    "message": "Abilita il suono",
+    "description": "enable to play sound when alarm is fired"
+  },
+
+  "optionsSoundVolumeLabel": {
+    "message": "Volume del suono",
+    "description": "sound volume"
+  },
+
+  "optionsSoundPathLabel": {
+    "message": "URL del file audio (facoltativo)",
+    "description": "url of the sound file specified"
+  },
+  
+  "optionsApplyButton": {
+    "message": "Applica",
+    "description": "button to apply new settings"
+  },
+
+  "optionsResetButton": {
+    "message": "Reset",
+    "description": "button to restore default settings"
+  },
+
+  "optionsApplySuccessMessage": {
+    "message": "Fatto! L'allarme è stato resettato.",
+    "description": "successfully applied new settings, also the alarm had been reset"
+  }
+}

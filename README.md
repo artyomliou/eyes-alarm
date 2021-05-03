@@ -31,6 +31,7 @@ or your computer is locked up
 - Chinese `Artyom Liou`
 - English `Artyom Liou`
 - French `Anciaux Yoann`
+- Italian `Manzan Riccardo`
 - German `Julius Rummel`
 - Japanese `Jie Ting Wu`
 - Korean `Winnie Wu`
