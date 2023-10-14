@@ -37,14 +37,14 @@
     "default_title": "__MSG_extensionName__",
     "default_popup": "popup.html",
     "default_icon": {
-      "48": "icons/icon@48.png",
-      "96": "icons/icon@96.png",
-      "128": "icons/icon@128.png"
+      "48": "image/icon@48.png",
+      "96": "image/icon@96.png",
+      "128": "image/icon@128.png"
     },
     "theme_icons": [
       {
-        "dark": "icons/icon-darken@@128.png",
-        "light": "icons/icon128.png",
+        "dark": "image/icon-darken@@128.png",
+        "light": "image/icon128.png",
         "size": 128
       }
     ]
