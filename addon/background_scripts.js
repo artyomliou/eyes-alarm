@@ -240,7 +240,7 @@ var defaultValues = __webpack_require__(2);
 
 var notificationParams = {
   type: 'basic',
-  iconUrl: browser.extension.getURL(paths.notificationIcon),
+  iconUrl: browser.runtime.getURL(paths.notificationIcon),
   title: defaultValues.title,
   message: defaultValues.message
 };
@@ -254,7 +254,7 @@ var ui = {
     "switch": function _switch(isGreen) {
       /*
       let path = isGreen ? paths.greenButton : paths.redButton
-      browser.browserAction.setIcon({ path })
+      browser.action.setIcon({ path })
       */
     }
   },

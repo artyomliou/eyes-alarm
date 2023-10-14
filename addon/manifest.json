@@ -1,42 +1,58 @@
 {
-  "manifest_version": 2,
+  "manifest_version": 3,
   "version": "0.2.9",
   "name": "__MSG_extensionName__",
   "description": "__MSG_extensionDescription__",
   "author": "__MSG_authorName__",
   "homepage_url": "https://github.com/artyomliou/eyes-alarm",
-  "default_locale": "en",
-  "permissions": [
-    "http://*/*",
-    "https://*/*",
-    "ftp://*/*",
-    "alarms",
-    "notifications",
-    "storage",
-    "idle"
-  ],
-  "applications": {
+  "browser_specific_settings": {
     "gecko": {
       "id": "{548c04e1-8687-42d1-8b1c-032dc42be5b7}",
       "strict_min_version": "51.0"
     }
   },
-
-  "icons": {
-    "48": "icons/icon@48.png",
-    "96": "icons/icon@96.png",
-    "128": "icons/icon@128.png"
+  "default_locale": "en",
+  "permissions": [
+    "alarms",
+    "notifications",
+    "storage",
+    "idle",
+    "declarativeNetRequestWithHostAccess"
+  ],
+  "declarative_net_request": {
+    "rule_resources": [
+      {
+        "id": "ruleset",
+        "enabled": true,
+        "path": "dnr_rules.json"
+      }
+    ]
   },
-  "browser_action": {
+  "host_permissions": [
+    "http://*/*",
+    "https://*/*",
+    "ftp://*/*"
+  ],
+  "action": {
     "default_title": "__MSG_extensionName__",
-    "default_icon": "icons/icon-darken@128.png",
-    "default_popup": "popup.html"
+    "default_popup": "popup.html",
+    "default_icon": {
+      "48": "icons/icon@48.png",
+      "96": "icons/icon@96.png",
+      "128": "icons/icon@128.png"
+    },
+    "theme_icons": [
+      {
+        "dark": "icons/icon-darken@@128.png",
+        "light": "icons/icon128.png",
+        "size": 128
+      }
+    ]
   },
   "options_ui": {
     "page": "options.html"
   },
   "background": {
-    "persistent": true,
     "scripts": [
       "browser-polyfill.js",
       "background_scripts.js"

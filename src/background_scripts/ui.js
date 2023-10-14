@@ -6,7 +6,7 @@ var defaultValues = require("../configs/defaults")
 
 let notificationParams = {
     type: 'basic',
-    iconUrl: browser.extension.getURL(paths.notificationIcon),
+    iconUrl: browser.runtime.getURL(paths.notificationIcon),
     title: defaultValues.title,
     message: defaultValues.message
 }
@@ -21,7 +21,7 @@ var ui = {
         switch(isGreen) {
             /*
             let path = isGreen ? paths.greenButton : paths.redButton
-            browser.browserAction.setIcon({ path })
+            browser.action.setIcon({ path })
             */
         }
     },
