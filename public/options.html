@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="./style/options_entry.css">
+</head>
+
+<body>
+    <section class="section">
+        <div class="container">
+            <div class="field">
+                <label class="label" id="readingTime_label"></label>
+                <p class="control">
+                    <input class="input is-small" id="readingTimeAmount" type="number" min="1" max="180" step="1" />
+                </p>
+                <label class="label" id="breakTime_label"></label>
+                <p class="control">
+                    <input class="input is-small" id="breakTimeAmount" type="number" min="1" max="120" step="1" />
+                </p>
+                <label class="label" id="title_label"></label>
+                <p class="control">
+                    <input class="input is-small" id="title" type="text" />
+                </p>
+                <label class="label" id="message_label"></label>
+                <p class="control">
+                    <input class="input is-small" id="message" type="text" rows="2" />
+                </p>
+            </div>
+        </div>
+    </section>
+    <section class="section">
+        <div class="container">
+            <div class="field">
+                <label class="label" id="soundEnabled_label"></label>
+                <p class="control">
+                    <input id="soundEnabled" type="checkbox" />
+                </p>
+            </div>
+            <div class="box">
+                <div class="field">
+                    <label class="label" id="soundVolume_label"></label>
+                    <p class="control">
+                        <input class="is-small" id="soundVolume" type="range" min="0.1" max="1" step="0.1" />
+                        <span class="is-pulled-right" id="soundVolumeValue"></span>
+                    </p>
+                </div>
+                <div class="field">
+                    <label class="label" id="soundPath_label"></label>
+                    <p class="control">
+                        <input class="input is-small" id="soundPath" type="text" />
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section">
+        <div class="flex center horizontal">
+            <button class="item button is-success" id="apply"></button>
+            <button class="item button is-link" id="reset"></button>
+        </div>
+        <br />
+        <div class="container">
+            <div class="notification" id="msg"></div>
+        </div>
+    </section>
+</body>
+<script type="module" src="./options.js"></script>
+
+</html>

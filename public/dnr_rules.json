@@ -1,0 +1,21 @@
+[
+  {
+    "id": 1,
+    "condition": {
+      "requestMethods": ["get"],
+      "resourceTypes": ["media"]
+    },
+    "action": {
+      "type": "allow"
+    }
+  },
+  {
+    "id": 2,
+    "condition": {
+      "excludedResourceTypes": []
+    },
+    "action": {
+      "type": "block"
+    }
+  }
+]
