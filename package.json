@@ -1,34 +1,23 @@
 {
   "name": "eyes-alarm",
-  "version": "0.2.9",
+  "version": "0.3.0",
   "description": "Notify it's time to rest your eyes.",
   "main": "addon/content_script.js",
   "repository": "https://github.com/artyomliou/eyes-alarm.git",
   "author": "Artyom Liou <artyomliou@gmail.com>",
   "license": "MIT",
   "devDependencies": {
-    "@babel/core": "^7.4.5",
-    "@babel/preset-env": "^7.4.5",
-    "babel-loader": "^8.0.6",
-    "bestzip": "^2.2.0",
-    "bulma": "^0.7.5",
-    "css-loader": "^3.0.0",
-    "file-loader": "^4.0.0",
-    "html-webpack-plugin": "^3.2.0",
-    "mini-css-extract-plugin": "^0.7.0",
-    "node-sass": "^4.12.0",
-    "pug": "^3.0.2",
-    "pug-loader": "^2.4.0",
-    "sass-loader": "^7.1.0",
-    "style-loader": "^0.23.1",
-    "webpack": "^4.34.0",
-    "webpack-cli": "^3.3.4"
+    "@types/webextension-polyfill": "^0.10.4",
+    "vite": "^4.4.11",
+    "webextension-polyfill": "^0.10.0"
   },
   "scripts": {
-    "build": "webpack --progress --color --config ./webpack.config.js",
-    "watch": "webpack --watch --color --config ./webpack.config.js",
-    "zipf": "cd addon && bestzip firefox.zip ./*",
-    "zipc": "cd addon && bestzip chrome.zip ./*"
+    "build": "vite build",
+    "dev": "web-ext run",
+    "zipf": "cd build && zip -r firefox.zip .",
+    "zipc": "cd build && zip -r chrome.zip ."
   },
-  "dependencies": {}
+  "dependencies": {
+    "bulma": "^0.7.5"
+  }
 }

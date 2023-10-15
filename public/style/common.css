@@ -1,0 +1,52 @@
+:root {
+  --color-bg: #feffe4;
+  --color-success: #2eb872;
+  --color-warning: #fa4659;
+  --color-btn-active: #a3de83;
+}
+
+.unselectable {
+  user-select: none;
+}
+
+.square-25px {
+  width: 25px;
+  height: 25px;
+}
+
+.success {
+  color: var(--color-success);
+}
+
+.warning {
+  color: var(--color-warning);
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.flex {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  align-content: flex-start;
+}
+
+.vertical {
+  flex-direction: column;
+}
+
+.horizontal {
+  flex-direction: row;
+}
+
+.center {
+  align-items: center;
+  justify-content: center;
+}
+
+.item {
+  flex-grow: 1;
+}
