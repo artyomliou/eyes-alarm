@@ -7,7 +7,7 @@
 - [internal] remove persistent variable due to manifest v3
 - remove bulma framework usage so options_page may look different
 - replace _All Your Data on the Websites You Visit_ permission with [declarative net request](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json/declarative_net_request) to provide same functionaility with better security
-- bump minimum firefox version to 60.0 because of [es6-module usage](https://caniuse.com/es6-module)
+- bump minimum firefox version to 113.0
 
 # 0.2.9
 
