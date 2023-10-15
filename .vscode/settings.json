@@ -1,15 +1,8 @@
-// Place your settings in this file to overwrite default and user settings.
 {
-    "standard.options": {
-      "globals": ["browser"],
-      "ignore": [
-          "node_modules/**"
-      ],
-      "workingDirectories": [
-          "src/**.js",
-          "src/**/**.js"
-      ],
-      "plugins": ["html"],
-      "parser": "babel-eslint"
+  "editor.tabSize": 2,
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
   }
 }

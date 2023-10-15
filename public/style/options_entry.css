@@ -1,0 +1,21 @@
+@import url(common.css);
+
+/* because default width of option page in Chrome is more narrow
+* than Firefox's one
+* so need to detect the width of option page
+* if width is more than 400px, it's running on firefox
+* and the width setting should be ignored
+*/
+@media screen and (max-width: 400px) {
+  .input,
+  .box {
+    max-width: 85vw !important;
+  }
+}
+@media screen and (min-width: 401px) {
+  input,
+  .box,
+  .flex {
+    max-width: 400px !important;
+  }
+}

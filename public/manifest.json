@@ -28,11 +28,6 @@
       }
     ]
   },
-  "host_permissions": [
-    "http://*/*",
-    "https://*/*",
-    "ftp://*/*"
-  ],
   "action": {
     "default_title": "__MSG_extensionName__",
     "default_popup": "popup.html",
@@ -53,8 +48,8 @@
     "page": "options.html"
   },
   "background": {
+    "type": "module",
     "scripts": [
-      "browser-polyfill.js",
       "background_scripts.js"
     ]
   }

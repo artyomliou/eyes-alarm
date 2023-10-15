@@ -1,0 +1,72 @@
+@import url(common.css);
+
+@font-face {
+  font-family: "Anonymous Pro";
+  src: url(anonymous_pro_latin.woff2) format("woff2");
+  font-style: normal;
+  font-weight: 400;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC,
+    U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+}
+
+* {
+  font-family: "Anonymous Pro", monospace;
+}
+
+body {
+  padding: 10px 10px 0px 10px;
+}
+
+.clock {
+  text-align: center;
+  color: var(--color-success);
+  white-space: nowrap;
+}
+
+.clock .time {
+  font-size: 4em;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg) scale(1);
+  }
+  to {
+    transform: rotate(360deg) scale(1);
+  }
+}
+
+.btn::-moz-focus-inner {
+  border: 0;
+}
+
+.btn {
+  border: 1px solid transparent;
+  background-color: transparent;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin-right: 10px;
+}
+
+.btn > img {
+  align-self: center;
+}
+
+.btn:hover > img {
+  animation: rotate 0.8s 0.1s cubic-bezier(0.785, 0.135, 0.15, 0.86) 1;
+}
+
+.btn.slower:hover > img {
+  animation: rotate 1.2s 0.1s cubic-bezier(0.785, 0.135, 0.15, 0.86) 1;
+}
+
+.btn:active {
+  transition-property: background-color, border-color;
+  transition-duration: 100ms;
+  background-color: var(--color-btn-active);
+  border-color: var(--color-btn-active);
+}
+
+.btn:active > img {
+  fill: ghostwhite;
+}
