@@ -1,3 +1,7 @@
+# 0.3.1
+
+- _fixed_ reset countdown on browser startup
+
 # 0.3.0
 
 - [internal] replace webpack with vite

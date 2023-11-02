@@ -23,6 +23,11 @@ const defaultSoundPath = browser.runtime.getURL(
   "./sound/178646__zabuhailo__bronzebell1.wav"
 );
 
+browser.runtime.onStartup.addListener(async () => {
+  console.debug("on startup");
+  resetClockCommands(true);
+});
+
 browser.alarms.onAlarm.addListener(async () => {
   await incrementClock();
   if (await shouldBreak()) {
